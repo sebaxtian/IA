@@ -6,7 +6,9 @@ CONFIG -= qt
 SOURCES += main.cpp \
     lecturaarchivo.cpp \
     entorno.cpp \
-    amplitud.cpp
+    amplitud.cpp \
+    temp.cpp \
+    nodo.cpp
 
 DISTFILES += \
     entorno.txt \
@@ -14,4 +16,5 @@ DISTFILES += \
 
 HEADERS += \
     entorno.h \
-    amplitud.h
+    amplitud.h \
+    nodo.h
