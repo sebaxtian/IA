@@ -1,0 +1,25 @@
+# Entorno definido para Agente de Software de Reflejo Simple
+#
+# Los parametros del entorno se ingresan de la siguiente forma:
+#
+# 5 4
+# 0 0 1 0 0
+# 0 2 0 1 0
+# 1 0 0 1 0
+# 0 1 0 1 3
+#
+# La primera linea del archivo indica el numero de columnas
+# y el numero de filas que debe tener la matriz del entorno.
+#
+# Las subsiguientes lineas del archivo son numeros enteros
+# separados por espacios que representan casillas vacias o
+# con elementos, por ejemplo un obstaculo o una amenaza en
+# el entorno.
+#
+6 6
+0 0 0 1 2 1
+1 0 1 0 0 1
+3 1 0 0 0 0
+0 0 0 1 1 0
+1 0 1 0 0 0
+0 0 0 0 1 1
