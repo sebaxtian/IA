@@ -16,6 +16,7 @@ Nodo::Nodo(int i, int j, int codNodo)
     this->codNodo = codNodo;
     this->fila = i;
     this->columna = j;
+    this->indMeta = 0;
 }
 
 // set
@@ -71,17 +72,17 @@ int Nodo::get_costoHeuristica () {
 
 bool Nodo::esMeta() {
 
-    if(this->codNodo == 7) {
+    if(this->codNodo == 7 && this->indMeta == 0) {
         indMeta++;
     }
-    if(this->codNodo == 6) {
+    if(this->codNodo == 6 && this->indMeta == 1) {
         indMeta++;
     }
-    if(this->codNodo == 5) {
+    if(this->codNodo == 5 && this->indMeta == 2) {
         indMeta++;
     }
 
-    if(indMeta == 3) {
+    if(this->indMeta == 3) {
         return true;
     }
 

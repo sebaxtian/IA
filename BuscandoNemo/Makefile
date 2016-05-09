@@ -50,13 +50,18 @@ OBJECTS_DIR   = ./
 
 SOURCES       = main.cpp \
 		lecturaarchivo.cpp \
+		entorno.cpp \
+		amplitud.cpp \
 		temp.cpp \
 		nodo.cpp 
 OBJECTS       = main.o \
 		lecturaarchivo.o \
+		entorno.o \
+		amplitud.o \
 		temp.o \
 		nodo.o
 DIST          = entorno.txt \
+		prueba1.txt \
 		../../../Qt/5.6/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.6/gcc_64/mkspecs/common/unix.conf \
 		../../../Qt/5.6/gcc_64/mkspecs/common/linux.conf \
@@ -185,8 +190,12 @@ DIST          = entorno.txt \
 		../../../Qt/5.6/gcc_64/mkspecs/features/exceptions.prf \
 		../../../Qt/5.6/gcc_64/mkspecs/features/yacc.prf \
 		../../../Qt/5.6/gcc_64/mkspecs/features/lex.prf \
-		BuscandoNemo.pro nodo.h main.cpp \
+		BuscandoNemo.pro entorno.h \
+		amplitud.h \
+		nodo.h main.cpp \
 		lecturaarchivo.cpp \
+		entorno.cpp \
+		amplitud.cpp \
 		temp.cpp \
 		nodo.cpp
 QMAKE_TARGET  = BuscandoNemo
@@ -499,11 +508,21 @@ compiler_clean:
 
 ####### Compile
 
-main.o: main.cpp 
+main.o: main.cpp entorno.h \
+		nodo.h \
+		amplitud.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 lecturaarchivo.o: lecturaarchivo.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o lecturaarchivo.o lecturaarchivo.cpp
+
+entorno.o: entorno.cpp entorno.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o entorno.o entorno.cpp
+
+amplitud.o: amplitud.cpp amplitud.h \
+		nodo.h \
+		entorno.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o amplitud.o amplitud.cpp
 
 temp.o: temp.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o temp.o temp.cpp

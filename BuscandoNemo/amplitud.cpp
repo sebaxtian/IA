@@ -15,9 +15,12 @@ Amplitud::Amplitud()
 
 Amplitud::Amplitud(Nodo nodoRaiz, Entorno entorno)
 {
+
     this->colaNodos.push(nodoRaiz);
     this->miEntorno = entorno;
     this->nodoRaiz = nodoRaiz;
+    this->nodosCreados = 0;
+    this->nodosExpandidos = 0;
 }
 
 queue<string> Amplitud::busquedaPreferente() {
@@ -25,9 +28,8 @@ queue<string> Amplitud::busquedaPreferente() {
 
     bool termina = false;
     queue<string> solucion;
-    int parada = 10;
-    while(!termina || parada > 0) {
-        parada--;
+    int parada = 100000;
+    while(!termina && parada > 0) {
         // Si la cola esta vacia
         if(colaNodos.empty()) {
             termina = true;
@@ -46,6 +48,8 @@ queue<string> Amplitud::busquedaPreferente() {
                 expandirNodos(nodoCabeza);
             }
         }
+         cout << "Ciclo " << parada <<" NC : " << nodosCreados<< " => NE : " << nodosExpandidos<<  " . " << endl;
+         parada--;
     }
 
     return solucion;
@@ -115,11 +119,13 @@ void Amplitud::expandirNodos(Nodo nodo) {
             // Agrega el nodo a la cola
             colaNodos.push(nodoHijo);
         }
+        /*
         queue<Nodo> colaNodos2 = colaNodos;
         while (!colaNodos2.empty()) {
             cout << "codNodo: " << colaNodos2.front().getCodNodo() << " = " << colaNodos2.front().get_fila() << " , " << colaNodos2.front().get_columna() << endl;
             colaNodos2.pop();
         }
         cout << " --- ---- --- " << endl;
+        */
     }
 }
