@@ -49,10 +49,14 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../BuscandoNemo/main.cpp \
-		../BuscandoNemo/lecturaarchivo.cpp 
+		../BuscandoNemo/lecturaarchivo.cpp \
+		../BuscandoNemo/entorno.cpp 
 OBJECTS       = main.o \
-		lecturaarchivo.o
-DIST          = ../../../../Programas/Qt5.6.0/5.6/gcc_64/mkspecs/features/spec_pre.prf \
+		lecturaarchivo.o \
+		entorno.o
+DIST          = ../BuscandoNemo/entorno.txt \
+		../BuscandoNemo/prueba1.txt \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/mkspecs/common/unix.conf \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/mkspecs/common/linux.conf \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/mkspecs/common/sanitize.conf \
@@ -180,8 +184,9 @@ DIST          = ../../../../Programas/Qt5.6.0/5.6/gcc_64/mkspecs/features/spec_p
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/mkspecs/features/exceptions.prf \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/mkspecs/features/yacc.prf \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/mkspecs/features/lex.prf \
-		../BuscandoNemo/BuscandoNemo.pro  ../BuscandoNemo/main.cpp \
-		../BuscandoNemo/lecturaarchivo.cpp
+		../BuscandoNemo/BuscandoNemo.pro entorno.h ../BuscandoNemo/main.cpp \
+		../BuscandoNemo/lecturaarchivo.cpp \
+		../BuscandoNemo/entorno.cpp
 QMAKE_TARGET  = BuscandoNemo
 DESTDIR       = 
 TARGET        = BuscandoNemo
@@ -492,11 +497,14 @@ compiler_clean:
 
 ####### Compile
 
-main.o: ../BuscandoNemo/main.cpp 
+main.o: ../BuscandoNemo/main.cpp ../BuscandoNemo/entorno.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../BuscandoNemo/main.cpp
 
 lecturaarchivo.o: ../BuscandoNemo/lecturaarchivo.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o lecturaarchivo.o ../BuscandoNemo/lecturaarchivo.cpp
+
+entorno.o: ../BuscandoNemo/entorno.cpp ../BuscandoNemo/entorno.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o entorno.o ../BuscandoNemo/entorno.cpp
 
 ####### Install
 
