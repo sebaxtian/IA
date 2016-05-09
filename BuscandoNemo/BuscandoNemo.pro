@@ -5,3 +5,6 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     lecturaarchivo.cpp
+
+DISTFILES += \
+    entorno.txt
