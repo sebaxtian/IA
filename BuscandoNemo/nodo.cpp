@@ -6,58 +6,120 @@
 using namespace std;
 
 // constructor
-nodo::nodo()
+Nodo::Nodo()
 {
 
 }
 
+Nodo::Nodo(int i, int j, int codNodo)
+{
+    this->codNodo = codNodo;
+    this->fila = i;
+    this->columna = j;
+}
 
 // set
 
-void nodo::set_fila (int pfila) {
+void Nodo::set_fila (int pfila) {
     fila = pfila;
 }
-void nodo::set_columna (int pcolumna) {
+void Nodo::set_columna (int pcolumna) {
     columna = pcolumna;
 }
-void nodo::set_pasosSolucionM1 (string pposicion)  {
+void Nodo::set_pasosSolucionM1 (string pposicion)  {
     pasosSolucionM1.push(pposicion);
 }
-void nodo::set_pasosSolucionM2 (string pposicion)  {
+void Nodo::set_pasosSolucionM2 (string pposicion)  {
     pasosSolucionM2.push(pposicion);
 }
-void nodo::set_pasosSolucionM3 (string pposicion)  {
+void Nodo::set_pasosSolucionM3 (string pposicion)  {
     pasosSolucionM3.push(pposicion);
 }
-void nodo::set_costo (int pcosto) {
+void Nodo::set_costo (int pcosto) {
     costo = costo + pcosto;
 }
-void nodo::set_heuristica (int pheuristica) {
+void Nodo::set_heuristica (int pheuristica) {
     heuristica = pheuristica;
 }
 
 // get
-int nodo::get_fila () {
+int Nodo::get_fila () {
     return fila;
 }
-int nodo::get_columna () {
+int Nodo::get_columna () {
     return columna;
 }
-queue<string> nodo::get_pasosSolucionM1() {
+queue<string> Nodo::get_pasosSolucionM1() {
     return pasosSolucionM1;
 }
-queue<string> nodo::get_pasosSolucionM2() {
+queue<string> Nodo::get_pasosSolucionM2() {
     return pasosSolucionM2;
 }
-queue<string> nodo::get_pasosSolucionM3() {
+queue<string> Nodo::get_pasosSolucionM3() {
     return pasosSolucionM3;
 }
-int nodo::get_costo () {
+int Nodo::get_costo () {
     return costo;
 }
-int nodo::get_heuristica () {
+int Nodo::get_heuristica () {
     return heuristica;
 }
-int nodo::get_costoHeuristica () {
+int Nodo::get_costoHeuristica () {
     return costo + heuristica;
+}
+
+
+bool Nodo::esMeta() {
+
+    if(this->codNodo == 7) {
+        indMeta++;
+    }
+    if(this->codNodo == 6) {
+        indMeta++;
+    }
+    if(this->codNodo == 5) {
+        indMeta++;
+    }
+
+    if(indMeta == 3) {
+        return true;
+    }
+
+    return false;
+}
+
+
+void Nodo::set_pasosSolucion (string pposicion)  {
+    pasosSolucion.push(pposicion);
+}
+void Nodo::set_pasosSolucion (queue<string> pasosSolucionPapa)  {
+    this->pasosSolucion = pasosSolucionPapa;
+}
+
+queue<string> Nodo::get_pasosSolucion() {
+    return pasosSolucion;
+}
+
+void Nodo::setCodNodo(int codNodo) {
+    this->codNodo = codNodo;
+}
+
+int Nodo::getCodNodo() {
+    return codNodo;
+}
+
+int Nodo::getProfundidad() {
+    return profundidad;
+}
+
+void Nodo::setProfundidad(int profundidad) {
+    this->profundidad = profundidad;
+}
+
+void Nodo::set_indMeta(int indMeta) {
+    this->indMeta = indMeta;
+}
+
+int Nodo::get_indMeta() {
+    return indMeta;
 }

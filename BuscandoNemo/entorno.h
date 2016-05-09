@@ -11,6 +11,7 @@ class Entorno
     int ancho = 0;
     int alto = 0;
     int **ambiente;
+    int posInitRobot[2];
 public:
     Entorno();
     void loadFile(string pathFile);
@@ -18,6 +19,7 @@ public:
     int getAncho();
     int getAlto();
     int** getAmbiente();
+    int* getPosInitRobot();
 };
 
 #endif // ENTORNO_H

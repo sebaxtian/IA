@@ -53,6 +53,11 @@ void Entorno::loadFile(string pathFile) {
             this->ambiente[i] = new int[this->ancho];
             while(tokenstr != NULL) {
                 this->ambiente[i][j] = stoi(tokenstr);
+                // Encuentra la posicion inicial del robot
+                if(this->ambiente[i][j] == 0) {
+                    this->posInitRobot[0] = i;
+                    this->posInitRobot[1] = j;
+                }
                 j++;
                 tokenstr = strtok(NULL," ");
             }
@@ -88,4 +93,9 @@ int Entorno::getAncho() {
 
 int** Entorno::getAmbiente() {
     return this->ambiente;
+}
+
+int* Entorno::getPosInitRobot() {
+    int* puntero = this->posInitRobot;
+    return puntero;
 }

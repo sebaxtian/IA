@@ -50,10 +50,16 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../BuscandoNemo/main.cpp \
 		../BuscandoNemo/lecturaarchivo.cpp \
-		../BuscandoNemo/entorno.cpp 
+		../BuscandoNemo/entorno.cpp \
+		../BuscandoNemo/amplitud.cpp \
+		../BuscandoNemo/temp.cpp \
+		../BuscandoNemo/nodo.cpp 
 OBJECTS       = main.o \
 		lecturaarchivo.o \
-		entorno.o
+		entorno.o \
+		amplitud.o \
+		temp.o \
+		nodo.o
 DIST          = ../BuscandoNemo/entorno.txt \
 		../BuscandoNemo/prueba1.txt \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/mkspecs/features/spec_pre.prf \
@@ -184,9 +190,14 @@ DIST          = ../BuscandoNemo/entorno.txt \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/mkspecs/features/exceptions.prf \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/mkspecs/features/yacc.prf \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/mkspecs/features/lex.prf \
-		../BuscandoNemo/BuscandoNemo.pro entorno.h ../BuscandoNemo/main.cpp \
+		../BuscandoNemo/BuscandoNemo.pro entorno.h \
+		amplitud.h \
+		nodo.h ../BuscandoNemo/main.cpp \
 		../BuscandoNemo/lecturaarchivo.cpp \
-		../BuscandoNemo/entorno.cpp
+		../BuscandoNemo/entorno.cpp \
+		../BuscandoNemo/amplitud.cpp \
+		../BuscandoNemo/temp.cpp \
+		../BuscandoNemo/nodo.cpp
 QMAKE_TARGET  = BuscandoNemo
 DESTDIR       = 
 TARGET        = BuscandoNemo
@@ -505,6 +516,15 @@ lecturaarchivo.o: ../BuscandoNemo/lecturaarchivo.cpp
 
 entorno.o: ../BuscandoNemo/entorno.cpp ../BuscandoNemo/entorno.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o entorno.o ../BuscandoNemo/entorno.cpp
+
+amplitud.o: ../BuscandoNemo/amplitud.cpp ../BuscandoNemo/amplitud.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o amplitud.o ../BuscandoNemo/amplitud.cpp
+
+temp.o: ../BuscandoNemo/temp.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o temp.o ../BuscandoNemo/temp.cpp
+
+nodo.o: ../BuscandoNemo/nodo.cpp ../BuscandoNemo/nodo.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o nodo.o ../BuscandoNemo/nodo.cpp
 
 ####### Install
 

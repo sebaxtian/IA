@@ -3,6 +3,8 @@
 #include <string>
 #include <string.h>
 #include "entorno.h"
+#include "nodo.h"
+#include "amplitud.h"
 
 using namespace std;
 
@@ -20,6 +22,16 @@ int main(int argc, char *argv[])
     cout << "Alto del Entorno: " << miEntorno.getAlto() << endl;
     cout << "Imprime el Entorno " << endl;
     miEntorno.imprimir();
+
+    int postI = miEntorno.getPosInitRobot()[0];
+    int postJ = miEntorno.getPosInitRobot()[1];
+
+    cout << "Posicion Inicial del Robot: (" << postI << " , " << postJ << ")" << endl;
+
+    Nodo nodoRaiz(postI, postJ, 0);
+    Amplitud miAmplitud(nodoRaiz, miEntorno);
+    miAmplitud.busquedaPreferente();
+
 
     return 0;
 }
