@@ -31,12 +31,14 @@ int main(int argc, char *argv[])
     Nodo nodoRaiz(postI, postJ, 0);
     Amplitud miAmplitud(nodoRaiz, miEntorno);    
     queue<string> solucion = miAmplitud.busquedaPreferente();
+    /*
     int i = 1;
     while (!solucion.empty()) {
         cout << "Paso " << i << " : " << solucion.front() << endl;
         solucion.pop();
         i++;
     }
+    */
 
 
     return 0;

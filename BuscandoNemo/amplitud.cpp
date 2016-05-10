@@ -29,12 +29,13 @@ queue<string> Amplitud::busquedaPreferente() {
     bool termina = false;
     queue<string> solucion;
     int parada = 1000;
+    Nodo nodoCabeza;
     while(!termina && parada > 0) {
         // Si la cola esta vacia
         if(colaNodos.empty()) {
             termina = true;
         } else {
-            Nodo nodoCabeza = colaNodos.front();
+            nodoCabeza = colaNodos.front();
             colaNodos.pop();
             // Aumenta los nodos expandidos
             nodosExpandidos++;
@@ -47,15 +48,19 @@ queue<string> Amplitud::busquedaPreferente() {
                 // Expandir y meter nodos al final de la cola
                 expandirNodos(nodoCabeza);
             }
+            /*
             if (nodoCabeza.get_indMeta() >=2) {
 
                 cout << " NC : " << nodosCreados<< " => inMeta : " << nodoCabeza.get_indMeta() <<  " => inMeta : " << nodoCabeza.get_indMeta() <<  " => Prof : " << nodoCabeza.getProfundidad() <<  " ***** "  << endl;
             }
-
+            */
         }
 
          parada--;
     }
+    cout << "HOLA !!" << endl;
+
+    cout << " NC : " << nodosCreados << " => inMeta : " << nodoCabeza.get_indMeta() <<  " => inMeta : " << nodoCabeza.get_indMeta() <<  " => Prof : " << nodoCabeza.getProfundidad() <<  " ***** "  << endl;
 
     return solucion;
 }
@@ -125,12 +130,13 @@ void Amplitud::expandirNodos(Nodo nodo) {
             colaNodos.push(nodoHijo);
         }
 
+        /*
         queue<Nodo> colaNodos2 = colaNodos;
         while (!colaNodos2.empty()) {
             cout << "codNodo: " << colaNodos2.front().getCodNodo() << " = " << colaNodos2.front().get_fila() << " , " << colaNodos2.front().get_columna() << endl;
             colaNodos2.pop();
         }
         cout << " --- ---- --- " << endl;
-
+        */
     }
 }
