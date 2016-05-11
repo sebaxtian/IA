@@ -3,6 +3,8 @@
 // Constructor de clase para un Nodo Raiz
 Nodo2::Nodo2()
 {
+    this->coords[0] = 0;
+    this->coords[1] = 0;
     this->codNodo = 0;
     this->referenciaPadre = 0;
     this->operadorAplicado = arriba;
@@ -14,8 +16,10 @@ Nodo2::Nodo2()
 }
 
 // Constructor de clase para crear un Nodo Cualquiera
-Nodo2::Nodo2(int codNodo, int refPadre, operadores opAplicado, int profundidad, int costoAcu, estados estadoActual, queue<string> camino, int flagElementos)
+Nodo2::Nodo2(int coords[2], int codNodo, int refPadre, operadores opAplicado, int profundidad, int costoAcu, estados estadoActual, queue<string> camino, int flagElementos)
 {
+    this->coords[0] = coords[0];
+    this->coords[1] = coords[1];
     this->codNodo = codNodo;
     this->referenciaPadre = refPadre;
     this->operadorAplicado = opAplicado;
@@ -28,6 +32,12 @@ Nodo2::Nodo2(int codNodo, int refPadre, operadores opAplicado, int profundidad, 
 
 
 // SETTERS
+void Nodo2::setCoords(int coords[])
+{
+    this->coords[0] = coords[0];
+    this->coords[1] = coords[1];
+}
+
 void Nodo2::setCodNodo(int codNodo)
 {
     this->codNodo = codNodo;
@@ -67,11 +77,11 @@ int Nodo2::getCostoAcumulado()
 {
     return this->costoAcumulado;
 }
-Nodo2::estados Nodo2::getEstadoActual()
+estados Nodo2::getEstadoActual()
 {
     return this->estadoActual;
 }
-Nodo2::operadores Nodo2::getOpeAplicado()
+operadores Nodo2::getOpeAplicado()
 {
     return this->operadorAplicado;
 }
@@ -94,6 +104,14 @@ int Nodo2::getFlagElementos()
 
 
 // Funciones miembro
+int Nodo2::getPosI()
+{
+    return this->coords[0];
+}
+int Nodo2::getPosJ()
+{
+    return this->coords[1];
+}
 bool Nodo2::esMeta()
 {
     if(this->flagElementos == 3)

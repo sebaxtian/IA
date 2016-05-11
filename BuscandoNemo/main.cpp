@@ -6,6 +6,8 @@
 #include "entorno.h"
 #include "nodo.h"
 #include "amplitud.h"
+#include "nodo2.h"
+#include "amplitud2.h"
 
 using namespace std;
 
@@ -121,18 +123,55 @@ void busquedaAmplitud()
 }
 
 
+void pruebaAmplitud2()
+{
+    cout << "Prueba Busqueda por Amplitud2" << endl;
+
+    Entorno entorno = cargarEntorno(PATHENTORNO);
+
+    // Imprime el entorno
+    entorno.imprimir();
+
+    // Crea el Nodo Raiz del problema, en la posicion del Robot
+    Nodo2 raiz;
+    raiz.setCoords(entorno.getPosInitRobot());
+
+    // Aplica el algoritmo de Bisqueda Preferente por Amplitud
+    Amplitud2 amplitud(raiz, entorno);
+    queue<string> solucion = amplitud.makeBusqueda();
+
+    // Imprime el numero de nodos expandidos y creados
+    int numNodosExpandidos = amplitud.getNumNodosExpandidos();
+    int numNodosCreados = amplitud.getNumNodosCreados();
+    cout << "Numero de Nodos Expandidos: " << numNodosExpandidos << endl;
+    cout << "Numero de Nodos Creados: " << numNodosCreados << endl;
+
+    // Imprime los pasos de la solucion
+    int i = 1;
+    while(!solucion.empty())
+    {
+        cout << "Paso " << i << " : " << solucion.front() << endl;
+        solucion.pop();
+        i++;
+    }
+
+    cout << endl;
+}
+
 
 int main(int argc, char *argv[])
 {
     // Prueba Cola de Prioridad
-    pruebaColaPrioridad();
+    //pruebaColaPrioridad();
 
     // Prueba Cola de Camino
-    pruebaColaCamino();
+    //pruebaColaCamino();
 
     // Realiza busqueda preferente por amplitud
     //busquedaAmplitud();
 
+    // Prueba Busqueda Preferente por Amplitud2
+    pruebaAmplitud2();
 
     return 0;
 }

@@ -6,12 +6,13 @@
 
 using namespace std;
 
+// Posibles estados del problema
+enum estados {onLibre, onTiburon, onTortuga, onDori, onMarlin, onNemo};
+// Posibles operadores aplicados
+enum operadores {arriba, abajo, izquierda, derecha};
+
 class Nodo2
 {
-    // Posibles estados del problema
-    enum estados {onLibre, onTiburon, onTortuga, onHumano, onDori, onMarlin, onNemo};
-    // Posibles operadores aplicados
-    enum operadores {arriba, abajo, izquierda, derecha};
     // Identificador unico del nodo
     int codNodo;
     // Un identificador de referencia al nodo padre
@@ -28,12 +29,15 @@ class Nodo2
     queue<string> camino;
     // Variable que marca los elementos encontrados, en orden, primero 1, 2 y 3 (Si es 3 significa que ha encontrado 1 y 2)
     int flagElementos;
+    // Coordenadas del nodo en el entorno
+    int coords[2];
 public:
     // Constructor de clase para un Nodo Raiz
     Nodo2();
     // Constructor de clase para crear un Nodo Cualquiera
-    Nodo2(int codNodo, int refPadre, operadores opAplicado, int profundidad, int costoAcu, estados estadoActual, queue<string> camino);
+    Nodo2(int coords[2], int codNodo, int refPadre, operadores opAplicado, int profundidad, int costoAcu, estados estadoActual, queue<string> camino, int flagElementos);
     // SETTERS
+    void setCoords(int coords[2]);
     void setCodNodo(int codNodo);
     void setRefPadre(int refPadre);
     void setOpeAplicado(operadores operador);
@@ -51,6 +55,8 @@ public:
     queue<string> getCamino();
     int getFlagElementos();
     // Funciones miembro
+    int getPosI();
+    int getPosJ();
     bool esMeta();
 };
 
