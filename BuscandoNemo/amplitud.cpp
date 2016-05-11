@@ -129,7 +129,6 @@ void Amplitud::expandirNodos(Nodo nodo) {
             // Agrega el nodo a la cola
             colaNodos.push(nodoHijo);
         }
-
         /*
         queue<Nodo> colaNodos2 = colaNodos;
         while (!colaNodos2.empty()) {

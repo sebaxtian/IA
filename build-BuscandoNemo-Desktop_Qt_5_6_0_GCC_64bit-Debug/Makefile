@@ -53,13 +53,19 @@ SOURCES       = ../BuscandoNemo/main.cpp \
 		../BuscandoNemo/entorno.cpp \
 		../BuscandoNemo/amplitud.cpp \
 		../BuscandoNemo/temp.cpp \
-		../BuscandoNemo/nodo.cpp 
+		../BuscandoNemo/nodo.cpp \
+		../BuscandoNemo/costouniforme.cpp \
+		../BuscandoNemo/nodo2.cpp \
+		../BuscandoNemo/amplitud2.cpp 
 OBJECTS       = main.o \
 		lecturaarchivo.o \
 		entorno.o \
 		amplitud.o \
 		temp.o \
-		nodo.o
+		nodo.o \
+		costouniforme.o \
+		nodo2.o \
+		amplitud2.o
 DIST          = ../BuscandoNemo/entorno.txt \
 		../BuscandoNemo/prueba1.txt \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/mkspecs/features/spec_pre.prf \
@@ -192,12 +198,18 @@ DIST          = ../BuscandoNemo/entorno.txt \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/mkspecs/features/lex.prf \
 		../BuscandoNemo/BuscandoNemo.pro entorno.h \
 		amplitud.h \
-		nodo.h ../BuscandoNemo/main.cpp \
+		nodo.h \
+		costouniforme.h \
+		nodo2.h \
+		amplitud2.h ../BuscandoNemo/main.cpp \
 		../BuscandoNemo/lecturaarchivo.cpp \
 		../BuscandoNemo/entorno.cpp \
 		../BuscandoNemo/amplitud.cpp \
 		../BuscandoNemo/temp.cpp \
-		../BuscandoNemo/nodo.cpp
+		../BuscandoNemo/nodo.cpp \
+		../BuscandoNemo/costouniforme.cpp \
+		../BuscandoNemo/nodo2.cpp \
+		../BuscandoNemo/amplitud2.cpp
 QMAKE_TARGET  = BuscandoNemo
 DESTDIR       = 
 TARGET        = BuscandoNemo
@@ -508,7 +520,9 @@ compiler_clean:
 
 ####### Compile
 
-main.o: ../BuscandoNemo/main.cpp ../BuscandoNemo/entorno.h
+main.o: ../BuscandoNemo/main.cpp ../BuscandoNemo/entorno.h \
+		../BuscandoNemo/nodo.h \
+		../BuscandoNemo/amplitud.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../BuscandoNemo/main.cpp
 
 lecturaarchivo.o: ../BuscandoNemo/lecturaarchivo.cpp 
@@ -517,7 +531,9 @@ lecturaarchivo.o: ../BuscandoNemo/lecturaarchivo.cpp
 entorno.o: ../BuscandoNemo/entorno.cpp ../BuscandoNemo/entorno.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o entorno.o ../BuscandoNemo/entorno.cpp
 
-amplitud.o: ../BuscandoNemo/amplitud.cpp ../BuscandoNemo/amplitud.h
+amplitud.o: ../BuscandoNemo/amplitud.cpp ../BuscandoNemo/amplitud.h \
+		../BuscandoNemo/nodo.h \
+		../BuscandoNemo/entorno.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o amplitud.o ../BuscandoNemo/amplitud.cpp
 
 temp.o: ../BuscandoNemo/temp.cpp 
@@ -525,6 +541,15 @@ temp.o: ../BuscandoNemo/temp.cpp
 
 nodo.o: ../BuscandoNemo/nodo.cpp ../BuscandoNemo/nodo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o nodo.o ../BuscandoNemo/nodo.cpp
+
+costouniforme.o: ../BuscandoNemo/costouniforme.cpp ../BuscandoNemo/costouniforme.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o costouniforme.o ../BuscandoNemo/costouniforme.cpp
+
+nodo2.o: ../BuscandoNemo/nodo2.cpp ../BuscandoNemo/nodo2.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o nodo2.o ../BuscandoNemo/nodo2.cpp
+
+amplitud2.o: ../BuscandoNemo/amplitud2.cpp ../BuscandoNemo/amplitud2.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o amplitud2.o ../BuscandoNemo/amplitud2.cpp
 
 ####### Install
 

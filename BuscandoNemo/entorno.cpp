@@ -81,6 +81,7 @@ void Entorno::imprimir() {
             }
         }
     }
+    cout << endl;
 }
 
 int Entorno::getAlto() {

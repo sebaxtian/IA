@@ -8,7 +8,10 @@ SOURCES += main.cpp \
     entorno.cpp \
     amplitud.cpp \
     temp.cpp \
-    nodo.cpp
+    nodo.cpp \
+    costouniforme.cpp \
+    nodo2.cpp \
+    amplitud2.cpp
 
 DISTFILES += \
     entorno.txt \
@@ -17,4 +20,7 @@ DISTFILES += \
 HEADERS += \
     entorno.h \
     amplitud.h \
-    nodo.h
+    nodo.h \
+    costouniforme.h \
+    nodo2.h \
+    amplitud2.h
