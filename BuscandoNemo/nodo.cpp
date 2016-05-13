@@ -93,8 +93,8 @@ bool Nodo::esMeta() {
 void Nodo::set_pasosSolucion (string pposicion)  {
     pasosSolucion.push(pposicion);
 }
-void Nodo::set_pasosSolucion (queue<string> pasosSolucionPapa)  {
-    this->pasosSolucion = pasosSolucionPapa;
+void Nodo::set_pasosSolucion (queue<string> *pasosSolucionPapa)  {
+    this->pasosSolucion = *pasosSolucionPapa;
 }
 
 queue<string> Nodo::get_pasosSolucion() {

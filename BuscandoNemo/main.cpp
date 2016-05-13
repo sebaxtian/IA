@@ -107,7 +107,7 @@ void busquedaAmplitud()
     Nodo raiz(posI, posJ, 0);
 
     // Aplica el algoritmo de Bisqueda Preferente por Amplitud
-    Amplitud amplitud(raiz, entorno);
+    Amplitud amplitud(&raiz, entorno);
     queue<string> solucion = amplitud.busquedaPreferente();
 
     // Imprime los pasos de la solucion
@@ -168,10 +168,10 @@ int main(int argc, char *argv[])
     //pruebaColaCamino();
 
     // Realiza busqueda preferente por amplitud
-    //busquedaAmplitud();
+    busquedaAmplitud();
 
     // Prueba Busqueda Preferente por Amplitud2
-    pruebaAmplitud2();
+    //pruebaAmplitud2();
 
     return 0;
 }

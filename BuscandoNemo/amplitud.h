@@ -21,7 +21,7 @@ class Amplitud
     int nodosExpandidos;
 public:
     Amplitud();
-    Amplitud(Nodo nodoRaiz, Entorno entorno);
+    Amplitud(Nodo *nodoRaiz, Entorno entorno);
     queue<string> busquedaPreferente();
     void expandirNodos(Nodo nodo);
 };

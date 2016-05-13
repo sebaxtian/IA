@@ -13,12 +13,12 @@ Amplitud::Amplitud()
 
 }
 
-Amplitud::Amplitud(Nodo nodoRaiz, Entorno entorno)
+Amplitud::Amplitud(Nodo *nodoRaiz, Entorno entorno)
 {
 
-    this->colaNodos.push(nodoRaiz);
+    this->colaNodos.push(*nodoRaiz);
     this->miEntorno = entorno;
-    this->nodoRaiz = nodoRaiz;
+    this->nodoRaiz = *nodoRaiz;
     this->nodosCreados = 0;
     this->nodosExpandidos = 0;
 }
@@ -28,7 +28,7 @@ queue<string> Amplitud::busquedaPreferente() {
 
     bool termina = false;
     queue<string> solucion;
-    int parada = 1000;
+    int parada = 300000;
     Nodo nodoCabeza;
     while(!termina && parada > 0) {
         // Si la cola esta vacia
@@ -60,7 +60,7 @@ queue<string> Amplitud::busquedaPreferente() {
     }
     cout << "HOLA !!" << endl;
 
-    cout << " NC : " << nodosCreados << " => inMeta : " << nodoCabeza.get_indMeta() <<  " => inMeta : " << nodoCabeza.get_indMeta() <<  " => Prof : " << nodoCabeza.getProfundidad() <<  " ***** "  << endl;
+    cout << " NC : " << nodosCreados << " => inMeta : " << nodoCabeza.get_indMeta() <<  " => Prof : " << nodoCabeza.getProfundidad() <<  " ***** "  << endl;
 
     return solucion;
 }
@@ -84,7 +84,8 @@ void Amplitud::expandirNodos(Nodo nodo) {
         // Si se puede mover a la derecha
         if(derecha < limColums && miEntorno.getAmbiente()[posI][derecha] != roca) {
             Nodo nodoHijo(posI, derecha, miEntorno.getAmbiente()[posI][derecha]);
-            nodoHijo.set_pasosSolucion(nodo.get_pasosSolucion());
+            queue<string> pasosSolPapa = nodo.get_pasosSolucion();
+            nodoHijo.set_pasosSolucion(&pasosSolPapa);
             nodoHijo.set_pasosSolucion(to_string(posI) + "," + to_string(derecha));
             nodoHijo.setProfundidad(nodo.getProfundidad() + 1);
             nodoHijo.set_indMeta(nodo.get_indMeta());
@@ -96,7 +97,8 @@ void Amplitud::expandirNodos(Nodo nodo) {
         // Si se puede mover abajo
         if(abajo < limFilas && miEntorno.getAmbiente()[abajo][posJ] != roca) {
             Nodo nodoHijo(abajo, posJ, miEntorno.getAmbiente()[abajo][posJ]);
-            nodoHijo.set_pasosSolucion(nodo.get_pasosSolucion());
+            queue<string> pasosSolPapa = nodo.get_pasosSolucion();
+            nodoHijo.set_pasosSolucion(&pasosSolPapa);
             nodoHijo.set_pasosSolucion(to_string(abajo) + "," + to_string(posJ));
             nodoHijo.setProfundidad(nodo.getProfundidad() + 1);
             nodoHijo.set_indMeta(nodo.get_indMeta());
@@ -108,7 +110,8 @@ void Amplitud::expandirNodos(Nodo nodo) {
         // Si se puede mover a izquierda
         if(izquierda >= 0 && miEntorno.getAmbiente()[posI][izquierda] != roca) {
             Nodo nodoHijo(posI, izquierda, miEntorno.getAmbiente()[posI][izquierda]);
-            nodoHijo.set_pasosSolucion(nodo.get_pasosSolucion());
+            queue<string> pasosSolPapa = nodo.get_pasosSolucion();
+            nodoHijo.set_pasosSolucion(&pasosSolPapa);
             nodoHijo.set_pasosSolucion(to_string(posI) + "," + to_string(izquierda));
             nodoHijo.setProfundidad(nodo.getProfundidad() + 1);
             nodoHijo.set_indMeta(nodo.get_indMeta());
@@ -120,7 +123,8 @@ void Amplitud::expandirNodos(Nodo nodo) {
         // Si se puede mover arriba
         if(arriba >= 0 && miEntorno.getAmbiente()[arriba][posJ] != roca) {
             Nodo nodoHijo(arriba, posJ, miEntorno.getAmbiente()[arriba][posJ]);
-            nodoHijo.set_pasosSolucion(nodo.get_pasosSolucion());
+            queue<string> pasosSolPapa = nodo.get_pasosSolucion();
+            nodoHijo.set_pasosSolucion(&pasosSolPapa);
             nodoHijo.set_pasosSolucion(to_string(arriba) + "," + to_string(posJ));
             nodoHijo.setProfundidad(nodo.getProfundidad() + 1);
             nodoHijo.set_indMeta(nodo.get_indMeta());

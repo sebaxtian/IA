@@ -29,7 +29,7 @@ public:
     void set_fila (int);
     void set_columna (int);
     void set_pasosSolucion (string);
-    void set_pasosSolucion (queue<string> pasosSolucionPapa);
+    void set_pasosSolucion (queue<string> *);
     void set_pasosSolucionM1 (string);
     void set_pasosSolucionM2 (string);
     void set_pasosSolucionM3 (string);
