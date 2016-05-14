@@ -88,6 +88,17 @@ Entorno cargarEntorno(string pathEntorno)
     int posI = entorno.getPosInitRobot()[0];
     int posJ = entorno.getPosInitRobot()[1];
     cout << "Posicion Inicial del Robot: (" << posI << "," << posJ << ")" << endl;
+    // Elementos del Entorno
+    cout << "Elementos del Entorno" << endl;
+    cout << "Robot: [0]" << endl;
+    cout << "Roca: [1]" << endl;
+    cout << "Espacio Libre: [2]" << endl;
+    cout << "Tiburon: [3]" << endl;
+    cout << "Tortuga: [4]" << endl;
+    cout << "Dori: [5]" << endl;
+    cout << "Marlin: [6]" << endl;
+    cout << "Nemo: [7]" << endl;
+    cout << "Humano: [8]" << endl;
 
     cout << endl;
 

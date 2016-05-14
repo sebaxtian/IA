@@ -14,6 +14,13 @@ Nodo3::Nodo3(int coordI, int coordJ)
     this->flagObjetivos = 0;
     this->coordI = coordI;
     this->coordJ = coordJ;
+    /*
+    cout << "-- Nodo Raiz --" << endl;
+    cout << "Camino: " << camino << endl;
+    cout << "Profundidad: " << profundidad << endl;
+    cout << "Costo Acumulado: " << costoAcumulado << endl;
+    cout << "Objetivos: " << flagObjetivos << endl;
+    */
 }
 /*
 Nodo3::Nodo3(Nodo3* nodoPadre, int profundidad, int costoAcumulado, int flagObjetivos, int coordI, int coordJ)
@@ -35,6 +42,13 @@ Nodo3::Nodo3(string camino, int profundidad, int costoAcumulado, int flagObjetiv
     this->flagObjetivos = flagObjetivos;
     this->coordI = coordI;
     this->coordJ = coordJ;
+    /*
+    cout << "-- Nodo Hijo --" << endl;
+    cout << "Camino: " << camino << endl;
+    cout << "Profundidad: " << profundidad << endl;
+    cout << "Costo Acumulado: " << costoAcumulado << endl;
+    cout << "Objetivos: " << flagObjetivos << endl;
+    */
 }
 /*
 Nodo3* Nodo3::getNodoPadre()

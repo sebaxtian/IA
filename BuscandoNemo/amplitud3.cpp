@@ -42,7 +42,7 @@ void Amplitud3::makeBusqueda()
     // Estado de parada del ciclo
     bool parada = false;
     // Cilos maximos, se usa para controlar el fin del algoritmo
-    int maxCiclos = 10000000;
+    int maxCiclos = 100000;
     cout << "Inicia Ciclo parada = " << parada << " maxCiclos = " << maxCiclos << endl;
     // Inicia ciclo para explorar arbol de soluciones
     while(!parada && maxCiclos > 0)
@@ -138,27 +138,47 @@ void Amplitud3::crearHijos(Nodo3 nodoCabeza)
 
 void Amplitud3::crearNodo(int posIHijo, int posJHijo, Nodo3 nodoCabeza)
 {
-    // Coordenadas del nodo hijo
-    int coords[2] = {posIHijo, posJHijo};
     // Item donde esta el nodo hijo
-    int itemHijo = this->entorno.getAmbiente()[coords[0]][coords[1]];
+    int itemHijo = this->entorno.getAmbiente()[posIHijo][posJHijo];
     // Casilla donde esta el nodo hijo
     casillas casillaHijo = this->toCasilla(itemHijo);
+    if(casillaHijo == onNemo)
+    {
+        cout << "El Robot Esta Sobre Nemo " << casillaHijo << endl;
+    }
+    if(casillaHijo == onMarlin)
+    {
+        cout << "El Robot Esta Sobre Marlyn " << casillaHijo << endl;
+    }
+    if(casillaHijo == onDori)
+    {
+        cout << "El Robot Esta Sobre Dori " << casillaHijo << endl;
+    }
     // Verifica que la casilla no sea una roca
     if(casillaHijo != onRoca)
     {
         // Puede crear el nodo hijo
+        int flagObjetivosPadre = nodoCabeza.getFlagObjetivos();
         int flagObjetivos = this->validaObjetivo(nodoCabeza.getFlagObjetivos(), casillaHijo);
+        // Si encuentra objetivo, en orden, lo quita del entorno
+        if(flagObjetivos > flagObjetivosPadre)
+        {
+            // En el entorno quita el objetivo
+            //this->entorno.getAmbiente()[posIHijo][posJHijo] = -1;
+            cout << "Obtiene Objetivo " << flagObjetivos << endl;
+        }
         // Crea el nodo hijo
         string camino = nodoCabeza.getCamino();
         camino.append(to_string(posIHijo) + "-" + to_string(posJHijo) + ",");
         int profundidad = nodoCabeza.getProfundidad() + 1;
         int costoAcumulado = nodoCabeza.getCostoAcumulado();
-        Nodo3 nodoHijo(camino,profundidad,costoAcumulado,flagObjetivos,coords[0],coords[1]);
+        Nodo3 nodoHijo(camino,profundidad,costoAcumulado,flagObjetivos,posIHijo,posJHijo);
         // Agrega el nodo creado a la cola de nodos
         this->colaNodos.push(nodoHijo);
         // Aumenta el contador de hijos creados
         this->nodosCreados++;
+        // Imprime el estado del entorno
+        this->entorno.imprimir();
     }
 }
 
@@ -167,6 +187,9 @@ casillas Amplitud3::toCasilla(int itemEntorno)
     casillas casilla;
     switch (itemEntorno)
     {
+        case 0:
+            casilla = onRobot;
+            break;
         case 1:
             casilla = onRoca;
             break;
@@ -201,15 +224,15 @@ int Amplitud3::validaObjetivo(int flagObjetivos, casillas casilla)
 {
     if(casilla == onNemo && flagObjetivos < 1)
     {
-        return flagObjetivos++;
+        flagObjetivos++;
     }
     if(casilla == onMarlin && flagObjetivos < 2)
     {
-        return flagObjetivos++;
+        flagObjetivos++;
     }
     if(casilla == onDori && flagObjetivos < 3)
     {
-        return flagObjetivos++;
+        flagObjetivos++;
     }
     return flagObjetivos;
 }
@@ -232,6 +255,7 @@ void Amplitud3::imprimirSolucion(Nodo3 nodo)
         profundidad--;
     }
     */
+    cout << "Objetivos: " << nodo.getFlagObjetivos() << endl;
     cout << "Camino: " << nodo.getCamino() << endl;
 
     char * camino = new char [nodo.getCamino().length()+1];
