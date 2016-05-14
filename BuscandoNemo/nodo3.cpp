@@ -1,16 +1,22 @@
 #include "nodo3.h"
 
+Nodo3::Nodo3()
+{
+
+}
+
 Nodo3::Nodo3(int coordI, int coordJ)
 {
-    this->nodoPadre = NULL;
+    //this->nodoPadre = NULL;
+    this->camino = "0-0,";
     this->profundidad = 0;
     this->costoAcumulado = 0;
     this->flagObjetivos = 0;
     this->coordI = coordI;
     this->coordJ = coordJ;
 }
-
-Nodo3::Nodo3(Nodo3 nodoPadre, int profundidad, int costoAcumulado, int flagObjetivos, int coordI, int coordJ)
+/*
+Nodo3::Nodo3(Nodo3* nodoPadre, int profundidad, int costoAcumulado, int flagObjetivos, int coordI, int coordJ)
 {
     this->nodoPadre = nodoPadre;
     this->profundidad = profundidad;
@@ -19,10 +25,26 @@ Nodo3::Nodo3(Nodo3 nodoPadre, int profundidad, int costoAcumulado, int flagObjet
     this->coordI = coordI;
     this->coordJ = coordJ;
 }
-
-Nodo3 Nodo3::getNodoPadre()
+*/
+Nodo3::Nodo3(string camino, int profundidad, int costoAcumulado, int flagObjetivos, int coordI, int coordJ)
+{
+    //this->nodoPadre = nodoPadre;
+    this->camino = camino;
+    this->profundidad = profundidad;
+    this->costoAcumulado = costoAcumulado;
+    this->flagObjetivos = flagObjetivos;
+    this->coordI = coordI;
+    this->coordJ = coordJ;
+}
+/*
+Nodo3* Nodo3::getNodoPadre()
 {
     return this->nodoPadre;
+}
+*/
+string Nodo3::getCamino()
+{
+    return this->camino;
 }
 
 int Nodo3::getProfundidad()

@@ -56,7 +56,9 @@ SOURCES       = ../BuscandoNemo/main.cpp \
 		../BuscandoNemo/nodo.cpp \
 		../BuscandoNemo/costouniforme.cpp \
 		../BuscandoNemo/nodo2.cpp \
-		../BuscandoNemo/amplitud2.cpp 
+		../BuscandoNemo/amplitud2.cpp \
+		../BuscandoNemo/nodo3.cpp \
+		../BuscandoNemo/amplitud3.cpp 
 OBJECTS       = main.o \
 		lecturaarchivo.o \
 		entorno.o \
@@ -65,7 +67,9 @@ OBJECTS       = main.o \
 		nodo.o \
 		costouniforme.o \
 		nodo2.o \
-		amplitud2.o
+		amplitud2.o \
+		nodo3.o \
+		amplitud3.o
 DIST          = ../BuscandoNemo/entorno.txt \
 		../BuscandoNemo/prueba1.txt \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/mkspecs/features/spec_pre.prf \
@@ -201,7 +205,9 @@ DIST          = ../BuscandoNemo/entorno.txt \
 		nodo.h \
 		costouniforme.h \
 		nodo2.h \
-		amplitud2.h ../BuscandoNemo/main.cpp \
+		amplitud2.h \
+		nodo3.h \
+		amplitud3.h ../BuscandoNemo/main.cpp \
 		../BuscandoNemo/lecturaarchivo.cpp \
 		../BuscandoNemo/entorno.cpp \
 		../BuscandoNemo/amplitud.cpp \
@@ -209,7 +215,9 @@ DIST          = ../BuscandoNemo/entorno.txt \
 		../BuscandoNemo/nodo.cpp \
 		../BuscandoNemo/costouniforme.cpp \
 		../BuscandoNemo/nodo2.cpp \
-		../BuscandoNemo/amplitud2.cpp
+		../BuscandoNemo/amplitud2.cpp \
+		../BuscandoNemo/nodo3.cpp \
+		../BuscandoNemo/amplitud3.cpp
 QMAKE_TARGET  = BuscandoNemo
 DESTDIR       = 
 TARGET        = BuscandoNemo
@@ -522,7 +530,11 @@ compiler_clean:
 
 main.o: ../BuscandoNemo/main.cpp ../BuscandoNemo/entorno.h \
 		../BuscandoNemo/nodo.h \
-		../BuscandoNemo/amplitud.h
+		../BuscandoNemo/amplitud.h \
+		../BuscandoNemo/nodo2.h \
+		../BuscandoNemo/amplitud2.h \
+		../BuscandoNemo/amplitud3.h \
+		../BuscandoNemo/nodo3.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../BuscandoNemo/main.cpp
 
 lecturaarchivo.o: ../BuscandoNemo/lecturaarchivo.cpp 
@@ -548,8 +560,18 @@ costouniforme.o: ../BuscandoNemo/costouniforme.cpp ../BuscandoNemo/costouniforme
 nodo2.o: ../BuscandoNemo/nodo2.cpp ../BuscandoNemo/nodo2.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o nodo2.o ../BuscandoNemo/nodo2.cpp
 
-amplitud2.o: ../BuscandoNemo/amplitud2.cpp ../BuscandoNemo/amplitud2.h
+amplitud2.o: ../BuscandoNemo/amplitud2.cpp ../BuscandoNemo/amplitud2.h \
+		../BuscandoNemo/nodo2.h \
+		../BuscandoNemo/entorno.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o amplitud2.o ../BuscandoNemo/amplitud2.cpp
+
+nodo3.o: ../BuscandoNemo/nodo3.cpp ../BuscandoNemo/nodo3.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o nodo3.o ../BuscandoNemo/nodo3.cpp
+
+amplitud3.o: ../BuscandoNemo/amplitud3.cpp ../BuscandoNemo/amplitud3.h \
+		../BuscandoNemo/nodo3.h \
+		../BuscandoNemo/entorno.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o amplitud3.o ../BuscandoNemo/amplitud3.cpp
 
 ####### Install
 

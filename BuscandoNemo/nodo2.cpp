@@ -1,3 +1,4 @@
+/*
 #include "nodo2.h"
 
 // Constructor de clase para un Nodo Raiz
@@ -14,7 +15,7 @@ Nodo2::Nodo2()
     //this->camino.push("0,0");
     this->flagElementos = 0;
 }
-
+*/
 // Constructor de clase para crear un Nodo Cualquiera
 /*
 Nodo2::Nodo2(int coords[2], int codNodo, int refPadre, operadores opAplicado, int profundidad, int costoAcu, estados estadoActual, queue<string> camino, int flagElementos)
@@ -31,6 +32,7 @@ Nodo2::Nodo2(int coords[2], int codNodo, int refPadre, operadores opAplicado, in
     this->flagElementos = flagElementos;
 }
 */
+/*
 Nodo2::Nodo2(int coords[2], int codNodo, int refPadre, operadores opAplicado, int profundidad, int costoAcu, estados estadoActual, int flagElementos)
 {
     this->coords[0] = coords[0];
@@ -76,6 +78,7 @@ void Nodo2::setRefPadre(int refPadre)
 {
     this->referenciaPadre = refPadre;
 }
+*/
 /*
 void Nodo2::setCamino(queue<string> camino)
 {
@@ -83,7 +86,7 @@ void Nodo2::setCamino(queue<string> camino)
 }
 */
 
-
+/*
 // GETTERS
 int Nodo2::getCodNodo()
 {
@@ -109,12 +112,14 @@ int Nodo2::getRefPadre()
 {
     return this->referenciaPadre;
 }
+*/
 /*
 queue<string> Nodo2::getCamino()
 {
     return this->camino;
 }
 */
+/*
 int Nodo2::getFlagElementos()
 {
     return this->flagElementos;
@@ -138,3 +143,4 @@ bool Nodo2::esMeta()
     }
     return false;
 }
+*/

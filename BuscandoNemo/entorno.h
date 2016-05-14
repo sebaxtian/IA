@@ -5,8 +5,8 @@ using namespace std;
 #ifndef ENTORNO_H
 #define ENTORNO_H
 
-// Posibles casillas donde puede estar ubicado el Robot
-enum casillas {onLibre, onTiburon, onTortuga, onHumano, onDori, onMarlin, onNemo};
+// Posibles casillas presentes en el entorno
+enum casillas {onLibre, onTiburon, onTortuga, onHumano, onDori, onMarlin, onNemo, onRoca};
 
 class Entorno
 {

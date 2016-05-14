@@ -6,8 +6,11 @@
 #include "entorno.h"
 #include "nodo.h"
 #include "amplitud.h"
-#include "nodo2.h"
-#include "amplitud2.h"
+//#include "nodo2.h"
+//#include "amplitud2.h"
+#include "amplitud3.h"
+
+
 
 using namespace std;
 
@@ -122,7 +125,7 @@ void busquedaAmplitud()
     cout << endl;
 }
 
-
+/*
 void pruebaAmplitud2()
 {
     cout << "Prueba Busqueda por Amplitud2" << endl;
@@ -157,6 +160,26 @@ void pruebaAmplitud2()
 
     cout << endl;
 }
+*/
+
+void pruebaAmplitud3()
+{
+    cout << "Prueba Busqueda por Amplitud3" << endl;
+
+    Entorno entorno = cargarEntorno(PATHENTORNO);
+
+    // Imprime el entorno
+    entorno.imprimir();
+
+    // Crea el Nodo Raiz del problema, en la posicion del Robot
+    Nodo3 nodoRaiz(entorno.getPosInitRobot()[0], entorno.getPosInitRobot()[0]);
+
+    // Aplica algoritmo de Busqueda Preferente por Amplitud
+    Amplitud3 amplitud(nodoRaiz, entorno);
+    amplitud.makeBusqueda();
+
+    cout << endl;
+}
 
 
 int main(int argc, char *argv[])
@@ -171,7 +194,10 @@ int main(int argc, char *argv[])
     //busquedaAmplitud();
 
     // Prueba Busqueda Preferente por Amplitud2
-    pruebaAmplitud2();
+    //pruebaAmplitud2();
+
+    // Prueba Busqueda Preferente por Amplitud3
+    pruebaAmplitud3();
 
     return 0;
 }

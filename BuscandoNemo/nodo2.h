@@ -1,3 +1,4 @@
+/*
 #ifndef NODO2_H
 #define NODO2_H
 
@@ -62,3 +63,4 @@ public:
 };
 
 #endif // NODO2_H
+*/

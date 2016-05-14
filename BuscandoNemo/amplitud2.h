@@ -1,3 +1,4 @@
+/*
 #ifndef AMPLITUD2_H
 #define AMPLITUD2_H
 
@@ -39,3 +40,4 @@ public:
 };
 
 #endif // AMPLITUD2_H
+*/

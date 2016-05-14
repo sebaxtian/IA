@@ -1,3 +1,4 @@
+/*
 #include "amplitud2.h"
 
 Amplitud2::Amplitud2()
@@ -274,3 +275,4 @@ int Amplitud2::nextCodNodo()
     this->codNextNodo++;
     return this->codNextNodo;
 }
+*/
