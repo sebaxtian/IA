@@ -168,10 +168,10 @@ int main(int argc, char *argv[])
     //pruebaColaCamino();
 
     // Realiza busqueda preferente por amplitud
-    busquedaAmplitud();
+    //busquedaAmplitud();
 
     // Prueba Busqueda Preferente por Amplitud2
-    //pruebaAmplitud2();
+    pruebaAmplitud2();
 
     return 0;
 }

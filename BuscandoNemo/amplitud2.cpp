@@ -37,7 +37,7 @@ queue<string> Amplitud2::makeBusqueda()
     // Estado de parada del ciclo
     bool parada = false;
     // Iteraciones maximas, se usa solo para controlar final de algoritmo
-    int numciclos = 100000;
+    int numciclos = 300000;
     // Se inicia un ciclo para explorar el arbol de soluciones
     while(!parada && numciclos != 0)
     {
@@ -59,7 +59,8 @@ queue<string> Amplitud2::makeBusqueda()
             if(nodoCabeza.esMeta())
             {
                 // Si encuentra solucion, termina el ciclo
-                camino = nodoCabeza.getCamino();
+                //camino = nodoCabeza.getCamino();
+                cout << "Posicion Final = " << nodoCabeza.getPosI() << ", " << nodoCabeza.getPosJ() << endl;
                 parada = true;
             }
             else
@@ -110,11 +111,12 @@ void Amplitud2::crearNodosHijos(Nodo2 nodoCabeza)
             int profundidad = nodoCabeza.getProfundidad() + 1;
             int costoAcu = nodoCabeza.getCostoAcumulado(); // El costo es uniforme en Amplitud
             estados estadoActual = this->getEstado(itemArriba);
-            queue<string> camino = nodoCabeza.getCamino(); // El camino del nodo cabeza
-            camino.push(to_string(arriba) + "," + to_string(posJ)); // Al camino se agrega la posicion del nodo hijo
+            //queue<string> camino = nodoCabeza.getCamino(); // El camino del nodo cabeza
+            //camino.push(to_string(arriba) + "," + to_string(posJ)); // Al camino se agrega la posicion del nodo hijo
             int flagElementos = this->getNewFlagElementos(nodoCabeza.getFlagElementos(), estadoActual);
             // Nodo hijo
-            Nodo2 nodoHijo(coords,codNodo,refPadre,opAplicado,profundidad,costoAcu,estadoActual,camino,flagElementos);
+            //Nodo2 nodoHijo(coords,codNodo,refPadre,opAplicado,profundidad,costoAcu,estadoActual,camino,flagElementos);
+            Nodo2 nodoHijo(coords,codNodo,refPadre,opAplicado,profundidad,costoAcu,estadoActual,flagElementos);
             // Se agrega el nodo hijo creado a la cola de nodos
             this->colaNodos.push(nodoHijo);
             // Aumenta el contador de hijos creados
@@ -141,11 +143,12 @@ void Amplitud2::crearNodosHijos(Nodo2 nodoCabeza)
             int profundidad = nodoCabeza.getProfundidad() + 1;
             int costoAcu = nodoCabeza.getCostoAcumulado(); // El costo es uniforme en Amplitud
             estados estadoActual = this->getEstado(itemAbajo);
-            queue<string> camino = nodoCabeza.getCamino(); // El camino del nodo cabeza
-            camino.push(to_string(abajo) + "," + to_string(posJ)); // Al camino se agrega la posicion del nodo hijo
+            //queue<string> camino = nodoCabeza.getCamino(); // El camino del nodo cabeza
+            //camino.push(to_string(abajo) + "," + to_string(posJ)); // Al camino se agrega la posicion del nodo hijo
             int flagElementos = this->getNewFlagElementos(nodoCabeza.getFlagElementos(), estadoActual);
             // Nodo hijo
-            Nodo2 nodoHijo(coords,codNodo,refPadre,opAplicado,profundidad,costoAcu,estadoActual,camino,flagElementos);
+            //Nodo2 nodoHijo(coords,codNodo,refPadre,opAplicado,profundidad,costoAcu,estadoActual,camino,flagElementos);
+            Nodo2 nodoHijo(coords,codNodo,refPadre,opAplicado,profundidad,costoAcu,estadoActual,flagElementos);
             // Se agrega el nodo hijo creado a la cola de nodos
             this->colaNodos.push(nodoHijo);
             // Aumenta el contador de hijos creados
@@ -171,11 +174,12 @@ void Amplitud2::crearNodosHijos(Nodo2 nodoCabeza)
             int profundidad = nodoCabeza.getProfundidad() + 1;
             int costoAcu = nodoCabeza.getCostoAcumulado(); // El costo es uniforme en Amplitud
             estados estadoActual = this->getEstado(itemIzquierda);
-            queue<string> camino = nodoCabeza.getCamino(); // El camino del nodo cabeza
-            camino.push(to_string(posI) + "," + to_string(izquierda)); // Al camino se agrega la posicion del nodo hijo
+            //queue<string> camino = nodoCabeza.getCamino(); // El camino del nodo cabeza
+            //camino.push(to_string(posI) + "," + to_string(izquierda)); // Al camino se agrega la posicion del nodo hijo
             int flagElementos = this->getNewFlagElementos(nodoCabeza.getFlagElementos(), estadoActual);
             // Nodo hijo
-            Nodo2 nodoHijo(coords,codNodo,refPadre,opAplicado,profundidad,costoAcu,estadoActual,camino,flagElementos);
+            //Nodo2 nodoHijo(coords,codNodo,refPadre,opAplicado,profundidad,costoAcu,estadoActual,camino,flagElementos);
+            Nodo2 nodoHijo(coords,codNodo,refPadre,opAplicado,profundidad,costoAcu,estadoActual,flagElementos);
             // Se agrega el nodo hijo creado a la cola de nodos
             this->colaNodos.push(nodoHijo);
             // Aumenta el contador de hijos creados
@@ -201,11 +205,12 @@ void Amplitud2::crearNodosHijos(Nodo2 nodoCabeza)
             int profundidad = nodoCabeza.getProfundidad() + 1;
             int costoAcu = nodoCabeza.getCostoAcumulado(); // El costo es uniforme en Amplitud
             estados estadoActual = this->getEstado(itemDerecha);
-            queue<string> camino = nodoCabeza.getCamino(); // El camino del nodo cabeza
-            camino.push(to_string(posI) + "," + to_string(derecha)); // Al camino se agrega la posicion del nodo hijo
+            //queue<string> camino = nodoCabeza.getCamino(); // El camino del nodo cabeza
+            //camino.push(to_string(posI) + "," + to_string(derecha)); // Al camino se agrega la posicion del nodo hijo
             int flagElementos = this->getNewFlagElementos(nodoCabeza.getFlagElementos(), estadoActual);
             // Nodo hijo
-            Nodo2 nodoHijo(coords,codNodo,refPadre,opAplicado,profundidad,costoAcu,estadoActual,camino,flagElementos);
+            //Nodo2 nodoHijo(coords,codNodo,refPadre,opAplicado,profundidad,costoAcu,estadoActual,camino,flagElementos);
+            Nodo2 nodoHijo(coords,codNodo,refPadre,opAplicado,profundidad,costoAcu,estadoActual,flagElementos);
             // Se agrega el nodo hijo creado a la cola de nodos
             this->colaNodos.push(nodoHijo);
             // Aumenta el contador de hijos creados

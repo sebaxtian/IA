@@ -28,7 +28,7 @@ queue<string> Amplitud::busquedaPreferente() {
 
     bool termina = false;
     queue<string> solucion;
-    int parada = 300000;
+    int parada = 3000000;
     Nodo nodoCabeza;
     while(!termina && parada > 0) {
         // Si la cola esta vacia
@@ -55,8 +55,7 @@ queue<string> Amplitud::busquedaPreferente() {
             }
             */
         }
-
-         parada--;
+        parada--;
     }
     cout << "HOLA !!" << endl;
 

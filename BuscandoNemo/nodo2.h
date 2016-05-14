@@ -2,7 +2,7 @@
 #define NODO2_H
 
 #include <iostream>
-#include <queue>
+//#include <queue>
 
 using namespace std;
 
@@ -26,7 +26,7 @@ class Nodo2
     // Estado actual del problema
     estados estadoActual;
     // Pasos del camino hasta el nodo
-    queue<string> camino;
+    //queue<string> camino;
     // Variable que marca los elementos encontrados, en orden, primero 1, 2 y 3 (Si es 3 significa que ha encontrado 1 y 2)
     int flagElementos;
     // Coordenadas del nodo en el entorno
@@ -35,7 +35,8 @@ public:
     // Constructor de clase para un Nodo Raiz
     Nodo2();
     // Constructor de clase para crear un Nodo Cualquiera
-    Nodo2(int coords[2], int codNodo, int refPadre, operadores opAplicado, int profundidad, int costoAcu, estados estadoActual, queue<string> camino, int flagElementos);
+    //Nodo2(int coords[2], int codNodo, int refPadre, operadores opAplicado, int profundidad, int costoAcu, estados estadoActual, queue<string> camino, int flagElementos);
+    Nodo2(int coords[2], int codNodo, int refPadre, operadores opAplicado, int profundidad, int costoAcu, estados estadoActual, int flagElementos);
     // SETTERS
     void setCoords(int coords[2]);
     void setCodNodo(int codNodo);
@@ -44,7 +45,7 @@ public:
     void setProfundidad(int profundidad);
     void setCostoAcumulado(int costoAcumulado);
     void setEstadoActual(estados estadoActual);
-    void setCamino(queue<string> camino);
+    //void setCamino(queue<string> camino);
     // GETTERS
     int getCodNodo();
     int getRefPadre();
@@ -52,7 +53,7 @@ public:
     int getProfundidad();
     int getCostoAcumulado();
     estados getEstadoActual();
-    queue<string> getCamino();
+    //queue<string> getCamino();
     int getFlagElementos();
     // Funciones miembro
     int getPosI();

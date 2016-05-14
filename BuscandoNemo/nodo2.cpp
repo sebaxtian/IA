@@ -11,11 +11,12 @@ Nodo2::Nodo2()
     this->profundidad = 0;
     this->costoAcumulado = 0;
     this->estadoActual = onLibre;
-    this->camino.push("0,0");
+    //this->camino.push("0,0");
     this->flagElementos = 0;
 }
 
 // Constructor de clase para crear un Nodo Cualquiera
+/*
 Nodo2::Nodo2(int coords[2], int codNodo, int refPadre, operadores opAplicado, int profundidad, int costoAcu, estados estadoActual, queue<string> camino, int flagElementos)
 {
     this->coords[0] = coords[0];
@@ -27,6 +28,19 @@ Nodo2::Nodo2(int coords[2], int codNodo, int refPadre, operadores opAplicado, in
     this->costoAcumulado = costoAcu;
     this->estadoActual = estadoActual;
     this->camino = camino;
+    this->flagElementos = flagElementos;
+}
+*/
+Nodo2::Nodo2(int coords[2], int codNodo, int refPadre, operadores opAplicado, int profundidad, int costoAcu, estados estadoActual, int flagElementos)
+{
+    this->coords[0] = coords[0];
+    this->coords[1] = coords[1];
+    this->codNodo = codNodo;
+    this->referenciaPadre = refPadre;
+    this->operadorAplicado = opAplicado;
+    this->profundidad = profundidad;
+    this->costoAcumulado = costoAcu;
+    this->estadoActual = estadoActual;
     this->flagElementos = flagElementos;
 }
 
@@ -62,10 +76,12 @@ void Nodo2::setRefPadre(int refPadre)
 {
     this->referenciaPadre = refPadre;
 }
+/*
 void Nodo2::setCamino(queue<string> camino)
 {
     this->camino = camino;
 }
+*/
 
 
 // GETTERS
@@ -93,10 +109,12 @@ int Nodo2::getRefPadre()
 {
     return this->referenciaPadre;
 }
+/*
 queue<string> Nodo2::getCamino()
 {
     return this->camino;
 }
+*/
 int Nodo2::getFlagElementos()
 {
     return this->flagElementos;
