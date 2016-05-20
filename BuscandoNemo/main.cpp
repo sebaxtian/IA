@@ -10,7 +10,8 @@
 //#include "amplitud2.h"
 #include "amplitud3.h"
 
-
+#include "amplitudfinal.h"
+#include "nodofinal.h"
 
 using namespace std;
 
@@ -147,6 +148,50 @@ void busquedaAmplitud()
     cout << endl;
 }
 
+
+void busquedaAmplitudFinal()
+{
+    cout << "Busqueda por Amplitud Final" << endl;
+
+    Entorno entorno = cargarEntorno(PATHENTORNO);
+
+    // Imprime el entorno
+    entorno.imprimir();
+
+    // Crea el Nodo Raiz del problema, en la posicion del Robot
+    int posI = entorno.getPosInitRobot()[0];
+    int posJ = entorno.getPosInitRobot()[1];
+
+    //Nodo raiz(posI, posJ, 0);
+    //NodoFinal raiz(posI, posJ, onRobot, entorno);
+    NodoFinal raiz(posI, posJ, onRobot);
+
+
+    // Aplica el algoritmo de Bisqueda Preferente por Amplitud
+    AmplitudFinal amplitud(&raiz, entorno);
+    //queue<string> solucion = amplitud.busquedaPreferente();
+    NodoFinal * solucion;
+
+    solucion = amplitud.busquedaPreferente();
+
+    stack<NodoFinal>  ggg;
+
+    // Imprime los pasos de la solucion
+    int i = 1;
+    while(solucion->getProfundidad() !=0)
+    {
+        NodoFinal tmp;
+        tmp.setCoords(solucion->getCoordI(), solucion->getCoordJ());
+
+        cout << "Paso " << i << " : " << solucion->getCoordI() << " , " << solucion->getCoordJ() << endl;
+        ggg.push(tmp);
+        solucion = solucion->getNodoPadre();
+        i++;
+    }
+
+    cout << endl;
+}
+
 /*
 void pruebaAmplitud2()
 {
@@ -184,6 +229,7 @@ void pruebaAmplitud2()
 }
 */
 
+/*
 void pruebaAmplitud3()
 {
     cout << "Prueba Busqueda por Amplitud3" << endl;
@@ -202,7 +248,7 @@ void pruebaAmplitud3()
 
     cout << endl;
 }
-
+*/
 
 int main(int argc, char *argv[])
 {
@@ -213,7 +259,9 @@ int main(int argc, char *argv[])
     //pruebaColaCamino();
 
     // Realiza busqueda preferente por amplitud
-    busquedaAmplitud();
+    //busquedaAmplitud();
+
+    busquedaAmplitudFinal();
 
     // Prueba Busqueda Preferente por Amplitud2
     //pruebaAmplitud2();

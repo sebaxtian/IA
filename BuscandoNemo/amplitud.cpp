@@ -29,7 +29,7 @@ Nodo *Amplitud::busquedaPreferente() {
 
     bool termina = false;
     Nodo *solucion;
-    int parada = 10000000;
+    int parada = 30000000;
     Nodo nodoCabeza;
     while(!termina && parada > 0) {
         // Si la cola esta vacia

@@ -13,11 +13,14 @@ SOURCES += main.cpp \
     nodo2.cpp \
     amplitud2.cpp \
     nodo3.cpp \
-    amplitud3.cpp
+    amplitud3.cpp \
+    nodofinal.cpp \
+    amplitudfinal.cpp
 
 DISTFILES += \
     entorno.txt \
-    prueba1.txt
+    prueba1.txt \
+    prueba2.txt
 
 HEADERS += \
     entorno.h \
@@ -27,4 +30,8 @@ HEADERS += \
     nodo2.h \
     amplitud2.h \
     nodo3.h \
-    amplitud3.h
+    amplitud3.h \
+    nodofinal.h \
+    amplitudfinal.h
+
+FORMS +=

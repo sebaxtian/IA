@@ -1,4 +1,4 @@
-#ifndef AMPLITUD3_H
+/*#ifndef AMPLITUD3_H
 #define AMPLITUD3_H
 
 #include <iostream>
@@ -43,3 +43,4 @@ public:
 };
 
 #endif // AMPLITUD3_H
+*/

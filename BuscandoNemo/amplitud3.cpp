@@ -1,3 +1,4 @@
+/*
 #include "amplitud3.h"
 
 Amplitud3::Amplitud3()
@@ -236,14 +237,15 @@ int Amplitud3::validaObjetivo(int flagObjetivos, casillas casilla)
     }
     return flagObjetivos;
 }
-
+*/
+/*
 void Amplitud3::imprimirSolucion(Nodo3 nodo)
 {
     cout << "Nodos Expandidos: " << this->nodosExpandidos << endl;
     cout << "Nodos Creados: " << this->nodosCreados << endl;
 
     cout << endl;
-
+*/
     /*
     Nodo3* nodoPadre = nodo.getNodoPadre();
     int profundidad = nodo.getProfundidad();
@@ -255,6 +257,7 @@ void Amplitud3::imprimirSolucion(Nodo3 nodo)
         profundidad--;
     }
     */
+/*
     cout << "Objetivos: " << nodo.getFlagObjetivos() << endl;
     cout << "Camino: " << nodo.getCamino() << endl;
 
@@ -269,3 +272,4 @@ void Amplitud3::imprimirSolucion(Nodo3 nodo)
 
     cout << endl;
 }
+*/

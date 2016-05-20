@@ -6,7 +6,7 @@ using namespace std;
 #define ENTORNO_H
 
 // Posibles casillas presentes en el entorno
-enum casillas {onRobot, onRoca, onLibre, onTiburon, onTortuga, onDori, onMarlin, onNemo, onHumano};
+//enum casillas {onRobot, onRoca, onLibre, onTiburon, onTortuga, onDori, onMarlin, onNemo, onHumano};
 
 class Entorno
 {
