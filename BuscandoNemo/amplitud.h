@@ -1,5 +1,6 @@
 #include <iostream>
 #include <queue>
+#include <stack>
 #include <string>
 #include <string.h>
 #include "nodo.h"
@@ -22,8 +23,9 @@ class Amplitud
 public:
     Amplitud();
     Amplitud(Nodo *nodoRaiz, Entorno entorno);
-    queue<string> busquedaPreferente();
+    Nodo *busquedaPreferente();
     void expandirNodos(Nodo nodo);
+    stack<Nodo> pilaNodosExp;
 };
 
 #endif // AMPLITUD_H

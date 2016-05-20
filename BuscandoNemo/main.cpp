@@ -122,16 +122,27 @@ void busquedaAmplitud()
 
     // Aplica el algoritmo de Bisqueda Preferente por Amplitud
     Amplitud amplitud(&raiz, entorno);
-    queue<string> solucion = amplitud.busquedaPreferente();
+    //queue<string> solucion = amplitud.busquedaPreferente();
+    Nodo *solucion;
+
+   solucion = amplitud.busquedaPreferente();
+
+  queue<Nodo>  ggg;
 
     // Imprime los pasos de la solucion
     int i = 1;
-    while(!solucion.empty())
+    while(solucion->getProfundidad() !=0)
     {
-        cout << "Paso " << i << " : " << solucion.front() << endl;
-        solucion.pop();
+        Nodo tmp;
+        tmp.set_fila( solucion->get_fila());
+        tmp.set_columna( solucion->get_columna());
+
+        cout << "Paso " << i << " : " << solucion->get_fila() << " , " << solucion->get_columna() << endl;
+        ggg.push(tmp);
+        solucion = solucion->get_padre();
         i++;
     }
+
 
     cout << endl;
 }
@@ -202,13 +213,13 @@ int main(int argc, char *argv[])
     //pruebaColaCamino();
 
     // Realiza busqueda preferente por amplitud
-    //busquedaAmplitud();
+    busquedaAmplitud();
 
     // Prueba Busqueda Preferente por Amplitud2
     //pruebaAmplitud2();
 
     // Prueba Busqueda Preferente por Amplitud3
-    pruebaAmplitud3();
+    //pruebaAmplitud3();
 
     return 0;
 }

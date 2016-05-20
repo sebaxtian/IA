@@ -23,12 +23,13 @@ Amplitud::Amplitud(Nodo *nodoRaiz, Entorno entorno)
     this->nodosExpandidos = 0;
 }
 
-queue<string> Amplitud::busquedaPreferente() {
+Nodo *Amplitud::busquedaPreferente() {
     cout << "Inicia Busqueda Preferente" << endl;
 
+
     bool termina = false;
-    queue<string> solucion;
-    int parada = 3000000;
+    Nodo *solucion;
+    int parada = 10000000;
     Nodo nodoCabeza;
     while(!termina && parada > 0) {
         // Si la cola esta vacia
@@ -37,12 +38,16 @@ queue<string> Amplitud::busquedaPreferente() {
         } else {
             nodoCabeza = colaNodos.front();
             colaNodos.pop();
+            pilaNodosExp.push(nodoCabeza);
             // Aumenta los nodos expandidos
             nodosExpandidos++;
             // Si el nodo cabeza es meta
             if(nodoCabeza.esMeta()) {
                 // Terminar, encontro solucion
-                solucion = nodoCabeza.get_pasosSolucion();
+                solucion = &pilaNodosExp.top();
+                //return solucion;
+
+
                 termina = true;
             } else {
                 // Expandir y meter nodos al final de la cola
@@ -83,11 +88,12 @@ void Amplitud::expandirNodos(Nodo nodo) {
         // Si se puede mover a la derecha
         if(derecha < limColums && miEntorno.getAmbiente()[posI][derecha] != roca) {
             Nodo nodoHijo(posI, derecha, miEntorno.getAmbiente()[posI][derecha]);
-            queue<string> pasosSolPapa = nodo.get_pasosSolucion();
+            /*queue<string> pasosSolPapa = nodo.get_pasosSolucion();
             nodoHijo.set_pasosSolucion(&pasosSolPapa);
-            nodoHijo.set_pasosSolucion(to_string(posI) + "," + to_string(derecha));
+            nodoHijo.set_pasosSolucion(to_string(posI) + "," + to_string(derecha));*/
             nodoHijo.setProfundidad(nodo.getProfundidad() + 1);
             nodoHijo.set_indMeta(nodo.get_indMeta());
+            nodoHijo.set_padre(&pilaNodosExp.top());
             // nodos creados aumenta
             nodosCreados++;
             // Agrega el nodo a la cola
@@ -96,11 +102,12 @@ void Amplitud::expandirNodos(Nodo nodo) {
         // Si se puede mover abajo
         if(abajo < limFilas && miEntorno.getAmbiente()[abajo][posJ] != roca) {
             Nodo nodoHijo(abajo, posJ, miEntorno.getAmbiente()[abajo][posJ]);
-            queue<string> pasosSolPapa = nodo.get_pasosSolucion();
+            /*queue<string> pasosSolPapa = nodo.get_pasosSolucion();
             nodoHijo.set_pasosSolucion(&pasosSolPapa);
-            nodoHijo.set_pasosSolucion(to_string(abajo) + "," + to_string(posJ));
+            nodoHijo.set_pasosSolucion(to_string(abajo) + "," + to_string(posJ));*/
             nodoHijo.setProfundidad(nodo.getProfundidad() + 1);
             nodoHijo.set_indMeta(nodo.get_indMeta());
+            nodoHijo.set_padre(&pilaNodosExp.top());
             // nodos creados aumenta
             nodosCreados++;
             // Agrega el nodo a la cola
@@ -109,11 +116,12 @@ void Amplitud::expandirNodos(Nodo nodo) {
         // Si se puede mover a izquierda
         if(izquierda >= 0 && miEntorno.getAmbiente()[posI][izquierda] != roca) {
             Nodo nodoHijo(posI, izquierda, miEntorno.getAmbiente()[posI][izquierda]);
-            queue<string> pasosSolPapa = nodo.get_pasosSolucion();
+            /*queue<string> pasosSolPapa = nodo.get_pasosSolucion();
             nodoHijo.set_pasosSolucion(&pasosSolPapa);
-            nodoHijo.set_pasosSolucion(to_string(posI) + "," + to_string(izquierda));
+            nodoHijo.set_pasosSolucion(to_string(posI) + "," + to_string(izquierda));*/
             nodoHijo.setProfundidad(nodo.getProfundidad() + 1);
             nodoHijo.set_indMeta(nodo.get_indMeta());
+            nodoHijo.set_padre(&pilaNodosExp.top());
             // nodos creados aumenta
             nodosCreados++;
             // Agrega el nodo a la cola
@@ -122,11 +130,12 @@ void Amplitud::expandirNodos(Nodo nodo) {
         // Si se puede mover arriba
         if(arriba >= 0 && miEntorno.getAmbiente()[arriba][posJ] != roca) {
             Nodo nodoHijo(arriba, posJ, miEntorno.getAmbiente()[arriba][posJ]);
-            queue<string> pasosSolPapa = nodo.get_pasosSolucion();
+            /*queue<string> pasosSolPapa = nodo.get_pasosSolucion();
             nodoHijo.set_pasosSolucion(&pasosSolPapa);
-            nodoHijo.set_pasosSolucion(to_string(arriba) + "," + to_string(posJ));
+            nodoHijo.set_pasosSolucion(to_string(arriba) + "," + to_string(posJ));*/
             nodoHijo.setProfundidad(nodo.getProfundidad() + 1);
             nodoHijo.set_indMeta(nodo.get_indMeta());
+            nodoHijo.set_padre(&pilaNodosExp.top());
             // nodos creados aumenta
             nodosCreados++;
             // Agrega el nodo a la cola

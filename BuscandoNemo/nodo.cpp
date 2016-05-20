@@ -17,6 +17,7 @@ Nodo::Nodo(int i, int j, int codNodo)
     this->fila = i;
     this->columna = j;
     this->indMeta = 0;
+    this->profundidad = 0;
 }
 
 // set
@@ -27,14 +28,8 @@ void Nodo::set_fila (int pfila) {
 void Nodo::set_columna (int pcolumna) {
     columna = pcolumna;
 }
-void Nodo::set_pasosSolucionM1 (string pposicion)  {
-    pasosSolucionM1.push(pposicion);
-}
-void Nodo::set_pasosSolucionM2 (string pposicion)  {
-    pasosSolucionM2.push(pposicion);
-}
-void Nodo::set_pasosSolucionM3 (string pposicion)  {
-    pasosSolucionM3.push(pposicion);
+void Nodo::set_padre (Nodo * ppadre) {
+    padre = ppadre;
 }
 void Nodo::set_costo (int pcosto) {
     costo = costo + pcosto;
@@ -50,14 +45,8 @@ int Nodo::get_fila () {
 int Nodo::get_columna () {
     return columna;
 }
-queue<string> Nodo::get_pasosSolucionM1() {
-    return pasosSolucionM1;
-}
-queue<string> Nodo::get_pasosSolucionM2() {
-    return pasosSolucionM2;
-}
-queue<string> Nodo::get_pasosSolucionM3() {
-    return pasosSolucionM3;
+Nodo* Nodo::get_padre() {
+    return padre;
 }
 int Nodo::get_costo () {
     return costo;
@@ -89,17 +78,6 @@ bool Nodo::esMeta() {
     return false;
 }
 
-
-void Nodo::set_pasosSolucion (string pposicion)  {
-    pasosSolucion.push(pposicion);
-}
-void Nodo::set_pasosSolucion (queue<string> *pasosSolucionPapa)  {
-    this->pasosSolucion = *pasosSolucionPapa;
-}
-
-queue<string> Nodo::get_pasosSolucion() {
-    return pasosSolucion;
-}
 
 void Nodo::setCodNodo(int codNodo) {
     this->codNodo = codNodo;

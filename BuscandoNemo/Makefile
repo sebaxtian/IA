@@ -56,7 +56,9 @@ SOURCES       = main.cpp \
 		nodo.cpp \
 		costouniforme.cpp \
 		nodo2.cpp \
-		amplitud2.cpp 
+		amplitud2.cpp \
+		nodo3.cpp \
+		amplitud3.cpp 
 OBJECTS       = main.o \
 		lecturaarchivo.o \
 		entorno.o \
@@ -65,7 +67,9 @@ OBJECTS       = main.o \
 		nodo.o \
 		costouniforme.o \
 		nodo2.o \
-		amplitud2.o
+		amplitud2.o \
+		nodo3.o \
+		amplitud3.o
 DIST          = entorno.txt \
 		prueba1.txt \
 		../../../Qt/5.6/gcc_64/mkspecs/features/spec_pre.prf \
@@ -201,7 +205,9 @@ DIST          = entorno.txt \
 		nodo.h \
 		costouniforme.h \
 		nodo2.h \
-		amplitud2.h main.cpp \
+		amplitud2.h \
+		nodo3.h \
+		amplitud3.h main.cpp \
 		lecturaarchivo.cpp \
 		entorno.cpp \
 		amplitud.cpp \
@@ -209,7 +215,9 @@ DIST          = entorno.txt \
 		nodo.cpp \
 		costouniforme.cpp \
 		nodo2.cpp \
-		amplitud2.cpp
+		amplitud2.cpp \
+		nodo3.cpp \
+		amplitud3.cpp
 QMAKE_TARGET  = BuscandoNemo
 DESTDIR       = 
 TARGET        = BuscandoNemo
@@ -523,8 +531,8 @@ compiler_clean:
 main.o: main.cpp entorno.h \
 		nodo.h \
 		amplitud.h \
-		nodo2.h \
-		amplitud2.h
+		amplitud3.h \
+		nodo3.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 lecturaarchivo.o: lecturaarchivo.cpp 
@@ -547,13 +555,19 @@ nodo.o: nodo.cpp nodo.h
 costouniforme.o: costouniforme.cpp costouniforme.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o costouniforme.o costouniforme.cpp
 
-nodo2.o: nodo2.cpp nodo2.h
+nodo2.o: nodo2.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o nodo2.o nodo2.cpp
 
-amplitud2.o: amplitud2.cpp amplitud2.h \
-		nodo2.h \
-		entorno.h
+amplitud2.o: amplitud2.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o amplitud2.o amplitud2.cpp
+
+nodo3.o: nodo3.cpp nodo3.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o nodo3.o nodo3.cpp
+
+amplitud3.o: amplitud3.cpp amplitud3.h \
+		nodo3.h \
+		entorno.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o amplitud3.o amplitud3.cpp
 
 ####### Install
 
