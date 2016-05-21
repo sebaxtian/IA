@@ -13,8 +13,14 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    nodo.cpp \
+    entorno.cpp \
+    amplitud.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    nodo.h \
+    entorno.h \
+    amplitud.h
 
 FORMS    += mainwindow.ui
