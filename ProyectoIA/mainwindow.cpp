@@ -50,7 +50,7 @@ void MainWindow::pintarEntorno(Entorno pentorno)
         ui->tablaEntono->removeRow(i);
     }
     ui->tablaEntono->setColumnCount(pentorno.getAlto());
-    QString rutaImagen = "/home/fabian/gitHub/IA/ProyectoIA/Imagenes/";
+    QString rutaImagen = "../ProyectoIA/Imagenes/";
     for(int i=0;i<pentorno.getAlto();i++){
         ui->tablaEntono->insertRow(i);
         for(int j=0;j<pentorno.getAncho();j++){
