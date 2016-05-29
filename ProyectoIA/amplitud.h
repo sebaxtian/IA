@@ -16,12 +16,12 @@ class Amplitud
 public:
     Amplitud();
     Amplitud(Nodo * nodoRaiz, Entorno entorno);
-    Nodo * busquedaPreferente();
+    string * busquedaPreferente();
     void crearHijos(Nodo nodo);
     void crearNodo(int posIHijo, int posJHijo, Nodo nodoCabeza);
     estados toEstado(int itemEntorno);
     int validaObjetivo(int flagObjetivos, estados estado);
-    stack<Nodo> pilaNodosExp;
+    stack<string> pilaCaminoNodosExp;
 };
 
 #endif // AMPLITUD_H

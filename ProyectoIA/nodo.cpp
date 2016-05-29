@@ -49,7 +49,7 @@ Nodo::Nodo(int p_coordI, int p_coordJ, estados p_estado)
 }
 
 
-Nodo * Nodo::getNodoPadre()
+string *Nodo::getNodoPadre()
 {
     return this->padre;
 }
@@ -102,7 +102,7 @@ void Nodo::setEstado(estados p_estado)
     this->estadoNodo = p_estado;
 }
 
-void Nodo::setNodoPadre(Nodo * p_padre)
+void Nodo::setNodoPadre(string * p_padre)
 {
     this->padre = p_padre;
 }

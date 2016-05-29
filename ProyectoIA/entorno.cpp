@@ -9,6 +9,9 @@ Entorno::Entorno()
 
 }
 
+void Entorno::setAmbiente(int CoordI, int CoorJ, int estado){
+    this->ambiente[CoordI][CoorJ] == estado;
+}
 
 void Entorno::loadFile(string pathFile) {
     // Carga del ambiente desde un archivo de texto

@@ -9,7 +9,7 @@ enum estados {onRobot, onRoca, onLibre, onTiburon, onTortuga, onDori, onMarlin, 
 class Nodo
 {
     // Referencia al nodo padre
-    Nodo * padre;
+    string * padre;
     // Profundidad del nodo en el arbol
     int profundidad;
     // Costo Acumulado de llegar al nodo
@@ -34,7 +34,7 @@ public:
     // SETTERS
     void setCoords(int p_coordI, int p_coordJ);
     void setEstado(estados p_estado);
-    void setNodoPadre(Nodo * p_padre);
+    void setNodoPadre(string * p_padre);
     void setEntorno(Entorno p_entorno);
     void setProfundidad(int p_profundidad);
     void setCostoAcumulado(double p_costoAcumulado);
@@ -44,7 +44,7 @@ public:
     int getCoordI();
     int getCoordJ();
     estados getEstado();
-    Nodo * getNodoPadre();
+    string * getNodoPadre();
     Entorno getEntorno();
     int getProfundidad();
     double getCostoAcumulado();

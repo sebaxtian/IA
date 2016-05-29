@@ -9,6 +9,7 @@
 #include <QTime>
 #include "amplitud.h"
 #include "nodo.h"
+#include <queue>
 
 using namespace std;
 
@@ -50,7 +51,7 @@ void MainWindow::pintarEntorno(Entorno pentorno)
         ui->tablaEntono->removeRow(i);
     }
     ui->tablaEntono->setColumnCount(pentorno.getAlto());
-    QString rutaImagen = "../ProyectoIA/Imagenes/";
+    QString rutaImagen = "/home/fabian/gitHub/IA/ProyectoIA/Imagenes/";
     for(int i=0;i<pentorno.getAlto();i++){
         ui->tablaEntono->insertRow(i);
         for(int j=0;j<pentorno.getAncho();j++){
@@ -135,26 +136,49 @@ void MainWindow::busquedaAmplitud(Entorno pentorno)
     // Aplica el algoritmo de Bisqueda Preferente por Amplitud
     Amplitud amplitud(&raiz, pentorno);
     //queue<string> solucion = amplitud.busquedaPreferente();
-    Nodo * solucion;
+    string * solucion;
 
     solucion = amplitud.busquedaPreferente();
+    cout << *solucion << endl;
 
-    stack<Nodo>  ggg;
+    QStringList listadeSolucion = QString::fromStdString(*solucion).split(";");
 
-    // Imprime los pasos de la solucion
-    int i = 1;
-    while(solucion->getProfundidad() !=0)
-    {
-        Nodo tmp;
-        tmp.setCoords(solucion->getCoordI(), solucion->getCoordJ());
-
-        cout << "Paso " << i << " : " << solucion->getCoordI() << " , " << solucion->getCoordJ() << endl;
-        ggg.push(tmp);
-        solucion = solucion->getNodoPadre();
-        i++;
+    queue<QString>  colaSolucion;
+    for(int i=0;i<listadeSolucion.size();i++){
+       colaSolucion.push(listadeSolucion.at(i));
     }
+
+    pintarSolucion(pentorno, colaSolucion);
+
 
     cout << endl;
 
     cout << endl;
 }
+
+void MainWindow::pintarSolucion(Entorno pentorno,queue<QString>  pcolaSolucion )
+{
+    // mover recibe un arreglo.
+ while(!pcolaSolucion.empty()) {
+     QString  lvCelda = pcolaSolucion.front();
+     QStringList listaCelda = lvCelda.split(",");
+
+     int coordI = listaCelda[0].toInt();
+     int coordJ =listaCelda[1].toInt();
+
+
+
+     pentorno.setAmbiente(coordI, coordJ, 0);
+     pcolaSolucion.pop();
+     pintarEntorno(pentorno);
+     QTime dieTime = QTime::currentTime().addSecs(1);
+     while (QTime::currentTime() < dieTime)
+         QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+ }
+
+
+
+
+
+}
+

@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "entorno.h"
+#include <queue>
 
 namespace Ui {
 class MainWindow;
@@ -16,6 +17,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void pintarEntorno(Entorno pentorno);
+    void pintarSolucion(Entorno pentorno, queue<QString>  pcolaSolucion );
     void busquedaAmplitud(Entorno pentorno);
     Entorno entornoUI;
 

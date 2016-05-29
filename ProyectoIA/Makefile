@@ -638,6 +638,7 @@ moc_mainwindow.cpp: ../../../Qt/5.6/gcc_64/include/QtWidgets/QMainWindow \
 		../../../Qt/5.6/gcc_64/include/QtGui/qtouchdevice.h \
 		../../../Qt/5.6/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt/5.6/gcc_64/include/QtGui/qicon.h \
+		entorno.h \
 		mainwindow.h
 	/home/fabian/Qt/5.6/gcc_64/bin/moc $(DEFINES) -I/home/fabian/Qt/5.6/gcc_64/mkspecs/linux-g++ -I/home/fabian/gitHub/IA/ProyectoIA -I/home/fabian/Qt/5.6/gcc_64/include -I/home/fabian/Qt/5.6/gcc_64/include/QtWidgets -I/home/fabian/Qt/5.6/gcc_64/include/QtGui -I/home/fabian/Qt/5.6/gcc_64/include/QtCore mainwindow.h -o moc_mainwindow.cpp
 
@@ -767,6 +768,7 @@ main.o: main.cpp mainwindow.h \
 		../../../Qt/5.6/gcc_64/include/QtGui/qtouchdevice.h \
 		../../../Qt/5.6/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt/5.6/gcc_64/include/QtGui/qicon.h \
+		entorno.h \
 		../../../Qt/5.6/gcc_64/include/QtWidgets/QApplication \
 		../../../Qt/5.6/gcc_64/include/QtWidgets/qapplication.h \
 		../../../Qt/5.6/gcc_64/include/QtCore/qcoreapplication.h \
@@ -884,7 +886,19 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../../Qt/5.6/gcc_64/include/QtGui/qtouchdevice.h \
 		../../../Qt/5.6/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt/5.6/gcc_64/include/QtGui/qicon.h \
-		ui_mainwindow.h
+		entorno.h \
+		ui_mainwindow.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/QFileDialog \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qfiledialog.h \
+		../../../Qt/5.6/gcc_64/include/QtCore/qdir.h \
+		../../../Qt/5.6/gcc_64/include/QtCore/qfileinfo.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qdialog.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/QMessageBox \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qmessagebox.h \
+		../../../Qt/5.6/gcc_64/include/QtCore/QTime \
+		../../../Qt/5.6/gcc_64/include/QtCore/qdatetime.h \
+		amplitud.h \
+		nodo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
 nodo.o: nodo.cpp nodo.h \

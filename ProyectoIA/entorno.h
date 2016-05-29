@@ -18,6 +18,7 @@ public:
     int getAncho();
     int getAlto();
     int** getAmbiente();
+    void setAmbiente(int CoordI, int CoorJ, int estado);
     int* getPosInitRobot();
 };
 

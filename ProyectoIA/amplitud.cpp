@@ -16,16 +16,17 @@ Amplitud::Amplitud(Nodo * nodoRaiz, Entorno entorno)
 }
 
 
-Nodo * Amplitud::busquedaPreferente()
+string * Amplitud::busquedaPreferente()
 {
 
     cout << "Inicia Busqueda Preferente" << endl;
 
 
     bool termina = false;
-    Nodo * solucion;
+    string * solucion;
     int parada = 30000000;
     Nodo nodoCabeza;
+    int p = 0;
 
     while(!termina && parada > 0) {
         // Si la cola esta vacia
@@ -34,13 +35,27 @@ Nodo * Amplitud::busquedaPreferente()
         } else {
             nodoCabeza = colaNodos.front();
             colaNodos.pop();
-            pilaNodosExp.push(nodoCabeza);
+            string lvCamino = "";
+            if (p > 0){
+                lvCamino = *nodoCabeza.getNodoPadre();
+            }else{
+                p++;
+            }
+
+
+            if (lvCamino == ""){
+                lvCamino = to_string(nodoCabeza.getCoordI()) +  "," +  to_string(nodoCabeza.getCoordJ());
+            }else{
+                lvCamino = lvCamino + ";" + to_string(nodoCabeza.getCoordI()) +  "," +  to_string(nodoCabeza.getCoordJ());
+            }
+
+            pilaCaminoNodosExp.push(lvCamino);
             // Aumenta los nodos expandidos
             nodosExpandidos++;
             // Si el nodo cabeza es meta
             if(nodoCabeza.esMeta()) {
                 // Terminar, encontro solucion
-                solucion = &pilaNodosExp.top();
+                solucion = &pilaCaminoNodosExp.top();
                 //return solucion;
 
 
@@ -146,7 +161,7 @@ void Amplitud::crearNodo(int posIHijo, int posJHijo, Nodo nodoCabeza)
         nodoHijo.setProfundidad(profundidad);
         nodoHijo.setCostoAcumulado(costoAcumulado);
         nodoHijo.setFlagObjetivos(nodoCabeza.getFlagObjetivos());
-        nodoHijo.setNodoPadre(&pilaNodosExp.top());
+        nodoHijo.setNodoPadre(&pilaCaminoNodosExp.top());
 
         // Agrega el nodo creado a la cola de nodos
         this->colaNodos.push(nodoHijo);
