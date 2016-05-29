@@ -1,4 +1,8 @@
 #include "entorno.h"
+#include <fstream>
+#include <string>
+#include <string.h>
+using namespace std;
 
 Entorno::Entorno()
 {
