@@ -23,10 +23,9 @@ public:
 
 private slots:
     void on_btn_sel_entorno_clicked();
-
     void on_btn_salir_clicked();
-
-    void on_btn_busquda_clicked();
+    void on_btn_busqueda_clicked();
+    void on_cmb_clase_busqueda_currentIndexChanged(int index);
 
 private:
     Ui::MainWindow *ui;

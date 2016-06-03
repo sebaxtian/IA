@@ -31,6 +31,10 @@ void MainWindow::on_btn_sel_entorno_clicked()
 
     if (lvFileName==""){
         QMessageBox::warning(this,tr("Información"),"Debe seleccionar un archivo. Corrija e intente de nuevo.");
+        ui->cmb_clase_busqueda->setEnabled(false);
+        ui->cmb_tipo_busqueda->setEnabled(false);
+        ui->chk_ind_env_devol->setEnabled(false);
+        ui->btn_busqueda->setEnabled(false);
     }
     else
     {
@@ -45,6 +49,11 @@ void MainWindow::on_btn_sel_entorno_clicked()
         ui->tablaEntono->setColumnCount(lvEntorno.getAlto());
 
         pintarEntorno(lvEntorno);
+
+        ui->cmb_clase_busqueda->setEnabled(true);
+        ui->cmb_tipo_busqueda->setEnabled(true);
+        ui->chk_ind_env_devol->setEnabled(true);
+        ui->btn_busqueda->setEnabled(true);
     }
 }
 
@@ -118,15 +127,6 @@ void MainWindow::on_btn_salir_clicked()
     MainWindow::close();
 }
 
-void MainWindow::on_btn_busquda_clicked()
-{
-
-    if (ui->cmb_tipo_busqueda->currentIndex() == 0){
-        busquedaAmplitud(this->entornoUI);
-    }
-}
-
-
 void MainWindow::busquedaAmplitud(Entorno pentorno)
 {
     cout << "Busqueda por Amplitud" << endl;
@@ -185,12 +185,29 @@ void MainWindow::pintarSolucion(Entorno pentorno,queue<QString>  pcolaSolucion )
         pcolaSolucion.pop();
         pintarEntorno(pentorno);
 
-        if ((lvEstado_ant == 0) || (lvEstado_ant == 4) || (lvEstado_ant == 5) || (lvEstado_ant == 6) || (lvEstado_ant == 7) ) {
+        if ((lvEstado_ant == 0) || (lvEstado_ant == 2) || (lvEstado_ant == 4) || (lvEstado_ant == 7)) {
             //pentorno.ambiente[coordI][coordJ] = 2;
             pentorno.setAmbiente(coordI, coordJ, 2);
+            if (lvEstado_ant == 7){
+                pentorno.setIndMetaEncontrada();
+            }
         }else{
-            //pentorno.ambiente[coordI][coordJ] = lvEstado_ant;
-            pentorno.setAmbiente(coordI, coordJ, lvEstado_ant);
+            if  ((lvEstado_ant == 6) && (pentorno.getIndMetaEncontrada() == 1)) {
+                pentorno.setAmbiente(coordI, coordJ, 2);
+                pentorno.setIndMetaEncontrada();
+            }
+            else
+            {
+                if  ((lvEstado_ant == 5) && (pentorno.getIndMetaEncontrada() == 2)) {
+                    pentorno.setAmbiente(coordI, coordJ, 2);
+                    pentorno.setIndMetaEncontrada();
+                }
+                else
+                {
+                    //pentorno.ambiente[coordI][coordJ] = lvEstado_ant;
+                    pentorno.setAmbiente(coordI, coordJ, lvEstado_ant);
+                }
+            }
         }
 
         QTime dieTime = QTime::currentTime().addSecs(1);
@@ -204,3 +221,30 @@ void MainWindow::pintarSolucion(Entorno pentorno,queue<QString>  pcolaSolucion )
 
 }
 
+void MainWindow::on_btn_busqueda_clicked()
+{
+    if (ui->cmb_clase_busqueda->currentIndex() == 0){
+        if (ui->cmb_tipo_busqueda->currentIndex() == 0){
+            busquedaAmplitud(this->entornoUI);
+        }
+    }
+}
+
+
+void MainWindow::on_cmb_clase_busqueda_currentIndexChanged(int index)
+{
+    if (ui->cmb_clase_busqueda->currentIndex() == 0){
+       ui->cmb_tipo_busqueda->clear();
+       ui->cmb_tipo_busqueda->addItem("Preferente por amplitud");
+       ui->cmb_tipo_busqueda->addItem("Costo uniforme");
+       ui->cmb_tipo_busqueda->addItem("Preferente por profundidad");
+       ui->cmb_tipo_busqueda->addItem("Limitada por profundidad");
+       ui->cmb_tipo_busqueda->addItem("Por profundización iterativa");
+    }
+    if (ui->cmb_clase_busqueda->currentIndex() == 1){
+       ui->cmb_tipo_busqueda->clear();
+       ui->cmb_tipo_busqueda->addItem("Busqueda avara");
+       ui->cmb_tipo_busqueda->addItem("Algoritmo A*");
+    }
+
+}

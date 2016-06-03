@@ -12,6 +12,9 @@ Entorno::Entorno()
 void Entorno::setAmbiente(int CoordI, int CoordJ, int estado){
     this->ambiente[CoordI][CoordJ] = estado;
 }
+void Entorno::setIndMetaEncontrada(){
+    this->indMetaEncontrada ++;
+}
 
 void Entorno::loadFile(string pathFile) {
     // Carga del ambiente desde un archivo de texto
@@ -21,6 +24,7 @@ void Entorno::loadFile(string pathFile) {
         string line;
         char *cstr;
         char *tokenstr;
+        this->indMetaEncontrada = 0;
         // Primero, lee todos los comentarios
         while(getline(myfile,line)) {
             if(line.substr(0,1).compare("#") == 0) {
@@ -97,6 +101,10 @@ int Entorno::getAncho() {
 
 int** Entorno::getAmbiente() {
     return this->ambiente;
+}
+
+int Entorno::getIndMetaEncontrada() {
+    return this->indMetaEncontrada;
 }
 
 int* Entorno::getPosInitRobot() {

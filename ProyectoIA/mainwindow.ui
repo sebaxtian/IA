@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>925</width>
-    <height>459</height>
+    <width>1100</width>
+    <height>650</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <widget class="QPushButton" name="btn_sel_entorno">
     <property name="geometry">
      <rect>
-      <x>810</x>
-      <y>10</y>
+      <x>10</x>
+      <y>560</y>
       <width>111</width>
       <height>27</height>
      </rect>
@@ -30,10 +30,10 @@
    <widget class="QTableWidget" name="tablaEntono">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>10</x>
       <y>10</y>
-      <width>671</width>
-      <height>391</height>
+      <width>1081</width>
+      <height>541</height>
      </rect>
     </property>
     <property name="lineWidth">
@@ -59,17 +59,12 @@
       <string>New Row</string>
      </property>
     </row>
-    <column>
-     <property name="text">
-      <string>New Column</string>
-     </property>
-    </column>
    </widget>
    <widget class="QPushButton" name="btn_salir">
     <property name="geometry">
      <rect>
-      <x>810</x>
-      <y>160</y>
+      <x>851</x>
+      <y>559</y>
       <width>112</width>
       <height>27</height>
      </rect>
@@ -79,30 +74,51 @@
     </property>
    </widget>
    <widget class="QComboBox" name="cmb_tipo_busqueda">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>40</y>
+      <x>344</x>
+      <y>560</y>
       <width>221</width>
-      <height>33</height>
+      <height>30</height>
      </rect>
     </property>
     <item>
      <property name="text">
-      <string>Busqueda por amplitud</string>
+      <string>Preferente por amplitud</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>Busqueda por costo uniforme</string>
+      <string>Costo uniforme</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Preferente por profundidad</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Limitada por profundidad</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Por profundización iterativa</string>
      </property>
     </item>
    </widget>
-   <widget class="QPushButton" name="btn_busquda">
+   <widget class="QPushButton" name="btn_busqueda">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>790</x>
-      <y>130</y>
+      <x>710</x>
+      <y>560</y>
       <width>131</width>
       <height>27</height>
      </rect>
@@ -112,10 +128,13 @@
     </property>
    </widget>
    <widget class="QCheckBox" name="chk_ind_env_devol">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>80</y>
+      <x>570</x>
+      <y>561</y>
       <width>131</width>
       <height>22</height>
      </rect>
@@ -127,13 +146,36 @@
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QComboBox" name="cmb_clase_busqueda">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>560</y>
+      <width>211</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>Busqueda no informada</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Busqueda informada</string>
+     </property>
+    </item>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>925</width>
+     <width>1100</width>
      <height>27</height>
     </rect>
    </property>
