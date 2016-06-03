@@ -20,6 +20,10 @@ class Nodo
     int coordI;
     // Coordenada I del nodo en el Entorno
     int coordJ;
+    // Coordenada I del nodo padre
+    int coordIPadre;
+    // Coordenada I del nodo padre
+    int coordJPadre;
     // Heuristica
     double heuristica;
     // Entorno del problema
@@ -30,7 +34,7 @@ public:
     Nodo();
     // Metodo constructor para un Nodo Raiz
     Nodo(int p_coordI, int p_coordJ, estados p_estado, Entorno p_entorno);
-    Nodo(int p_coordI, int p_coordJ, estados p_estado);
+    Nodo(int p_coordI, int p_coordJ, int p_coordIPadre, int p_coordJPadre, estados p_estado);
     // SETTERS
     void setCoords(int p_coordI, int p_coordJ);
     void setEstado(estados p_estado);
@@ -43,6 +47,8 @@ public:
     // GETTERS
     int getCoordI();
     int getCoordJ();
+    int getCoordIPadre();
+    int getCoordJPadre();
     estados getEstado();
     string * getNodoPadre();
     Entorno getEntorno();

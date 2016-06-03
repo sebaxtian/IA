@@ -10,8 +10,8 @@ class Entorno
     int ancho = 0;
     int alto = 0;
     int posInitRobot[2];
-public:
     int **ambiente;
+public:
     Entorno();
     void loadFile(string pathFile);
     void imprimir();

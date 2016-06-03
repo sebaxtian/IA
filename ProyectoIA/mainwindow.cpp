@@ -27,24 +27,25 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_btn_sel_entorno_clicked()
 {
- QString lvFileName =  QFileDialog::getOpenFileName(this, tr("Seleccione el entorno"),"/home/fabian/gitHub/IA/ProyectoIA/Entornos/","Archivo de texto (*.txt)");
+    QString lvFileName =  QFileDialog::getOpenFileName(this, tr("Seleccione el entorno"),"../ProyectoIA/Entornos/","Archivo de texto (*.txt)");
 
- if (lvFileName==""){
-     QMessageBox::warning(this,tr("Información"),"Debe seleccionar un archivo. Corrija e intente de nuevo.");
- }
- else{
-     Entorno lvEntorno;
-     lvEntorno.loadFile(lvFileName.toStdString());
+    if (lvFileName==""){
+        QMessageBox::warning(this,tr("Información"),"Debe seleccionar un archivo. Corrija e intente de nuevo.");
+    }
+    else
+    {
+        Entorno lvEntorno;
+        lvEntorno.loadFile(lvFileName.toStdString());
 
-     int posI = lvEntorno.getPosInitRobot()[0];
-     int posJ = lvEntorno.getPosInitRobot()[1];
-     cout << "Posicion Inicial del Robot: (" << posI << "," << posJ << ")" << endl;
+        int posI = lvEntorno.getPosInitRobot()[0];
+        int posJ = lvEntorno.getPosInitRobot()[1];
+        cout << "Posicion Inicial del Robot: (" << posI << "," << posJ << ")" << endl;
         lvEntorno.imprimir();
         this->entornoUI = lvEntorno;
-     ui->tablaEntono->setColumnCount(lvEntorno.getAlto());
+        ui->tablaEntono->setColumnCount(lvEntorno.getAlto());
 
-     pintarEntorno(lvEntorno);
- }
+        pintarEntorno(lvEntorno);
+    }
 }
 
 void MainWindow::pintarEntorno(Entorno pentorno)
@@ -52,7 +53,7 @@ void MainWindow::pintarEntorno(Entorno pentorno)
 
     ui->tablaEntono->setRowCount(0);
 
-    QString rutaImagen = "/home/fabian/gitHub/IA/ProyectoIA/Imagenes/";
+    QString rutaImagen = "../ProyectoIA/Imagenes/";
     for(int i=0;i<pentorno.getAlto();i++){
         ui->tablaEntono->insertRow(i);
         for(int j=0;j<pentorno.getAncho();j++){
@@ -99,11 +100,11 @@ void MainWindow::pintarEntorno(Entorno pentorno)
             {
                 rutaTmpImagen = rutaImagen + "blanco.jpg";
             }
-             mediaCell->setData(Qt::DecorationRole, QPixmap(rutaTmpImagen).scaled(100, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            mediaCell->setData(Qt::DecorationRole, QPixmap(rutaTmpImagen).scaled(100, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
-             ui->tablaEntono->setItem(i,j,mediaCell);
-             ui->tablaEntono->setRowHeight(i,70);
-             ui->tablaEntono->setColumnWidth(j,70);
+            ui->tablaEntono->setItem(i,j,mediaCell);
+            ui->tablaEntono->setRowHeight(i,70);
+            ui->tablaEntono->setColumnWidth(j,70);
 
         }
     }
@@ -111,12 +112,15 @@ void MainWindow::pintarEntorno(Entorno pentorno)
 
 void MainWindow::on_btn_salir_clicked()
 {
-   MainWindow::close();
+    MainWindow::close();
 }
 
 void MainWindow::on_btn_busquda_clicked()
 {
-    busquedaAmplitud(this->entornoUI);
+
+    if (ui->cmb_tipo_busqueda->currentIndex() == 0){
+        busquedaAmplitud(this->entornoUI);
+    }
 }
 
 
@@ -131,22 +135,24 @@ void MainWindow::busquedaAmplitud(Entorno pentorno)
 
     //Nodo raiz(posI, posJ, 0);
     //NodoFinal raiz(posI, posJ, onRobot, entorno);
-    Nodo raiz(posI, posJ, onRobot);
+    Nodo raiz(posI, posJ, posI, posJ, onRobot);
 
 
     // Aplica el algoritmo de Bisqueda Preferente por Amplitud
-    Amplitud amplitud(&raiz, pentorno);
+    Amplitud amplitud(&raiz, pentorno, ui->chk_ind_env_devol->isChecked());
     //queue<string> solucion = amplitud.busquedaPreferente();
     string * solucion;
 
     solucion = amplitud.busquedaPreferente();
     cout << *solucion << endl;
+    cout << "Nodos creados: " << amplitud.getNodosCreados() << endl;
+    cout << "Nodos expandidos: " << amplitud.getNodosExpandidos() << endl;
 
     QStringList listadeSolucion = QString::fromStdString(*solucion).split(";");
 
     queue<QString>  colaSolucion;
     for(int i=0;i<listadeSolucion.size();i++){
-       colaSolucion.push(listadeSolucion.at(i));
+        colaSolucion.push(listadeSolucion.at(i));
     }
 
     pintarSolucion(pentorno, colaSolucion);
@@ -171,21 +177,24 @@ void MainWindow::pintarSolucion(Entorno pentorno,queue<QString>  pcolaSolucion )
 
         lvEstado_ant = pentorno.getAmbiente()[coordI][coordJ];
 
-        pentorno.ambiente[coordI][coordJ] = 0;
+        //pentorno.ambiente[coordI][coordJ] = 0;
+        pentorno.setAmbiente(coordI, coordJ, 0);
         pcolaSolucion.pop();
         pintarEntorno(pentorno);
 
         if ((lvEstado_ant == 0) || (lvEstado_ant == 4) || (lvEstado_ant == 5) || (lvEstado_ant == 6) || (lvEstado_ant == 7) ) {
-           pentorno.ambiente[coordI][coordJ] = 2;
+            //pentorno.ambiente[coordI][coordJ] = 2;
+            pentorno.setAmbiente(coordI, coordJ, 2);
         }else{
-            pentorno.ambiente[coordI][coordJ] = lvEstado_ant;
+            //pentorno.ambiente[coordI][coordJ] = lvEstado_ant;
+            pentorno.setAmbiente(coordI, coordJ, lvEstado_ant);
         }
 
         QTime dieTime = QTime::currentTime().addSecs(1);
         while (QTime::currentTime() < dieTime)
-        QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+            QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
 
- }
+    }
 
 
 

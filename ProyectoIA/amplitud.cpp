@@ -6,15 +6,26 @@ Amplitud::Amplitud()
     this->nodosExpandidos = 0;
 }
 
-Amplitud::Amplitud(Nodo * nodoRaiz, Entorno entorno)
+Amplitud::Amplitud(Nodo * nodoRaiz, Entorno entorno, bool ind_evita_devol)
 {
     this->colaNodos.push(*nodoRaiz);
     this->miEntorno = entorno;
     this->nodoRaiz = *nodoRaiz;
     this->nodosCreados = 0;
     this->nodosExpandidos = 0;
+    this->ind_evita_devolverse = ind_evita_devol;
 }
 
+
+int Amplitud::getNodosCreados()
+{
+    return this->nodosCreados;
+}
+
+int Amplitud::getNodosExpandidos()
+{
+    return this->nodosExpandidos;
+}
 
 string * Amplitud::busquedaPreferente()
 {
@@ -24,11 +35,12 @@ string * Amplitud::busquedaPreferente()
 
     bool termina = false;
     string * solucion;
-    int parada = 30000000;
+    int parada = 90;
     Nodo nodoCabeza;
     int p = 0;
 
-    while(!termina && parada > 0) {
+   // while(!termina && parada > 0) {
+    while(!termina) {
         // Si la cola esta vacia
         if(colaNodos.empty()) {
             termina = true;
@@ -41,7 +53,6 @@ string * Amplitud::busquedaPreferente()
             }else{
                 p++;
             }
-
 
             if (lvCamino == ""){
                 lvCamino = to_string(nodoCabeza.getCoordI()) +  "," +  to_string(nodoCabeza.getCoordJ());
@@ -56,26 +67,15 @@ string * Amplitud::busquedaPreferente()
             if(nodoCabeza.esMeta()) {
                 // Terminar, encontro solucion
                 solucion = &pilaCaminoNodosExp.top();
-                //return solucion;
-
 
                 termina = true;
             } else {
                 // Expandir y meter nodos al final de la cola
                 crearHijos(nodoCabeza);
             }
-            /*
-            if (nodoCabeza.get_indMeta() >=2) {
-
-                cout << " NC : " << nodosCreados<< " => inMeta : " << nodoCabeza.get_indMeta() <<  " => inMeta : " << nodoCabeza.get_indMeta() <<  " => Prof : " << nodoCabeza.getProfundidad() <<  " ***** "  << endl;
-            }
-            */
         }
         parada--;
     }
-    cout << "HOLA !!" << endl;
-
-    cout << " NC : " << nodosCreados << " => inMeta : " << nodoCabeza.getFlagObjetivos() <<  " => Prof : " << nodoCabeza.getProfundidad() <<  " ***** "  << endl;
 
     return solucion;
 }
@@ -90,6 +90,8 @@ void Amplitud::crearHijos(Nodo nodoCabeza)
     // Coordenadas del nodo cabeza
     int posI = nodoCabeza.getCoordI();
     int posJ = nodoCabeza.getCoordJ();
+    int posIPadre = nodoCabeza.getCoordIPadre();
+    int posJPadre = nodoCabeza.getCoordJPadre();
     // Direccion de los movimientos
     int arriba = posI - 1;
     int abajo = posI + 1;
@@ -107,32 +109,69 @@ void Amplitud::crearHijos(Nodo nodoCabeza)
         // Aplica Operadores de Movimiento
 
         // Mover derecha
-        if(derecha < anchoEntorno)
+        if (derecha < anchoEntorno)
         {
-            // Si es posible, crea nodo hijo
-            this->crearNodo(posI, derecha, nodoCabeza);
+            if (this->ind_evita_devolverse) {
+                if ((posI != posIPadre) || (derecha != posJPadre) || (estadoCabeza == onTortuga) ||
+                     (estadoCabeza == onNemo) || (estadoCabeza == onDori) || (estadoCabeza == onMarlin))  {
+                    // Si es posible, crea nodo hijo
+                    this->crearNodo(posI, derecha, nodoCabeza);
+                }
+            }
+            else
+            {
+                // Si es posible, crea nodo hijo
+                this->crearNodo(posI, derecha, nodoCabeza);
+            }
         }
         // Mover abajo
-        if(abajo < altoEntorno)
+        if (abajo < altoEntorno)
         {
-            // Si es posible, crea nodo hijo
-            this->crearNodo(abajo, posJ, nodoCabeza);
+            if (this->ind_evita_devolverse) {
+                if ((abajo != posIPadre) || (posJ != posJPadre) || (estadoCabeza == onTortuga) ||
+                        (estadoCabeza == onNemo) || (estadoCabeza == onDori) || (estadoCabeza == onMarlin))  {
+                    // Si es posible, crea nodo hijo
+                    this->crearNodo(abajo, posJ, nodoCabeza);
+                }
+            }
+            else
+            {
+                // Si es posible, crea nodo hijo
+                this->crearNodo(abajo, posJ, nodoCabeza);
+            }
         }
         // Mover izquierda
         if(izquierda >= 0)
         {
-            // Si es posible, crea nodo hijo
-            this->crearNodo(posI, izquierda, nodoCabeza);
+            if (this->ind_evita_devolverse) {
+                if ((posI != posIPadre) || (izquierda != posJPadre) || (estadoCabeza == onTortuga) ||
+                        (estadoCabeza == onNemo) || (estadoCabeza == onDori) || (estadoCabeza == onMarlin))  {
+                    // Si es posible, crea nodo hijo
+                    this->crearNodo(posI, izquierda, nodoCabeza);
+                }
+            }
+            else
+            {
+                // Si es posible, crea nodo hijo
+                this->crearNodo(posI, izquierda, nodoCabeza);
+            }
         }
         // Mover arriba
         if(arriba >= 0)
         {
-            // Si es posible, crea nodo hijo
-            this->crearNodo(arriba, posJ, nodoCabeza);
+            if (this->ind_evita_devolverse) {
+                if ((arriba != posIPadre) || (posJ != posJPadre) || (estadoCabeza == onTortuga) ||
+                        (estadoCabeza == onNemo) || (estadoCabeza == onDori) || (estadoCabeza == onMarlin))  {
+                    // Si es posible, crea nodo hijo
+                    this->crearNodo(arriba, posJ, nodoCabeza);
+                }
+            }
+            else
+            {
+                // Si es posible, crea nodo hijo
+                this->crearNodo(arriba, posJ, nodoCabeza);
+            }
         }
-
-
-
     }
 }
 
@@ -156,7 +195,7 @@ void Amplitud::crearNodo(int posIHijo, int posJHijo, Nodo nodoCabeza)
 
         //Nodo nodoHijo(camino,profundidad,costoAcumulado,flagObjetivos,posIHijo,posJHijo);
         //Nodo nodoHijo(posIHijo, posJHijo, estadoHijo, nodoCabeza.getEntorno());
-        Nodo nodoHijo(posIHijo, posJHijo, estadoHijo);
+        Nodo nodoHijo(posIHijo, posJHijo, nodoCabeza.getCoordI(), nodoCabeza.getCoordJ(), estadoHijo);
 
         nodoHijo.setProfundidad(profundidad);
         nodoHijo.setCostoAcumulado(costoAcumulado);
@@ -177,35 +216,35 @@ estados Amplitud::toEstado(int itemEntorno)
     estados estado;
     switch (itemEntorno)
     {
-        case 0:
-            estado = onRobot;
-            break;
-        case 1:
-            estado = onRoca;
-            break;
-        case 2:
-            estado = onLibre;
-            break;
-        case 3:
-            estado = onTiburon;
-            break;
-        case 4:
-            estado = onTortuga;
-            break;
-        case 5:
-            estado = onDori;
-            break;
-        case 6:
-            estado = onMarlin;
-            break;
-        case 7:
-            estado = onNemo;
-            break;
-        case 8:
-            estado = onHumano;
-            break;
-        default:
-            break;
+    case 0:
+        estado = onRobot;
+        break;
+    case 1:
+        estado = onRoca;
+        break;
+    case 2:
+        estado = onLibre;
+        break;
+    case 3:
+        estado = onTiburon;
+        break;
+    case 4:
+        estado = onTortuga;
+        break;
+    case 5:
+        estado = onDori;
+        break;
+    case 6:
+        estado = onMarlin;
+        break;
+    case 7:
+        estado = onNemo;
+        break;
+    case 8:
+        estado = onHumano;
+        break;
+    default:
+        break;
     }
     return estado;
 }

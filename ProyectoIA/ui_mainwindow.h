@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
@@ -32,8 +33,9 @@ public:
     QPushButton *btn_sel_entorno;
     QTableWidget *tablaEntono;
     QPushButton *btn_salir;
-    QComboBox *comboBox;
+    QComboBox *cmb_tipo_busqueda;
     QPushButton *btn_busquda;
+    QCheckBox *chk_ind_env_devol;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -67,13 +69,17 @@ public:
         tablaEntono->verticalHeader()->setVisible(false);
         btn_salir = new QPushButton(centralWidget);
         btn_salir->setObjectName(QStringLiteral("btn_salir"));
-        btn_salir->setGeometry(QRect(810, 150, 112, 27));
-        comboBox = new QComboBox(centralWidget);
-        comboBox->setObjectName(QStringLiteral("comboBox"));
-        comboBox->setGeometry(QRect(700, 40, 221, 33));
+        btn_salir->setGeometry(QRect(810, 160, 112, 27));
+        cmb_tipo_busqueda = new QComboBox(centralWidget);
+        cmb_tipo_busqueda->setObjectName(QStringLiteral("cmb_tipo_busqueda"));
+        cmb_tipo_busqueda->setGeometry(QRect(700, 40, 221, 33));
         btn_busquda = new QPushButton(centralWidget);
         btn_busquda->setObjectName(QStringLiteral("btn_busquda"));
-        btn_busquda->setGeometry(QRect(790, 90, 131, 27));
+        btn_busquda->setGeometry(QRect(790, 130, 131, 27));
+        chk_ind_env_devol = new QCheckBox(centralWidget);
+        chk_ind_env_devol->setObjectName(QStringLiteral("chk_ind_env_devol"));
+        chk_ind_env_devol->setGeometry(QRect(700, 80, 131, 22));
+        chk_ind_env_devol->setChecked(true);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -100,12 +106,13 @@ public:
         QTableWidgetItem *___qtablewidgetitem1 = tablaEntono->verticalHeaderItem(0);
         ___qtablewidgetitem1->setText(QApplication::translate("MainWindow", "New Row", 0));
         btn_salir->setText(QApplication::translate("MainWindow", "Salir", 0));
-        comboBox->clear();
-        comboBox->insertItems(0, QStringList()
+        cmb_tipo_busqueda->clear();
+        cmb_tipo_busqueda->insertItems(0, QStringList()
          << QApplication::translate("MainWindow", "Busqueda por amplitud", 0)
          << QApplication::translate("MainWindow", "Busqueda por costo uniforme", 0)
         );
         btn_busquda->setText(QApplication::translate("MainWindow", "Ejecutar busqueda", 0));
+        chk_ind_env_devol->setText(QApplication::translate("MainWindow", "Evita devolverse", 0));
     } // retranslateUi
 
 };

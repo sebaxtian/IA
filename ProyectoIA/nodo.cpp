@@ -33,10 +33,12 @@ Nodo::Nodo(int p_coordI, int p_coordJ, estados p_estado, Entorno p_entorno)
 }
 
 
-Nodo::Nodo(int p_coordI, int p_coordJ, estados p_estado)
+Nodo::Nodo(int p_coordI, int p_coordJ, int p_coordIPadre, int p_coordJPadre, estados p_estado)
 {
     this->coordI = p_coordI;
     this->coordJ = p_coordJ;
+    this->coordIPadre = p_coordIPadre;
+    this->coordJPadre = p_coordJPadre;
     this->estadoNodo = p_estado;
     // Profundidad del nodo en el arbol
     this->profundidad = 0;
@@ -77,6 +79,16 @@ int Nodo::getCoordI()
 int Nodo::getCoordJ()
 {
     return this->coordJ;
+}
+
+int Nodo::getCoordIPadre()
+{
+    return this->coordIPadre;
+}
+
+int Nodo::getCoordJPadre()
+{
+    return this->coordJPadre;
 }
 
 double Nodo::getHeuristica()
