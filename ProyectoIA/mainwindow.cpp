@@ -41,16 +41,17 @@ void MainWindow::on_btn_sel_entorno_clicked()
      cout << "Posicion Inicial del Robot: (" << posI << "," << posJ << ")" << endl;
         lvEntorno.imprimir();
         this->entornoUI = lvEntorno;
+     ui->tablaEntono->setColumnCount(lvEntorno.getAlto());
+
      pintarEntorno(lvEntorno);
  }
 }
 
 void MainWindow::pintarEntorno(Entorno pentorno)
 {
-    for (int i = 0;i<ui->tablaEntono->rowCount();i++){
-        ui->tablaEntono->removeRow(i);
-    }
-    ui->tablaEntono->setColumnCount(pentorno.getAlto());
+
+    ui->tablaEntono->setRowCount(0);
+
     QString rutaImagen = "/home/fabian/gitHub/IA/ProyectoIA/Imagenes/";
     for(int i=0;i<pentorno.getAlto();i++){
         ui->tablaEntono->insertRow(i);
@@ -158,24 +159,33 @@ void MainWindow::busquedaAmplitud(Entorno pentorno)
 
 void MainWindow::pintarSolucion(Entorno pentorno,queue<QString>  pcolaSolucion )
 {
-    // mover recibe un arreglo.
- while(!pcolaSolucion.empty()) {
-     QString  lvCelda = pcolaSolucion.front();
-     QStringList listaCelda = lvCelda.split(",");
-
-     int coordI = listaCelda[0].toInt();
-     int coordJ =listaCelda[1].toInt();
+    int lvEstado_ant = 0;
+    while(!pcolaSolucion.empty()) {
+        QString  lvCelda = pcolaSolucion.front();
+        QStringList listaCelda = lvCelda.split(",");
 
 
+        int coordI = listaCelda[0].toInt();
+        int coordJ = listaCelda[1].toInt();
 
-     pentorno.setAmbiente(coordI, coordJ, 0);
-     pcolaSolucion.pop();
-     pintarEntorno(pentorno);
-     QTime dieTime = QTime::currentTime().addSecs(1);
-     while (QTime::currentTime() < dieTime)
-         QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+
+        lvEstado_ant = pentorno.getAmbiente()[coordI][coordJ];
+
+        pentorno.ambiente[coordI][coordJ] = 0;
+        pcolaSolucion.pop();
+        pintarEntorno(pentorno);
+
+        if ((lvEstado_ant == 0) || (lvEstado_ant == 4) || (lvEstado_ant == 5) || (lvEstado_ant == 6) || (lvEstado_ant == 7) ) {
+           pentorno.ambiente[coordI][coordJ] = 2;
+        }else{
+            pentorno.ambiente[coordI][coordJ] = lvEstado_ant;
+        }
+
+        QTime dieTime = QTime::currentTime().addSecs(1);
+        while (QTime::currentTime() < dieTime)
+        QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+
  }
-
 
 
 

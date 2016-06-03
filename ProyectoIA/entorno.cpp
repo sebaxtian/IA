@@ -9,8 +9,8 @@ Entorno::Entorno()
 
 }
 
-void Entorno::setAmbiente(int CoordI, int CoorJ, int estado){
-    this->ambiente[CoordI][CoorJ] == estado;
+void Entorno::setAmbiente(int CoordI, int CoordJ, int estado){
+    this->ambiente[CoordI][CoordJ] == estado;
 }
 
 void Entorno::loadFile(string pathFile) {

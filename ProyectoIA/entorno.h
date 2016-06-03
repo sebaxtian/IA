@@ -9,16 +9,16 @@ class Entorno
 {
     int ancho = 0;
     int alto = 0;
-    int **ambiente;
     int posInitRobot[2];
 public:
+    int **ambiente;
     Entorno();
     void loadFile(string pathFile);
     void imprimir();
     int getAncho();
     int getAlto();
     int** getAmbiente();
-    void setAmbiente(int CoordI, int CoorJ, int estado);
+    void setAmbiente(int CoordI, int CoordJ, int estado);
     int* getPosInitRobot();
 };
 
