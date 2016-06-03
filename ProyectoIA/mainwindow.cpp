@@ -100,7 +100,8 @@ void MainWindow::pintarEntorno(Entorno pentorno)
             {
                 rutaTmpImagen = rutaImagen + "blanco.jpg";
             }
-            mediaCell->setData(Qt::DecorationRole, QPixmap(rutaTmpImagen).scaled(100, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            //mediaCell->setData(Qt::DecorationRole, QPixmap(rutaTmpImagen).scaled(100, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            mediaCell->setData(Qt::DecorationRole, QPixmap(rutaTmpImagen));
 
             ui->tablaEntono->setItem(i,j,mediaCell);
             ui->tablaEntono->setRowHeight(i,70);
@@ -108,6 +109,8 @@ void MainWindow::pintarEntorno(Entorno pentorno)
 
         }
     }
+    ui->tablaEntono->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
+    ui->tablaEntono->verticalHeader()->resizeSections(QHeaderView::ResizeToContents);
 }
 
 void MainWindow::on_btn_salir_clicked()
