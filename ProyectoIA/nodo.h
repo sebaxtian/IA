@@ -27,19 +27,20 @@ class Nodo
     // Heuristica
     double heuristica;
     // Entorno del problema
-    Entorno entorno;
+     int **entorno;
     // Estado donde esta el nodo
     estados estadoNodo;
 public:
     Nodo();
     // Metodo constructor para un Nodo Raiz
-    Nodo(int p_coordI, int p_coordJ, estados p_estado, Entorno p_entorno);
+    Nodo(int p_coordI, int p_coordJ, estados p_estado, int **p_entorno);
     Nodo(int p_coordI, int p_coordJ, int p_coordIPadre, int p_coordJPadre, estados p_estado);
     // SETTERS
     void setCoords(int p_coordI, int p_coordJ);
     void setEstado(estados p_estado);
     void setNodoPadre(string * p_padre);
-    void setEntorno(Entorno p_entorno);
+    //void setEntorno(Entorno p_entorno);
+    void setEntorno(int CoordI, int CoordJ, int estado);
     void setProfundidad(int p_profundidad);
     void setCostoAcumulado(double p_costoAcumulado);
     void setHeuristica(double p_heuristica);
@@ -51,7 +52,8 @@ public:
     int getCoordJPadre();
     estados getEstado();
     string * getNodoPadre();
-    Entorno getEntorno();
+   // Entorno getEntorno();
+    int** getEntorno();
     int getProfundidad();
     double getCostoAcumulado();
     double getHeuristica();

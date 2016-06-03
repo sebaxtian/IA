@@ -16,7 +16,7 @@ Nodo::Nodo()
     this->heuristica = 0;
 }
 
-Nodo::Nodo(int p_coordI, int p_coordJ, estados p_estado, Entorno p_entorno)
+Nodo::Nodo(int p_coordI, int p_coordJ, estados p_estado, int **p_entorno)
 {
     this->coordI = p_coordI;
     this->coordJ = p_coordJ;
@@ -95,13 +95,16 @@ double Nodo::getHeuristica()
 {
     return this->heuristica;
 }
-
+/*
 Entorno Nodo::getEntorno()
 {
     return this->entorno;
 }
+*/
 
-
+int** Nodo::getEntorno() {
+    return this->entorno;
+}
 
 void Nodo::setCoords(int p_coordI, int p_coordJ)
 {
@@ -119,10 +122,19 @@ void Nodo::setNodoPadre(string * p_padre)
     this->padre = p_padre;
 }
 
+void Nodo::setEntorno(int CoordI, int CoordJ, int estado){
+    this->entorno[CoordI][CoordJ] = estado;
+}
+
+
+/*
 void Nodo::setEntorno(Entorno p_entorno)
 {
     this->entorno = p_entorno;
 }
+*/
+
+void setEntorno(int CoordI, int CoordJ, int estado);
 
 void Nodo::setProfundidad(int p_profundidad)
 {

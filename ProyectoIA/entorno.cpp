@@ -12,6 +12,7 @@ Entorno::Entorno()
 void Entorno::setAmbiente(int CoordI, int CoordJ, int estado){
     this->ambiente[CoordI][CoordJ] = estado;
 }
+
 void Entorno::setIndMetaEncontrada(){
     this->indMetaEncontrada ++;
 }

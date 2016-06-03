@@ -45,6 +45,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
+        MainWindow->setWindowModality(Qt::ApplicationModal);
         MainWindow->resize(1100, 650);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
@@ -57,7 +58,7 @@ public:
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
         tablaEntono->setVerticalHeaderItem(0, __qtablewidgetitem);
         tablaEntono->setObjectName(QStringLiteral("tablaEntono"));
-        tablaEntono->setGeometry(QRect(10, 10, 1081, 541));
+        tablaEntono->setGeometry(QRect(10, 11, 1081, 541));
         tablaEntono->setLineWidth(0);
         tablaEntono->setMidLineWidth(0);
         tablaEntono->setShowGrid(true);
@@ -78,7 +79,7 @@ public:
         chk_ind_env_devol = new QCheckBox(centralWidget);
         chk_ind_env_devol->setObjectName(QStringLiteral("chk_ind_env_devol"));
         chk_ind_env_devol->setEnabled(false);
-        chk_ind_env_devol->setGeometry(QRect(570, 561, 131, 22));
+        chk_ind_env_devol->setGeometry(QRect(570, 564, 131, 22));
         chk_ind_env_devol->setChecked(true);
         cmb_clase_busqueda = new QComboBox(centralWidget);
         cmb_clase_busqueda->setObjectName(QStringLiteral("cmb_clase_busqueda"));

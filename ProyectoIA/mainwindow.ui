@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -31,7 +34,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
+      <y>11</y>
       <width>1081</width>
       <height>541</height>
      </rect>
@@ -134,7 +137,7 @@
     <property name="geometry">
      <rect>
       <x>570</x>
-      <y>561</y>
+      <y>564</y>
       <width>131</width>
       <height>22</height>
      </rect>
