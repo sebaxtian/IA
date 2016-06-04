@@ -4,6 +4,7 @@ Amplitud::Amplitud()
 {
     this->nodosCreados = 0;
     this->nodosExpandidos = 0;
+    this->costoSolucion = 0;
 }
 
 Amplitud::Amplitud(Nodo * nodoRaiz, Entorno entorno, bool ind_evita_devol)
@@ -14,6 +15,7 @@ Amplitud::Amplitud(Nodo * nodoRaiz, Entorno entorno, bool ind_evita_devol)
     this->nodosCreados = 0;
     this->nodosExpandidos = 0;
     this->ind_evita_devolverse = ind_evita_devol;
+    this->costoSolucion = 0;
 }
 
 
@@ -25,6 +27,11 @@ int Amplitud::getNodosCreados()
 int Amplitud::getNodosExpandidos()
 {
     return this->nodosExpandidos;
+}
+
+double Amplitud::getCostoSolucion()
+{
+    return this->costoSolucion;
 }
 
 string * Amplitud::busquedaPreferente()
@@ -67,6 +74,9 @@ string * Amplitud::busquedaPreferente()
             if(nodoCabeza.esMeta()) {
                 // Terminar, encontro solucion
                 solucion = &pilaCaminoNodosExp.top();
+
+                // Obtiene el costo de la solucion
+                costoSolucion = nodoCabeza.getCostoAcumulado();
 
                 termina = true;
             } else {
@@ -192,6 +202,14 @@ void Amplitud::crearNodo(int posIHijo, int posJHijo, Nodo nodoCabeza)
 
         int profundidad = nodoCabeza.getProfundidad() + 1;
         int costoAcumulado = nodoCabeza.getCostoAcumulado();
+
+        if(estadoHijo == estados::onTiburon) {
+            costoAcumulado += 10;
+        }else if(estadoHijo == estados::onTortuga) {
+            costoAcumulado *= 0.5;
+        } else {
+            costoAcumulado += 1;
+        }
 
         //Nodo nodoHijo(camino,profundidad,costoAcumulado,flagObjetivos,posIHijo,posJHijo);
         //Nodo nodoHijo(posIHijo, posJHijo, estadoHijo, nodoCabeza.getEntorno());

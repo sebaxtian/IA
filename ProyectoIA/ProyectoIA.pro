@@ -16,11 +16,13 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     nodo.cpp \
     entorno.cpp \
-    amplitud.cpp
+    amplitud.cpp \
+    costouniforme.cpp
 
 HEADERS  += mainwindow.h \
     nodo.h \
     entorno.h \
-    amplitud.h
+    amplitud.h \
+    costouniforme.h
 
 FORMS    += mainwindow.ui

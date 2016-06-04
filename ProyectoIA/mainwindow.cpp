@@ -150,6 +150,7 @@ void MainWindow::busquedaAmplitud(Entorno pentorno)
     cout << *solucion << endl;
     cout << "Nodos creados: " << amplitud.getNodosCreados() << endl;
     cout << "Nodos expandidos: " << amplitud.getNodosExpandidos() << endl;
+    cout << "Costo de la Solucion: " << amplitud.getCostoSolucion() << endl;
 
     QStringList listadeSolucion = QString::fromStdString(*solucion).split(";");
 

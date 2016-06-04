@@ -14,6 +14,7 @@ class Amplitud
     bool ind_evita_devolverse;
     int nodosCreados;
     int nodosExpandidos;
+    double costoSolucion;
 public:
     Amplitud();
     Amplitud(Nodo * nodoRaiz, Entorno entorno, bool ind_evita_devol);
@@ -25,6 +26,7 @@ public:
     stack<string> pilaCaminoNodosExp;
     int getNodosCreados();
     int getNodosExpandidos();
+    double getCostoSolucion();
 };
 
 #endif // AMPLITUD_H
