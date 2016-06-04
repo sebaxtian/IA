@@ -40,6 +40,16 @@ string * CostoUniforme::busquedaUniforme()
     cout << "Inicia Busqueda Uniforme" << endl;
     string * solucion;
 
+    bool termina = false;
+    int parada = 1000000;
+    Nodo nodoCabeza;
+
+    //while(!termina && parada > 0)
+    while(!termina)
+    {
+
+    }
+
     return solucion;
 }
 
