@@ -12,6 +12,9 @@ class Entorno
     int posInitRobot[2];
     int **ambiente;
     int indMetaEncontrada;
+    int posDori[2];
+    int posNemo[2];
+    int posMarlin[2];
 public:
     Entorno();
     void loadFile(string pathFile);
@@ -23,6 +26,9 @@ public:
     int* getPosInitRobot();
     int getIndMetaEncontrada();
     void setIndMetaEncontrada();
+    int* getPosDori();
+    int* getPosNemo();
+    int* getPosMarlin();
 };
 
 #endif // ENTORNO_H
