@@ -20,6 +20,7 @@ public:
     void pintarSolucion(Entorno pentorno, queue<QString>  pcolaSolucion );
     void busquedaAmplitud(Entorno pentorno);
     void busquedaCostoUniforme(Entorno pentorno);
+    void busquedaAvara(Entorno pentorno);
     Entorno entornoUI;
 
 private slots:

@@ -66,6 +66,18 @@ void Entorno::loadFile(string pathFile) {
                     this->posInitRobot[0] = i;
                     this->posInitRobot[1] = j;
                 }
+                if(this->ambiente[i][j] == 5) {
+                    this->posDori[0] = i;
+                    this->posDori[1] = j;
+                }
+                if(this->ambiente[i][j] == 6) {
+                    this->posMarlin[0] = i;
+                    this->posMarlin[1] = j;
+                }
+                if(this->ambiente[i][j] == 7) {
+                    this->posNemo[0] = i;
+                    this->posNemo[1] = j;
+                }
                 j++;
                 tokenstr = strtok(NULL," ");
             }
@@ -110,5 +122,21 @@ int Entorno::getIndMetaEncontrada() {
 
 int* Entorno::getPosInitRobot() {
     int* puntero = this->posInitRobot;
+    return puntero;
+}
+
+
+int* Entorno::getPosDori() {
+    int* puntero = this->posDori;
+    return puntero;
+}
+
+int* Entorno::getPosNemo() {
+    int* puntero = this->posNemo;
+    return puntero;
+}
+
+int* Entorno::getPosMarlin() {
+    int* puntero = this->posMarlin;
     return puntero;
 }
