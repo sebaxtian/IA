@@ -18,13 +18,15 @@ SOURCES += main.cpp\
     entorno.cpp \
     amplitud.cpp \
     costouniforme.cpp \
-    profundidad.cpp
+    profundidad.cpp \
+    avara.cpp
 
 HEADERS  += mainwindow.h \
     nodo.h \
     entorno.h \
     amplitud.h \
     costouniforme.h \
-    profundidad.h
+    profundidad.h \
+    avara.h
 
 FORMS    += mainwindow.ui
