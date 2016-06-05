@@ -42,7 +42,7 @@ string * CostoUniforme::busquedaUniforme()
     string * solucion;
 
     bool termina = false;
-    int parada = 1000;
+    int parada = 3000000;
     Nodo nodoCabeza;
     int p = 0;
 
@@ -75,6 +75,7 @@ string * CostoUniforme::busquedaUniforme()
             if(nodoCabeza.esMeta()) {
                 // Terminar, encontro solucion
                 solucion = &pilaCaminoNodosExp.top();
+
 
                 // Obtiene el costo de la solucion
                 costoSolucion = nodoCabeza.getCostoAcumulado();
@@ -204,6 +205,8 @@ void CostoUniforme::crearNodo(int posIHijo, int posJHijo, Nodo nodoCabeza)
             lvEntorno[i][j] = nodoCabeza.getEntorno()[i][j];
         }
     }
+
+
     // Item donde esta el nodo hijo
    //int itemHijo = this->miEntorno.getAmbiente()[posIHijo][posJHijo];
     int itemHijo = lvEntorno[posIHijo][posJHijo];
@@ -264,15 +267,19 @@ void CostoUniforme::crearNodo(int posIHijo, int posJHijo, Nodo nodoCabeza)
         nodoHijo.setPasosAyudaTortuga(lvPasosAyudaTortuga);
         //if (nodoHijo.getFlagObjetivos()>= 2){
         //if ((posIHijo== 3) && (posJHijo== 2)){
+        /*
         if ((posIHijo== 4) && (posJHijo== 4) && (nodoHijo.getFlagObjetivos()>= 1)){
             cout << "camino: "  << *nodoHijo.getNodoPadre() << " costo: " << nodoHijo.getCostoAcumulado() << endl;
         }
-
+        */
 
         // Agrega el nodo creado a la cola de nodos
         this->colaPrioridadNodos.push(nodoHijo);
         // Aumenta el contador de hijos creados
         this->nodosCreados++;
+
+        //cout << "Camino: " << *nodoHijo.getNodoPadre() << endl;
+
         // Imprime el estado del entorno
         //this->entorno.imprimir();
     }

@@ -1,0 +1,26 @@
+#
+# Prueba1 para el entorno de Buscando a Nemo
+#
+# Primera linea es el tamaño de una matriz NxN
+#
+# Espacios libres se representan con el numero 2
+# Posicion del Robot se representa con el numero 0
+# Una Roca se reprsenta con el numero 1
+# El Tiburon se representa con el numero 3
+# Una Tortuga se representa con el numero 4
+# El objetivo Dori se representa con el numero 5
+# El objetivo Marlin se representa con el numero 6
+# El objetivo Nemo se representa con el numero 7
+# Un Humano con arpon se representa con el numero 8
+#
+10 10
+0 2 2 1 2 2 3 1 2 1
+2 2 2 8 7 1 2 2 1 2
+2 1 2 2 2 1 2 2 2 4
+2 1 3 6 1 2 2 1 1 2
+1 1 2 2 2 2 1 2 2 2
+2 2 2 1 2 2 3 4 2 1
+2 2 2 1 2 2 3 2 2 1
+2 2 2 1 2 2 3 2 2 1
+2 2 2 1 2 2 3 2 2 1
+2 2 2 1 2 2 3 2 5 1

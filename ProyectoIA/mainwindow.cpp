@@ -179,7 +179,7 @@ void MainWindow::busquedaAmplitud(Entorno pentorno)
 
 void MainWindow::busquedaCostoUniforme(Entorno pentorno)
 {
-    cout << "Busqueda por Amplitud" << endl;
+    cout << "Busqueda por Costo Uniforme" << endl;
 
 
 
@@ -206,6 +206,7 @@ void MainWindow::busquedaCostoUniforme(Entorno pentorno)
     string * solucion;
 
     solucion = costoUniforme.busquedaUniforme();
+
     cout << *solucion << endl;
     cout << "Nodos creados: " << costoUniforme.getNodosCreados() << endl;
     cout << "Nodos expandidos: " << costoUniforme.getNodosExpandidos() << endl;
@@ -219,7 +220,6 @@ void MainWindow::busquedaCostoUniforme(Entorno pentorno)
     }
 
     pintarSolucion(pentorno, colaSolucion);
-
 
     cout << endl;
 

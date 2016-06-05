@@ -20,7 +20,7 @@ public:
      // cout << "nodoA.getCostoAcumulado() = " << nodoA.getCostoAcumulado() << endl;
       Nodo  nodA = nodoA;
       Nodo  nodB = nodoB;
-      return (nodA.getCostoAcumulado() <= nodB.getCostoAcumulado());
+      return (nodA.getCostoAcumulado() >= nodB.getCostoAcumulado());
   }
 };
 

@@ -43,7 +43,7 @@ public:
      // cout << "nodoA.getCostoAcumulado() = " << nodoA.getCostoAcumulado() << endl;
       Nodo  a = nodoA;
       Nodo  b = nodoB;
-      return (a.getCostoAcumulado() <= b.getCostoAcumulado());
+      return (a.getCostoAcumulado() >= b.getCostoAcumulado());
   }
 };
 
@@ -72,14 +72,19 @@ void pruebaColaPrioridad()
         colaPrioridad.pop();
     }
     */
-/*
+
+    int ** a;
     priority_queue<Nodo, vector<Nodo>, mycomparison> colaPrioridad;
-    Nodo ap1 = Nodo(0, 0, 0, 0, onRobot);
+
+    Nodo ap1 = Nodo(0, 0, 0, 0, onRobot, a);
     ap1.setCostoAcumulado(1.8);
-    Nodo ap2 = Nodo(1, 1, 1, 1, onRobot);
-    ap1.setCostoAcumulado(1);
-    Nodo ap3 = Nodo(2, 2, 2, 2, onRobot);
-    ap1.setCostoAcumulado(2.8);
+
+    Nodo ap2 = Nodo(1, 1, 1, 1, onRobot, a);
+    ap2.setCostoAcumulado(1);
+
+    Nodo ap3 = Nodo(2, 2, 2, 2, onRobot, a);
+    ap3.setCostoAcumulado(2.8);
+
     colaPrioridad.push(ap1);
     colaPrioridad.push(ap2);
     colaPrioridad.push(ap3);
@@ -91,7 +96,7 @@ void pruebaColaPrioridad()
         // Elimina el elemento
         colaPrioridad.pop();
     }
-*/
+
     cout << endl;
 }
 

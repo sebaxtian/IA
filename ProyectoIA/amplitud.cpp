@@ -274,10 +274,11 @@ void Amplitud::crearNodo(int posIHijo, int posJHijo, Nodo nodoCabeza)
         nodoHijo.setPasosAyudaTortuga(lvPasosAyudaTortuga);
         //if (nodoHijo.getFlagObjetivos()>= 2){
         //if ((posIHijo== 3) && (posJHijo== 2)){
+        /*
         if ((posIHijo== 4) && (posJHijo== 4) && (nodoHijo.getFlagObjetivos()>= 1)){
             cout << "camino: "  << *nodoHijo.getNodoPadre() << " costo: " << nodoHijo.getCostoAcumulado() << endl;
         }
-
+        */
 
         // Agrega el nodo creado a la cola de nodos
         this->colaNodos.push(nodoHijo);
