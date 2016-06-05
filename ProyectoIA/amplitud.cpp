@@ -74,7 +74,18 @@ string * Amplitud::busquedaPreferente()
             if(nodoCabeza.esMeta()) {
                 // Terminar, encontro solucion
                 solucion = &pilaCaminoNodosExp.top();
+            /*
+                double costoAcumulado = nodoCabeza.getCostoAcumulado();
+                double tmpCostoAcumulado = 0;
 
+                if((nodoCabeza.getIndAyudaTortuga() == true) && (nodoCabeza.getPasosAyudaTortuga() <=3) ) {
+                    tmpCostoAcumulado = 0.5;
+                }else{
+                    tmpCostoAcumulado = 1;
+                }
+
+                costoAcumulado = costoAcumulado + tmpCostoAcumulado;
+*/
                 // Obtiene el costo de la solucion
                 costoSolucion = nodoCabeza.getCostoAcumulado();
 
@@ -97,6 +108,8 @@ void Amplitud::crearHijos(Nodo nodoCabeza)
     int altoEntorno = this->miEntorno.getAlto();
     int anchoEntorno = this->miEntorno.getAncho();
 
+    // Entorno del padre
+    int **lvEntorno = nodoCabeza.getEntorno();
     // Coordenadas del nodo cabeza
     int posI = nodoCabeza.getCoordI();
     int posJ = nodoCabeza.getCoordJ();
@@ -109,7 +122,8 @@ void Amplitud::crearHijos(Nodo nodoCabeza)
     int derecha = posJ + 1;
 
     // item donde esta el nodo cabeza
-    int itemCabeza = this->miEntorno.getAmbiente()[posI][posJ];
+    //int itemCabeza = this->miEntorno.getAmbiente()[posI][posJ];
+    int itemCabeza = lvEntorno[posI][posJ];
     // estado sobre la que esta el nodo cabeza
     estados estadoCabeza = this->toEstado(itemCabeza);
 
@@ -187,38 +201,83 @@ void Amplitud::crearHijos(Nodo nodoCabeza)
 
 void Amplitud::crearNodo(int posIHijo, int posJHijo, Nodo nodoCabeza)
 {
+    // Limites del entorno para crear nodos hijos
+    int altoEntorno = this->miEntorno.getAlto();
+    int anchoEntorno = this->miEntorno.getAncho();
+    // Entorno del padre
+    //int **lvEntorno = nodoCabeza.getEntorno();
+    // Entorno del padre
+    int ** lvEntorno = new int*[altoEntorno];
+    for(int i=0;i<altoEntorno;i++){
+        lvEntorno[i] = new int[anchoEntorno];
+        for(int j=0;j<anchoEntorno;j++){
+            lvEntorno[i][j] = nodoCabeza.getEntorno()[i][j];
+        }
+    }
     // Item donde esta el nodo hijo
-    int itemHijo = this->miEntorno.getAmbiente()[posIHijo][posJHijo];
+   //int itemHijo = this->miEntorno.getAmbiente()[posIHijo][posJHijo];
+    int itemHijo = lvEntorno[posIHijo][posJHijo];
     // Casilla donde esta el nodo hijo
     estados estadoHijo = this->toEstado(itemHijo);
     // Verifica que la casilla no sea una roca
     if(estadoHijo != onRoca)
     {
+
+        // Calculo del costo acumulado para llegar al nodo..
+        int profundidad = nodoCabeza.getProfundidad() + 1;
+        double costoAcumulado = nodoCabeza.getCostoAcumulado();
+        double tmpCostoAcumulado = 0;
+        double lvReducionCosto = 0;
+        bool lvIndAyudaTortuga = nodoCabeza.getIndAyudaTortuga() ;
+        int lvPasosAyudaTortuga = 0;
+
+        if(estadoHijo == estados::onTiburon) {
+            tmpCostoAcumulado = 10;
+        } else {
+            tmpCostoAcumulado = 1;
+        }
+
+        if((nodoCabeza.getIndAyudaTortuga() == true) && (nodoCabeza.getPasosAyudaTortuga() <=3) ) {
+            lvReducionCosto = 0.5;
+            lvPasosAyudaTortuga = nodoCabeza.getPasosAyudaTortuga() + 1;
+        }else{
+            lvReducionCosto = 1;
+            lvPasosAyudaTortuga = 0;
+        }
+
+
+        if ((lvPasosAyudaTortuga > 4) || (lvPasosAyudaTortuga == 0)  ){
+            if (estadoHijo == onTortuga){
+               lvIndAyudaTortuga = true;
+               lvEntorno[posIHijo][posJHijo]=2;
+            }else{
+                lvIndAyudaTortuga = false;
+            }
+        }
+
+        tmpCostoAcumulado = tmpCostoAcumulado * lvReducionCosto;
+        costoAcumulado = costoAcumulado + tmpCostoAcumulado;
+
+
         // Puede crear el nodo hijo
         //int flagObjetivosPadre = nodoCabeza.getFlagObjetivos();
         //int flagObjetivos = this->validaObjetivo(nodoCabeza.getFlagObjetivos(), estadoHijo);
         // Si encuentra objetivo, en orden, lo quita del entorno
         // Crea el nodo hijo
-
-        int profundidad = nodoCabeza.getProfundidad() + 1;
-        int costoAcumulado = nodoCabeza.getCostoAcumulado();
-
-        if(estadoHijo == estados::onTiburon) {
-            costoAcumulado += 10;
-        }else if(estadoHijo == estados::onTortuga) {
-            costoAcumulado *= 0.5;
-        } else {
-            costoAcumulado += 1;
-        }
-
-        //Nodo nodoHijo(camino,profundidad,costoAcumulado,flagObjetivos,posIHijo,posJHijo);
-        //Nodo nodoHijo(posIHijo, posJHijo, estadoHijo, nodoCabeza.getEntorno());
-        Nodo nodoHijo(posIHijo, posJHijo, nodoCabeza.getCoordI(), nodoCabeza.getCoordJ(), estadoHijo);
+        Nodo nodoHijo(posIHijo, posJHijo, nodoCabeza.getCoordI(), nodoCabeza.getCoordJ(), estadoHijo, lvEntorno);
 
         nodoHijo.setProfundidad(profundidad);
         nodoHijo.setCostoAcumulado(costoAcumulado);
         nodoHijo.setFlagObjetivos(nodoCabeza.getFlagObjetivos());
         nodoHijo.setNodoPadre(&pilaCaminoNodosExp.top());
+        nodoHijo.setIndAyudaTortuga(lvIndAyudaTortuga);
+        nodoHijo.setPasosAyudaTortuga(lvPasosAyudaTortuga);
+        //if (nodoHijo.getFlagObjetivos()>= 2){
+        //if ((posIHijo== 3) && (posJHijo== 2)){
+        if ((posIHijo== 4) && (posJHijo== 4) && (nodoHijo.getFlagObjetivos()>= 1)){
+            cout << "camino: "  << *nodoHijo.getNodoPadre() << " costo: " << nodoHijo.getCostoAcumulado() << endl;
+        }
+
 
         // Agrega el nodo creado a la cola de nodos
         this->colaNodos.push(nodoHijo);
@@ -228,6 +287,7 @@ void Amplitud::crearNodo(int posIHijo, int posJHijo, Nodo nodoCabeza)
         //this->entorno.imprimir();
     }
 }
+
 
 estados Amplitud::toEstado(int itemEntorno)
 {

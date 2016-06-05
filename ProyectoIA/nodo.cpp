@@ -16,10 +16,12 @@ Nodo::Nodo()
     this->heuristica = 0;
 }
 
-Nodo::Nodo(int p_coordI, int p_coordJ, estados p_estado, int **p_entorno)
+Nodo::Nodo(int p_coordI, int p_coordJ, int p_coordIPadre, int p_coordJPadre, estados p_estado, int **p_entorno)
 {
     this->coordI = p_coordI;
     this->coordJ = p_coordJ;
+    this->coordIPadre = p_coordIPadre;
+    this->coordJPadre = p_coordJPadre;
     this->estadoNodo = p_estado;
     this->entorno = p_entorno;
     // Profundidad del nodo en el arbol
@@ -30,9 +32,13 @@ Nodo::Nodo(int p_coordI, int p_coordJ, estados p_estado, int **p_entorno)
     this->flagObjetivos = 0;
     // Heuristica
     this->heuristica = 0;
+    // Indicador para saber si esta en compañia de la tortoga
+    this->indAyudaTortuga = false;
+    // Cantidad de pasos que lleva con la tortuga
+    this->pasosAyudaTortuga = 0;
 }
 
-
+/*
 Nodo::Nodo(int p_coordI, int p_coordJ, int p_coordIPadre, int p_coordJPadre, estados p_estado)
 {
     this->coordI = p_coordI;
@@ -48,8 +54,12 @@ Nodo::Nodo(int p_coordI, int p_coordJ, int p_coordIPadre, int p_coordJPadre, est
     this->flagObjetivos = 0;
     // Heuristica
     this->heuristica = 0;
+    // Indicador para saber si esta en compañia de la tortoga
+    this->indAyudaTortuga = false;
+    // Cantidad de pasos que lleva con la tortuga
+    this->pasosAyudaTortuga = 0;
 }
-
+*/
 
 string *Nodo::getNodoPadre()
 {
@@ -101,6 +111,15 @@ Entorno Nodo::getEntorno()
     return this->entorno;
 }
 */
+
+bool Nodo::getIndAyudaTortuga() {
+    return this->indAyudaTortuga;
+}
+
+int Nodo::getPasosAyudaTortuga() {
+    return this->pasosAyudaTortuga;
+}
+
 
 int** Nodo::getEntorno() {
     return this->entorno;
@@ -156,7 +175,15 @@ void Nodo::setFlagObjetivos(int p_flagObjetivos)
     this->flagObjetivos = p_flagObjetivos;
 }
 
+void Nodo::setIndAyudaTortuga(bool p_indAyudaTortuga)
+{
+    this->indAyudaTortuga = p_indAyudaTortuga;
+}
 
+void Nodo::setPasosAyudaTortuga(int p_pasosAyudaTortuga)
+{
+    this->pasosAyudaTortuga = p_pasosAyudaTortuga;
+}
 
 // Funciones miembro
 bool Nodo::esMeta()
