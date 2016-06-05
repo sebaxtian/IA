@@ -4,26 +4,30 @@
 #include <queue>
 #include "nodo.h"
 #include "entorno.h"
+#include <stack>
 
 
 //Función de comparación
 //El operador le da mejor prioridad a los menores, si lo desea al reves cambie el operador por <=
-/*
-struct CompararPrioridad
-{
-    bool operator() (const Nodo &a, const Nodo &b) const
-    {
-        //return a.prioridad>=b.prioridad;
-        return a.getCostoAcumulado() >= b.getCostoAcumulado();
-    }
 
+class CompararPrioridad
+{
+public:
+  CompararPrioridad()
+    {}
+  bool operator() (const Nodo& nodoA, const Nodo& nodoB) const
+  {
+     // cout << "nodoA.getCostoAcumulado() = " << nodoA.getCostoAcumulado() << endl;
+      Nodo  nodA = nodoA;
+      Nodo  nodB = nodoB;
+      return (nodA.getCostoAcumulado() <= nodB.getCostoAcumulado());
+  }
 };
-*/
 
 
 class CostoUniforme
 {
-    //priority_queue<Nodo, vector<Nodo>, CompararPrioridad> colaPrioridadNodos;
+    priority_queue<Nodo, vector<Nodo>, CompararPrioridad> colaPrioridadNodos;
     Entorno miEntorno;
     Nodo nodoRaiz;
     bool ind_evita_devolverse;
@@ -33,10 +37,14 @@ class CostoUniforme
 public:
     CostoUniforme();
     CostoUniforme(Nodo * nodoRaiz, Entorno entorno, bool ind_evita_devol);
+    stack<string> pilaCaminoNodosExp;
     string * busquedaUniforme();
     int getNodosCreados();
     int getNodosExpandidos();
     double getCostoSolucion();
+    void crearHijos(Nodo nodo);
+    void crearNodo(int posIHijo, int posJHijo, Nodo nodoCabeza);
+    estados toEstado(int itemEntorno);
 };
 
 #endif // COSTOUNIFORME_H
