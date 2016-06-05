@@ -138,7 +138,16 @@ void MainWindow::busquedaAmplitud(Entorno pentorno)
 
     //Nodo raiz(posI, posJ, 0);
     //NodoFinal raiz(posI, posJ, onRobot, entorno);
-    Nodo raiz(posI, posJ, posI, posJ, onRobot);
+
+    int ** lvAmbiente = new int*[pentorno.getAlto()];
+    for(int i=0;i<pentorno.getAlto();i++){
+        lvAmbiente[i] = new int[pentorno.getAncho()];
+        for(int j=0;j<pentorno.getAncho();j++){
+            lvAmbiente[i][j] = pentorno.getAmbiente()[i][j];
+        }
+    }
+
+    Nodo raiz(posI, posJ, posI, posJ, onRobot, lvAmbiente);
 
 
     // Aplica el algoritmo de Bisqueda Preferente por Amplitud

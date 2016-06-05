@@ -52,12 +52,14 @@ SOURCES       = main.cpp \
 		mainwindow.cpp \
 		nodo.cpp \
 		entorno.cpp \
-		amplitud.cpp moc_mainwindow.cpp
+		amplitud.cpp \
+		costouniforme.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		nodo.o \
 		entorno.o \
 		amplitud.o \
+		costouniforme.o \
 		moc_mainwindow.o
 DIST          = ../../../Qt/5.6/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.6/gcc_64/mkspecs/common/unix.conf \
@@ -196,11 +198,13 @@ DIST          = ../../../Qt/5.6/gcc_64/mkspecs/features/spec_pre.prf \
 		ProyectoIA.pro mainwindow.h \
 		nodo.h \
 		entorno.h \
-		amplitud.h main.cpp \
+		amplitud.h \
+		costouniforme.h main.cpp \
 		mainwindow.cpp \
 		nodo.cpp \
 		entorno.cpp \
-		amplitud.cpp
+		amplitud.cpp \
+		costouniforme.cpp
 QMAKE_TARGET  = ProyectoIA
 DESTDIR       = 
 TARGET        = ProyectoIA
@@ -503,8 +507,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.h nodo.h entorno.h amplitud.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp mainwindow.cpp nodo.cpp entorno.cpp amplitud.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents mainwindow.h nodo.h entorno.h amplitud.h costouniforme.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp mainwindow.cpp nodo.cpp entorno.cpp amplitud.cpp costouniforme.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 
 
@@ -775,7 +779,8 @@ main.o: main.cpp mainwindow.h \
 		../../../Qt/5.6/gcc_64/include/QtCore/qeventloop.h \
 		../../../Qt/5.6/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		../../../Qt/5.6/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.6/gcc_64/include/QtGui/qinputmethod.h
+		../../../Qt/5.6/gcc_64/include/QtGui/qinputmethod.h \
+		nodo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 mainwindow.o: mainwindow.cpp mainwindow.h \
@@ -888,6 +893,54 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../../Qt/5.6/gcc_64/include/QtGui/qicon.h \
 		entorno.h \
 		ui_mainwindow.h \
+		../../../Qt/5.6/gcc_64/include/QtCore/QVariant \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/QAction \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qaction.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/QApplication \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qapplication.h \
+		../../../Qt/5.6/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../Qt/5.6/gcc_64/include/QtCore/qeventloop.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../Qt/5.6/gcc_64/include/QtGui/qguiapplication.h \
+		../../../Qt/5.6/gcc_64/include/QtGui/qinputmethod.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/QButtonGroup \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/QCheckBox \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qcheckbox.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/QComboBox \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qcombobox.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../Qt/5.6/gcc_64/include/QtGui/qvalidator.h \
+		../../../Qt/5.6/gcc_64/include/QtCore/qregularexpression.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qslider.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qstyle.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qframe.h \
+		../../../Qt/5.6/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/QHeaderView \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt/5.6/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/QMenuBar \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qmenubar.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qmenu.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/QPushButton \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/QStatusBar \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qstatusbar.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/QTableWidget \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qtablewidget.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qtableview.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/QToolBar \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/qtoolbar.h \
+		../../../Qt/5.6/gcc_64/include/QtWidgets/QWidget \
 		../../../Qt/5.6/gcc_64/include/QtWidgets/QFileDialog \
 		../../../Qt/5.6/gcc_64/include/QtWidgets/qfiledialog.h \
 		../../../Qt/5.6/gcc_64/include/QtCore/qdir.h \
@@ -912,6 +965,11 @@ amplitud.o: amplitud.cpp amplitud.h \
 		nodo.h \
 		entorno.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o amplitud.o amplitud.cpp
+
+costouniforme.o: costouniforme.cpp costouniforme.h \
+		nodo.h \
+		entorno.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o costouniforme.o costouniforme.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

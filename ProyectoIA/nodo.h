@@ -28,13 +28,19 @@ class Nodo
     double heuristica;
     // Entorno del problema
      int **entorno;
+    // Indicador para saber si esta en compañia de la tortoga
+     bool indAyudaTortuga;
+     // Cantidad de pasos que lleva con la tortuga
+     int pasosAyudaTortuga;
     // Estado donde esta el nodo
     estados estadoNodo;
 public:
     Nodo();
     // Metodo constructor para un Nodo Raiz
-    Nodo(int p_coordI, int p_coordJ, estados p_estado, int **p_entorno);
+    Nodo(int p_coordI, int p_coordJ, int p_coordIPadre, int p_coordJPadre, estados p_estado, int **p_entorno);
+    /*OJO SE COMENTA POR PRUEBA DE ENTORNO
     Nodo(int p_coordI, int p_coordJ, int p_coordIPadre, int p_coordJPadre, estados p_estado);
+    */
     // SETTERS
     void setCoords(int p_coordI, int p_coordJ);
     void setEstado(estados p_estado);
@@ -45,6 +51,8 @@ public:
     void setCostoAcumulado(double p_costoAcumulado);
     void setHeuristica(double p_heuristica);
     void setFlagObjetivos(int p_flagObjetivos);
+    void setIndAyudaTortuga(bool p_indAyudaTortuga);
+    void setPasosAyudaTortuga(int p_pasosAyudaTortuga);
     // GETTERS
     int getCoordI();
     int getCoordJ();
@@ -53,11 +61,13 @@ public:
     estados getEstado();
     string * getNodoPadre();
    // Entorno getEntorno();
-    int** getEntorno();
+    int **getEntorno();
     int getProfundidad();
     double getCostoAcumulado();
     double getHeuristica();
     int getFlagObjetivos();
+    bool getIndAyudaTortuga();
+    int getPasosAyudaTortuga();
     // Funciones miembro
     bool esMeta();
 };
