@@ -7,6 +7,14 @@
 #include "entorno.h"
 #include <stack>
 
+
+// Tipos de distancias
+// http://wwwae.ciemat.es/~cardenas/docs/lessons/MedidasdeDistancia.pdf
+// https://es.wikipedia.org/wiki/Geometr%C3%ADa_del_taxista
+// https://es.wikipedia.org/wiki/Distancia_de_Chebyshov [Esta contempla la distancia en diagonales]
+
+
+
 class CompararPrioridadHeurista
 {
 public:

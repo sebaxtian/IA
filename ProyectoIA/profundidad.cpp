@@ -1,5 +1,8 @@
 #include "profundidad.h"
+#include <QStringList>
+#include <iostream>
 
+using namespace std;
 
 
 Profundidad::Profundidad()
@@ -59,7 +62,7 @@ string * Profundidad::busquedaProfundidad()
     string * solucion;
 
     bool termina = false;
-    int parada = 1000;
+    int parada = 1000000;
     Nodo nodoCabeza;
     int p = 0;
 
@@ -70,9 +73,13 @@ string * Profundidad::busquedaProfundidad()
         if(pilaNodos.empty()) {
             termina = true;
         } else {
+
             nodoCabeza = pilaNodos.top();
+
             pilaNodos.pop();
+
             string lvCamino = "";
+
             if (p > 0){
                 lvCamino = *nodoCabeza.getNodoPadre();
             }else{
@@ -82,12 +89,68 @@ string * Profundidad::busquedaProfundidad()
             if (lvCamino == ""){
                 lvCamino = to_string(nodoCabeza.getCoordI()) +  "," +  to_string(nodoCabeza.getCoordJ());
             }else{
-                lvCamino = lvCamino + ";" + to_string(nodoCabeza.getCoordI()) +  "," +  to_string(nodoCabeza.getCoordJ());
+
+                //lvCamino = lvCamino + ";" + to_string(nodoCabeza.getCoordI()) +  "," +  to_string(nodoCabeza.getCoordJ());
+
+
+                bool ciclo = false;
+
+                string pasosiguiente = to_string(nodoCabeza.getCoordI()) +  "," +  to_string(nodoCabeza.getCoordJ());
+
+                QStringList soluciontmp = QString::fromStdString(lvCamino).split(";");
+                if(soluciontmp.size() > 0) {
+                    for(int i=0;i<soluciontmp.size();i++){
+                        //cout << "soluciontmp.at(i) = " << soluciontmp.at(i).toStdString() << endl;
+                        if(soluciontmp.at(i).toStdString().compare(pasosiguiente) == 0) {
+                            ciclo = true;
+                            break;
+                        }
+                    }
+                }
+
+                if(!ciclo) {
+                    lvCamino = lvCamino + ";" + to_string(nodoCabeza.getCoordI()) +  "," +  to_string(nodoCabeza.getCoordJ());
+                    cout << "No Hay Ciclo " << lvCamino << endl;
+                }
+
+                //cout << "lvCamino = " << lvCamino << endl;
+
             }
+
+            /*
+            bool ciclo = false;
+
+            string pasosiguiente = to_string(nodoCabeza.getCoordI()) +  "," +  to_string(nodoCabeza.getCoordJ());
+
+            QStringList soluciontmp = QString::fromStdString(lvCamino).split(";");
+            if(soluciontmp.size() == 0) {
+                cout << "lvCamino = " << lvCamino << endl;
+                if(lvCamino.compare(pasosiguiente) == 0) {
+                    ciclo = true;
+                }
+            }
+            for(int i=0;i<soluciontmp.size();i++){
+                cout << "soluciontmp.at(i) = " << soluciontmp.at(i).toStdString() << endl;
+                if(soluciontmp.at(i).toStdString().compare(pasosiguiente) == 0) {
+                    ciclo = true;
+                }
+            }
+
+
+            if(!ciclo) {
+                cout << "No Hay Ciclo" << endl;
+                pilaCaminoNodosExp.push(lvCamino);
+                // Aumenta los nodos expandidos
+                nodosExpandidos++;
+            }
+            */
+
 
             pilaCaminoNodosExp.push(lvCamino);
             // Aumenta los nodos expandidos
             nodosExpandidos++;
+
+
             // Si el nodo cabeza es meta
             if(nodoCabeza.esMeta()) {
                 // Terminar, encontro solucion
@@ -146,19 +209,19 @@ void Profundidad::crearHijos(Nodo nodoCabeza)
             switch(operadores[i])
             {
                 case 'R':
-                    cout << "Aplica Operador Derecha" << endl;
+                    //cout << "Aplica Operador Derecha" << endl;
                     this->moverDerecha(derecha, anchoEntorno, posI, posIPadre, posJPadre, estadoCabeza, nodoCabeza);
                     break;
                 case 'D':
-                    cout << "Aplica Operador Abajo" << endl;
+                    //cout << "Aplica Operador Abajo" << endl;
                     this->moverAbajo(abajo, altoEntorno, posJ, posJPadre, posIPadre, estadoCabeza, nodoCabeza);
                     break;
                 case 'L':
-                    cout << "Aplica Operador Izquierda" << endl;
+                    //cout << "Aplica Operador Izquierda" << endl;
                     this->moverIzquierda(izquierda, posI, posIPadre, posJPadre, estadoCabeza, nodoCabeza);
                     break;
                 case 'U':
-                    cout << "Aplica Operador Arriba" << endl;
+                    //cout << "Aplica Operador Arriba" << endl;
                     this->moverArriba(arriba, posJ, posJPadre, posIPadre, estadoCabeza, nodoCabeza);
                     break;
                 default:
@@ -343,7 +406,7 @@ void Profundidad::crearNodo(int posIHijo, int posJHijo, Nodo nodoCabeza)
         // Aumenta el contador de hijos creados
         this->nodosCreados++;
 
-        cout << "Camino: " << *nodoHijo.getNodoPadre() << endl;
+        //cout << "Camino: " << *nodoHijo.getNodoPadre() << endl;
 
         // Imprime el estado del entorno
         //this->entorno.imprimir();

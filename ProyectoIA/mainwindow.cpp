@@ -259,6 +259,8 @@ void MainWindow::busquedaProfundidad(Entorno pentorno)
     Profundidad profundidad(&raiz, pentorno, ui->chk_ind_env_devol->isChecked());
     string * solucion;
 
+
+    profundidad.setOperadores('R','L','U','D');
     solucion = profundidad.busquedaProfundidad();
     /*
     cout << *solucion << endl;
