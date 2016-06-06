@@ -227,6 +227,62 @@ void MainWindow::busquedaCostoUniforme(Entorno pentorno)
     cout << endl;
 }
 
+
+void MainWindow::busquedaProfundidad(Entorno pentorno)
+{
+    cout << "Busqueda por Profundidad" << endl;
+
+
+
+    int posI = pentorno.getPosInitRobot()[0];
+    int posJ = pentorno.getPosInitRobot()[1];
+
+    //Nodo raiz(posI, posJ, 0);
+    //NodoFinal raiz(posI, posJ, onRobot, entorno);
+
+    int ** lvAmbiente = new int*[pentorno.getAlto()];
+    for(int i=0;i<pentorno.getAlto();i++){
+        lvAmbiente[i] = new int[pentorno.getAncho()];
+        for(int j=0;j<pentorno.getAncho();j++){
+            lvAmbiente[i][j] = pentorno.getAmbiente()[i][j];
+        }
+    }
+
+    Nodo raiz(posI, posJ, posI, posJ, onRobot, lvAmbiente);
+
+
+
+    /*
+
+    // Aplica el algoritmo de Bisqueda Preferente por Amplitud
+    CostoUniforme costoUniforme(&raiz, pentorno, ui->chk_ind_env_devol->isChecked());
+    //queue<string> solucion = amplitud.busquedaPreferente();
+    string * solucion;
+
+    solucion = costoUniforme.busquedaUniforme();
+
+    cout << *solucion << endl;
+    cout << "Nodos creados: " << costoUniforme.getNodosCreados() << endl;
+    cout << "Nodos expandidos: " << costoUniforme.getNodosExpandidos() << endl;
+    cout << "Costo de la Solucion: " << costoUniforme.getCostoSolucion() << endl;
+
+    QStringList listadeSolucion = QString::fromStdString(*solucion).split(";");
+
+    queue<QString>  colaSolucion;
+    for(int i=0;i<listadeSolucion.size();i++){
+        colaSolucion.push(listadeSolucion.at(i));
+    }
+
+    pintarSolucion(pentorno, colaSolucion);
+
+    */
+
+    cout << endl;
+
+    cout << endl;
+}
+
+
 void MainWindow::busquedaAvara(Entorno pentorno)
 {
     cout << "Busqueda por Costo Uniforme" << endl;

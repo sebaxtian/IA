@@ -102,6 +102,31 @@ void pruebaColaPrioridad()
 
 
 
+void pruebaOrdenOps(char op0, char op1, char op2, char op3)
+{
+    char operadores [4];
+
+    operadores[0] = op0;
+    operadores[1] = op1;
+    operadores[2] = op2;
+    operadores[3] = op3;
+
+/*
+    switch(c)
+    {
+        case 'A':
+        capa++;
+        break;
+        case 'a':
+        lettera++;
+        break;
+        default:
+        nota++;
+    }
+*/
+}
+
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

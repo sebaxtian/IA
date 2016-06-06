@@ -53,13 +53,17 @@ SOURCES       = ../ProyectoIA/main.cpp \
 		../ProyectoIA/nodo.cpp \
 		../ProyectoIA/entorno.cpp \
 		../ProyectoIA/amplitud.cpp \
-		../ProyectoIA/costouniforme.cpp moc_mainwindow.cpp
+		../ProyectoIA/costouniforme.cpp \
+		../ProyectoIA/profundidad.cpp \
+		../ProyectoIA/avara.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		nodo.o \
 		entorno.o \
 		amplitud.o \
 		costouniforme.o \
+		profundidad.o \
+		avara.o \
 		moc_mainwindow.o
 DIST          = ../../../../Programas/Qt5.6.0/5.6/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/mkspecs/common/unix.conf \
@@ -199,12 +203,16 @@ DIST          = ../../../../Programas/Qt5.6.0/5.6/gcc_64/mkspecs/features/spec_p
 		../ProyectoIA/nodo.h \
 		../ProyectoIA/entorno.h \
 		../ProyectoIA/amplitud.h \
-		../ProyectoIA/costouniforme.h ../ProyectoIA/main.cpp \
+		../ProyectoIA/costouniforme.h \
+		../ProyectoIA/profundidad.h \
+		../ProyectoIA/avara.h ../ProyectoIA/main.cpp \
 		../ProyectoIA/mainwindow.cpp \
 		../ProyectoIA/nodo.cpp \
 		../ProyectoIA/entorno.cpp \
 		../ProyectoIA/amplitud.cpp \
-		../ProyectoIA/costouniforme.cpp
+		../ProyectoIA/costouniforme.cpp \
+		../ProyectoIA/profundidad.cpp \
+		../ProyectoIA/avara.cpp
 QMAKE_TARGET  = ProyectoIA
 DESTDIR       = 
 TARGET        = ProyectoIA
@@ -507,8 +515,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../ProyectoIA/mainwindow.h ../ProyectoIA/nodo.h ../ProyectoIA/entorno.h ../ProyectoIA/amplitud.h ../ProyectoIA/costouniforme.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../ProyectoIA/main.cpp ../ProyectoIA/mainwindow.cpp ../ProyectoIA/nodo.cpp ../ProyectoIA/entorno.cpp ../ProyectoIA/amplitud.cpp ../ProyectoIA/costouniforme.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../ProyectoIA/mainwindow.h ../ProyectoIA/nodo.h ../ProyectoIA/entorno.h ../ProyectoIA/amplitud.h ../ProyectoIA/costouniforme.h ../ProyectoIA/profundidad.h ../ProyectoIA/avara.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../ProyectoIA/main.cpp ../ProyectoIA/mainwindow.cpp ../ProyectoIA/nodo.cpp ../ProyectoIA/entorno.cpp ../ProyectoIA/amplitud.cpp ../ProyectoIA/costouniforme.cpp ../ProyectoIA/profundidad.cpp ../ProyectoIA/avara.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../ProyectoIA/mainwindow.ui $(DISTDIR)/
 
 
@@ -779,7 +787,8 @@ main.o: ../ProyectoIA/main.cpp ../ProyectoIA/mainwindow.h \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qeventloop.h \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtGui/qinputmethod.h
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtGui/qinputmethod.h \
+		../ProyectoIA/nodo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../ProyectoIA/main.cpp
 
 mainwindow.o: ../ProyectoIA/mainwindow.cpp ../ProyectoIA/mainwindow.h \
@@ -950,7 +959,8 @@ mainwindow.o: ../ProyectoIA/mainwindow.cpp ../ProyectoIA/mainwindow.h \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/QTime \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qdatetime.h \
 		../ProyectoIA/amplitud.h \
-		../ProyectoIA/nodo.h
+		../ProyectoIA/nodo.h \
+		../ProyectoIA/costouniforme.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../ProyectoIA/mainwindow.cpp
 
 nodo.o: ../ProyectoIA/nodo.cpp ../ProyectoIA/nodo.h \
@@ -969,6 +979,12 @@ costouniforme.o: ../ProyectoIA/costouniforme.cpp ../ProyectoIA/costouniforme.h \
 		../ProyectoIA/nodo.h \
 		../ProyectoIA/entorno.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o costouniforme.o ../ProyectoIA/costouniforme.cpp
+
+profundidad.o: ../ProyectoIA/profundidad.cpp ../ProyectoIA/profundidad.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o profundidad.o ../ProyectoIA/profundidad.cpp
+
+avara.o: ../ProyectoIA/avara.cpp ../ProyectoIA/avara.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o avara.o ../ProyectoIA/avara.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
