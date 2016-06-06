@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     amplitud.cpp \
     costouniforme.cpp \
     profundidad.cpp \
-    avara.cpp
+    avara.cpp \
+    aasterisco.cpp
 
 HEADERS  += mainwindow.h \
     nodo.h \
@@ -27,6 +28,7 @@ HEADERS  += mainwindow.h \
     amplitud.h \
     costouniforme.h \
     profundidad.h \
-    avara.h
+    avara.h \
+    aasterisco.h
 
 FORMS    += mainwindow.ui

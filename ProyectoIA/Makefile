@@ -55,7 +55,8 @@ SOURCES       = main.cpp \
 		amplitud.cpp \
 		costouniforme.cpp \
 		profundidad.cpp \
-		avara.cpp moc_mainwindow.cpp
+		avara.cpp \
+		aasterisco.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		nodo.o \
@@ -64,6 +65,7 @@ OBJECTS       = main.o \
 		costouniforme.o \
 		profundidad.o \
 		avara.o \
+		aasterisco.o \
 		moc_mainwindow.o
 DIST          = ../../../Qt/5.6/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.6/gcc_64/mkspecs/common/unix.conf \
@@ -205,14 +207,16 @@ DIST          = ../../../Qt/5.6/gcc_64/mkspecs/features/spec_pre.prf \
 		amplitud.h \
 		costouniforme.h \
 		profundidad.h \
-		avara.h main.cpp \
+		avara.h \
+		aasterisco.h main.cpp \
 		mainwindow.cpp \
 		nodo.cpp \
 		entorno.cpp \
 		amplitud.cpp \
 		costouniforme.cpp \
 		profundidad.cpp \
-		avara.cpp
+		avara.cpp \
+		aasterisco.cpp
 QMAKE_TARGET  = ProyectoIA
 DESTDIR       = 
 TARGET        = ProyectoIA
@@ -515,8 +519,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.h nodo.h entorno.h amplitud.h costouniforme.h profundidad.h avara.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp mainwindow.cpp nodo.cpp entorno.cpp amplitud.cpp costouniforme.cpp profundidad.cpp avara.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents mainwindow.h nodo.h entorno.h amplitud.h costouniforme.h profundidad.h avara.h aasterisco.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp mainwindow.cpp nodo.cpp entorno.cpp amplitud.cpp costouniforme.cpp profundidad.cpp avara.cpp aasterisco.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 
 
@@ -960,7 +964,9 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../../Qt/5.6/gcc_64/include/QtCore/qdatetime.h \
 		amplitud.h \
 		nodo.h \
-		costouniforme.h
+		costouniforme.h \
+		avara.h \
+		aasterisco.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
 nodo.o: nodo.cpp nodo.h \
@@ -980,13 +986,18 @@ costouniforme.o: costouniforme.cpp costouniforme.h \
 		entorno.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o costouniforme.o costouniforme.cpp
 
-profundidad.o: profundidad.cpp profundidad.h
+profundidad.o: profundidad.cpp profundidad.h \
+		nodo.h \
+		entorno.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o profundidad.o profundidad.cpp
 
 avara.o: avara.cpp avara.h \
 		nodo.h \
 		entorno.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o avara.o avara.cpp
+
+aasterisco.o: aasterisco.cpp aasterisco.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o aasterisco.o aasterisco.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

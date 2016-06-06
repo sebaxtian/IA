@@ -22,6 +22,7 @@ public:
     void busquedaCostoUniforme(Entorno pentorno);
     void busquedaProfundidad(Entorno pentorno);
     void busquedaAvara(Entorno pentorno);
+    void busquedaAAsterisco(Entorno pentorno);
     Entorno entornoUI;
 
 private slots:
