@@ -17,7 +17,7 @@ public:
      // cout << "nodoA.getCostoAcumulado() = " << nodoA.getCostoAcumulado() << endl;
       Nodo  nodA = nodoA;
       Nodo  nodB = nodoB;
-      return (nodA.getHeuristica() >= nodB.getHeuristica());
+      return ((nodA.getHeuristica() + nodA.getCostoAcumulado()) >= (nodB.getHeuristica() + nodB.getCostoAcumulado() ));
   }
 };
 

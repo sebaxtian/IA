@@ -453,7 +453,7 @@ void MainWindow::on_btn_busqueda_clicked()
         if (ui->cmb_tipo_busqueda->currentIndex() == 0){
             busquedaAvara(this->entornoUI);
         }
-        if (ui->cmb_tipo_busqueda->currentIndex() == 0){
+        if (ui->cmb_tipo_busqueda->currentIndex() == 1){
             busquedaAAsterisco(this->entornoUI);
         }
 
