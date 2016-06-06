@@ -41,16 +41,16 @@ double Avara::getCostoSolucion()
 
 string * Avara::busquedaAvara()
 {
-    cout << "Inicia Busqueda Uniforme" << endl;
+    cout << "Inicia Busqueda Avara" << endl;
     string * solucion;
 
     bool termina = false;
-    int parada = 100;
+    int parada = 3000;
     Nodo nodoCabeza;
     int p = 0;
 
-    //while(!termina && parada > 0)
-    while(!termina)
+    while(!termina && parada > 0)
+    //while(!termina)
     {
         // Si la cola esta vacia
         if(colaPrioridadNodos.empty()) {
@@ -269,13 +269,13 @@ void Avara::crearNodo(int posIHijo, int posJHijo, Nodo nodoCabeza)
         nodoHijo.setIndAyudaTortuga(lvIndAyudaTortuga);
         nodoHijo.setPasosAyudaTortuga(lvPasosAyudaTortuga);
         nodoHijo.setHeuristica(obtenerHeuristica(nodoHijo));
+
+
         //if (nodoHijo.getFlagObjetivos()>= 2){
         //if ((posIHijo== 3) && (posJHijo== 2)){
-        /*
-        if ((posIHijo== 4) && (posJHijo== 4) && (nodoHijo.getFlagObjetivos()>= 1)){
-            cout << "camino: "  << *nodoHijo.getNodoPadre() << " costo: " << nodoHijo.getCostoAcumulado() << endl;
-        }
-        */
+
+        //cout << "camino: "  << *nodoHijo.getNodoPadre() << " costo: " << nodoHijo.getHeuristica() << endl;
+
 
         // Agrega el nodo creado a la cola de nodos
         this->colaPrioridadNodos.push(nodoHijo);
@@ -359,7 +359,7 @@ double Avara::obtenerHeuristica(Nodo pnodo){
         LvDistManhattan += abs(coordDoriI - coordNodoI) + abs(coordDoriJ - coordNodoJ);
     }
 
-    return LvDistManhattan + 0.5;
+    return LvDistManhattan * 0.5;
 
 }
 
