@@ -49,8 +49,8 @@ string * AAsterisco::busquedaAAsterico()
     Nodo nodoCabeza;
     int p = 0;
 
-    while(!termina && parada > 0)
-    //while(!termina)
+    //while(!termina && parada > 0)
+    while(!termina)
     {
         // Si la cola esta vacia
         if(colaPrioridadNodos.empty()) {
