@@ -3,6 +3,7 @@
 
 #include <queue>
 #include <vector>
+#include <stack>
 #include "nodo.h"
 
 
@@ -111,31 +112,102 @@ void pruebaOrdenOps(char op0, char op1, char op2, char op3)
     operadores[2] = op2;
     operadores[3] = op3;
 
-/*
-    switch(c)
+    for(int i = 0; i < 4; i++)
     {
-        case 'A':
-        capa++;
-        break;
-        case 'a':
-        lettera++;
-        break;
-        default:
-        nota++;
+        switch(operadores[i])
+        {
+            case 'L':
+                cout << "Aplica Operador Izquierda" << endl;
+                break;
+            case 'U':
+                cout << "Aplica Operador Arriba" << endl;
+                break;
+            case 'R':
+                cout << "Aplica Operador Derecha" << endl;
+                break;
+            case 'D':
+                cout << "Aplica Operador Abajo" << endl;
+                break;
+            default:
+                cout << "No Aplica Operador" << endl;
+        }
     }
-*/
+
+    cout << endl;
+    cout << endl;
+
 }
+
+
+
+void pruebaEvitarCiclos()
+{
+    cout << "Prueba de Evitar Ciclos" << endl;
+
+    stack<int> pila;
+
+    pila.push(2);
+    pila.push(5);
+    pila.push(3);
+    pila.push(0);
+    pila.push(1);
+    pila.push(42);
+    pila.push(3);
+    pila.push(9);
+
+    int n = pila.size();
+    queue<int> pila2;
+
+    for(int i = 0; i < n; i++) {
+        int elem = pila.top();
+        pila.pop();
+        cout << "elem " << elem << endl;
+        pila2.push(elem);
+    }
+
+    cout << endl;
+
+    int m = pila2.size();
+    for(int i = 0; i < m; i++) {
+        int elem2 = pila2.front();
+        pila2.pop();
+        cout << "elem2: " << elem2 << endl;
+        pila.push(elem2);
+    }
+
+    cout << endl;
+
+    int w = pila.size();
+    for(int i = 0; i < w; i++) {
+        int elem = pila.top();
+        pila.pop();
+        cout << "elem " << elem << endl;
+    }
+
+    cout << endl;
+}
+
 
 
 int main(int argc, char *argv[])
 {
+
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
 
 
+
     // Prueba colas con prioridad
     pruebaColaPrioridad();
+
+
+    // Prueba orden de operadores
+    pruebaOrdenOps('U','L','R','D');
+    pruebaOrdenOps('D','R','U','L');
+
+    // Prueba de evitar ciclos
+    //pruebaEvitarCiclos();
 
 
     return a.exec();

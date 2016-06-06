@@ -55,7 +55,8 @@ SOURCES       = ../ProyectoIA/main.cpp \
 		../ProyectoIA/amplitud.cpp \
 		../ProyectoIA/costouniforme.cpp \
 		../ProyectoIA/profundidad.cpp \
-		../ProyectoIA/avara.cpp moc_mainwindow.cpp
+		../ProyectoIA/avara.cpp \
+		../ProyectoIA/aasterisco.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		nodo.o \
@@ -64,6 +65,7 @@ OBJECTS       = main.o \
 		costouniforme.o \
 		profundidad.o \
 		avara.o \
+		aasterisco.o \
 		moc_mainwindow.o
 DIST          = ../../../../Programas/Qt5.6.0/5.6/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/mkspecs/common/unix.conf \
@@ -205,14 +207,16 @@ DIST          = ../../../../Programas/Qt5.6.0/5.6/gcc_64/mkspecs/features/spec_p
 		../ProyectoIA/amplitud.h \
 		../ProyectoIA/costouniforme.h \
 		../ProyectoIA/profundidad.h \
-		../ProyectoIA/avara.h ../ProyectoIA/main.cpp \
+		../ProyectoIA/avara.h \
+		../ProyectoIA/aasterisco.h ../ProyectoIA/main.cpp \
 		../ProyectoIA/mainwindow.cpp \
 		../ProyectoIA/nodo.cpp \
 		../ProyectoIA/entorno.cpp \
 		../ProyectoIA/amplitud.cpp \
 		../ProyectoIA/costouniforme.cpp \
 		../ProyectoIA/profundidad.cpp \
-		../ProyectoIA/avara.cpp
+		../ProyectoIA/avara.cpp \
+		../ProyectoIA/aasterisco.cpp
 QMAKE_TARGET  = ProyectoIA
 DESTDIR       = 
 TARGET        = ProyectoIA
@@ -515,8 +519,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../ProyectoIA/mainwindow.h ../ProyectoIA/nodo.h ../ProyectoIA/entorno.h ../ProyectoIA/amplitud.h ../ProyectoIA/costouniforme.h ../ProyectoIA/profundidad.h ../ProyectoIA/avara.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../ProyectoIA/main.cpp ../ProyectoIA/mainwindow.cpp ../ProyectoIA/nodo.cpp ../ProyectoIA/entorno.cpp ../ProyectoIA/amplitud.cpp ../ProyectoIA/costouniforme.cpp ../ProyectoIA/profundidad.cpp ../ProyectoIA/avara.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../ProyectoIA/mainwindow.h ../ProyectoIA/nodo.h ../ProyectoIA/entorno.h ../ProyectoIA/amplitud.h ../ProyectoIA/costouniforme.h ../ProyectoIA/profundidad.h ../ProyectoIA/avara.h ../ProyectoIA/aasterisco.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../ProyectoIA/main.cpp ../ProyectoIA/mainwindow.cpp ../ProyectoIA/nodo.cpp ../ProyectoIA/entorno.cpp ../ProyectoIA/amplitud.cpp ../ProyectoIA/costouniforme.cpp ../ProyectoIA/profundidad.cpp ../ProyectoIA/avara.cpp ../ProyectoIA/aasterisco.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../ProyectoIA/mainwindow.ui $(DISTDIR)/
 
 
@@ -960,7 +964,9 @@ mainwindow.o: ../ProyectoIA/mainwindow.cpp ../ProyectoIA/mainwindow.h \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qdatetime.h \
 		../ProyectoIA/amplitud.h \
 		../ProyectoIA/nodo.h \
-		../ProyectoIA/costouniforme.h
+		../ProyectoIA/costouniforme.h \
+		../ProyectoIA/avara.h \
+		../ProyectoIA/aasterisco.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../ProyectoIA/mainwindow.cpp
 
 nodo.o: ../ProyectoIA/nodo.cpp ../ProyectoIA/nodo.h \
@@ -980,11 +986,20 @@ costouniforme.o: ../ProyectoIA/costouniforme.cpp ../ProyectoIA/costouniforme.h \
 		../ProyectoIA/entorno.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o costouniforme.o ../ProyectoIA/costouniforme.cpp
 
-profundidad.o: ../ProyectoIA/profundidad.cpp ../ProyectoIA/profundidad.h
+profundidad.o: ../ProyectoIA/profundidad.cpp ../ProyectoIA/profundidad.h \
+		../ProyectoIA/nodo.h \
+		../ProyectoIA/entorno.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o profundidad.o ../ProyectoIA/profundidad.cpp
 
-avara.o: ../ProyectoIA/avara.cpp ../ProyectoIA/avara.h
+avara.o: ../ProyectoIA/avara.cpp ../ProyectoIA/avara.h \
+		../ProyectoIA/nodo.h \
+		../ProyectoIA/entorno.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o avara.o ../ProyectoIA/avara.cpp
+
+aasterisco.o: ../ProyectoIA/aasterisco.cpp ../ProyectoIA/aasterisco.h \
+		../ProyectoIA/nodo.h \
+		../ProyectoIA/entorno.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o aasterisco.o ../ProyectoIA/aasterisco.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

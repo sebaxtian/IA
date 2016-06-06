@@ -17,6 +17,7 @@ class Profundidad
     int nodosCreados;
     int nodosExpandidos;
     double costoSolucion;
+    char operadores[4];
 public:
     Profundidad();
     Profundidad(Nodo * nodoRaiz, Entorno entorno, bool ind_evita_devol);
@@ -28,7 +29,7 @@ public:
     void crearHijos(Nodo nodo);
     void crearNodo(int posIHijo, int posJHijo, Nodo nodoCabeza);
     // Configura el orden de los operadores
-    void setOperadores();
+    void setOperadores(char op1, char op2, char op3, char op4);
     estados toEstado(int itemEntorno);
     // operadores
     // Mover derecha

@@ -13,6 +13,7 @@
 #include "costouniforme.h"
 #include "avara.h"
 #include "aasterisco.h"
+#include "profundidad.h"
 
 
 using namespace std;
@@ -254,20 +255,17 @@ void MainWindow::busquedaProfundidad(Entorno pentorno)
 
 
 
-    /*
-
     // Aplica el algoritmo de Bisqueda Preferente por Amplitud
-    CostoUniforme costoUniforme(&raiz, pentorno, ui->chk_ind_env_devol->isChecked());
-    //queue<string> solucion = amplitud.busquedaPreferente();
+    Profundidad profundidad(&raiz, pentorno, ui->chk_ind_env_devol->isChecked());
     string * solucion;
 
-    solucion = costoUniforme.busquedaUniforme();
-
+    solucion = profundidad.busquedaProfundidad();
+    /*
     cout << *solucion << endl;
-    cout << "Nodos creados: " << costoUniforme.getNodosCreados() << endl;
-    cout << "Nodos expandidos: " << costoUniforme.getNodosExpandidos() << endl;
-    cout << "Costo de la Solucion: " << costoUniforme.getCostoSolucion() << endl;
-
+    cout << "Nodos creados: " << profundidad.getNodosCreados() << endl;
+    cout << "Nodos expandidos: " << profundidad.getNodosExpandidos() << endl;
+    cout << "Costo de la Solucion: " << profundidad.getCostoSolucion() << endl;
+    */
     QStringList listadeSolucion = QString::fromStdString(*solucion).split(";");
 
     queue<QString>  colaSolucion;
@@ -277,7 +275,6 @@ void MainWindow::busquedaProfundidad(Entorno pentorno)
 
     pintarSolucion(pentorno, colaSolucion);
 
-    */
 
     cout << endl;
 
@@ -447,7 +444,9 @@ void MainWindow::on_btn_busqueda_clicked()
         if (ui->cmb_tipo_busqueda->currentIndex() == 1){
             busquedaCostoUniforme(this->entornoUI);
         }
-
+        if (ui->cmb_tipo_busqueda->currentIndex() == 2){
+            busquedaProfundidad(this->entornoUI);
+        }
     }
     if (ui->cmb_clase_busqueda->currentIndex() == 1){
         if (ui->cmb_tipo_busqueda->currentIndex() == 0){

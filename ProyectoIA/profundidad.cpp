@@ -7,14 +7,23 @@ Profundidad::Profundidad()
     this->nodosCreados = 0;
     this->nodosExpandidos = 0;
     this->costoSolucion = 0;
+    this->operadores[0] = 'R';
+    this->operadores[1] = 'D';
+    this->operadores[2] = 'L';
+    this->operadores[3] = 'U';
 }
 
 
 Profundidad::Profundidad(Nodo * nodoRaiz, Entorno entorno, bool ind_evita_devol)
 {
+    this->pilaNodos.push(*nodoRaiz);
     this->nodoRaiz = *nodoRaiz;
     this->miEntorno = entorno;
     this->ind_evita_devolverse = ind_evita_devol;
+    this->operadores[0] = 'R';
+    this->operadores[1] = 'D';
+    this->operadores[2] = 'L';
+    this->operadores[3] = 'U';
 }
 
 
@@ -35,6 +44,14 @@ double Profundidad::getCostoSolucion()
 }
 
 
+void Profundidad::setOperadores(char op0, char op1, char op2, char op3)
+{
+    this->operadores[0] = op0;
+    this->operadores[1] = op1;
+    this->operadores[2] = op2;
+    this->operadores[3] = op3;
+}
+
 
 string * Profundidad::busquedaProfundidad()
 {
@@ -42,19 +59,19 @@ string * Profundidad::busquedaProfundidad()
     string * solucion;
 
     bool termina = false;
-    int parada = 3000000;
+    int parada = 1000;
     Nodo nodoCabeza;
     int p = 0;
-/*
+
     while(!termina && parada > 0)
     //while(!termina)
     {
         // Si la cola esta vacia
-        if(colaPilaNodos.empty()) {
+        if(pilaNodos.empty()) {
             termina = true;
         } else {
-            nodoCabeza = colaPrioridadNodos.top();
-            colaPrioridadNodos.pop();
+            nodoCabeza = pilaNodos.top();
+            pilaNodos.pop();
             string lvCamino = "";
             if (p > 0){
                 lvCamino = *nodoCabeza.getNodoPadre();
@@ -76,7 +93,6 @@ string * Profundidad::busquedaProfundidad()
                 // Terminar, encontro solucion
                 solucion = &pilaCaminoNodosExp.top();
 
-
                 // Obtiene el costo de la solucion
                 costoSolucion = nodoCabeza.getCostoAcumulado();
 
@@ -85,10 +101,12 @@ string * Profundidad::busquedaProfundidad()
                 // Expandir y meter nodos al final de la cola
                 crearHijos(nodoCabeza);
             }
+
         }
         parada--;
     }
-*/
+
+
     return solucion;
 }
 
@@ -121,13 +139,32 @@ void Profundidad::crearHijos(Nodo nodoCabeza)
     // Si el nodo cabeza no esta sobre la casilla de un humano, es decir, el humano no captura el robot
     if(estadoCabeza != onHumano)
     {
+
         // Aplica Operadores de Movimiento
-
-        this->moverDerecha(derecha, anchoEntorno, posI, posIPadre, posJPadre, estadoCabeza, nodoCabeza);
-        this->moverAbajo(abajo, altoEntorno, posJ, posJPadre, posIPadre, estadoCabeza, nodoCabeza);
-        this->moverIzquierda(izquierda, posI, posIPadre, posJPadre, estadoCabeza, nodoCabeza);
-        this->moverArriba(arriba, posJ, posJPadre, posIPadre, estadoCabeza, nodoCabeza);
-
+        for(int i = 0; i < 4; i++)
+        {
+            switch(operadores[i])
+            {
+                case 'R':
+                    cout << "Aplica Operador Derecha" << endl;
+                    this->moverDerecha(derecha, anchoEntorno, posI, posIPadre, posJPadre, estadoCabeza, nodoCabeza);
+                    break;
+                case 'D':
+                    cout << "Aplica Operador Abajo" << endl;
+                    this->moverAbajo(abajo, altoEntorno, posJ, posJPadre, posIPadre, estadoCabeza, nodoCabeza);
+                    break;
+                case 'L':
+                    cout << "Aplica Operador Izquierda" << endl;
+                    this->moverIzquierda(izquierda, posI, posIPadre, posJPadre, estadoCabeza, nodoCabeza);
+                    break;
+                case 'U':
+                    cout << "Aplica Operador Arriba" << endl;
+                    this->moverArriba(arriba, posJ, posJPadre, posIPadre, estadoCabeza, nodoCabeza);
+                    break;
+                default:
+                    cout << "No Aplica Operador" << endl;
+            }
+        }
     }
 }
 
@@ -218,6 +255,7 @@ void Profundidad::moverArriba(int arriba, int posJ, int posJPadre, int posIPadre
 
 void Profundidad::crearNodo(int posIHijo, int posJHijo, Nodo nodoCabeza)
 {
+
     // Limites del entorno para crear nodos hijos
     int altoEntorno = this->miEntorno.getAlto();
     int anchoEntorno = this->miEntorno.getAncho();
@@ -291,6 +329,7 @@ void Profundidad::crearNodo(int posIHijo, int posJHijo, Nodo nodoCabeza)
         nodoHijo.setNodoPadre(&pilaCaminoNodosExp.top());
         nodoHijo.setIndAyudaTortuga(lvIndAyudaTortuga);
         nodoHijo.setPasosAyudaTortuga(lvPasosAyudaTortuga);
+
         //if (nodoHijo.getFlagObjetivos()>= 2){
         //if ((posIHijo== 3) && (posJHijo== 2)){
         /*
@@ -304,7 +343,7 @@ void Profundidad::crearNodo(int posIHijo, int posJHijo, Nodo nodoCabeza)
         // Aumenta el contador de hijos creados
         this->nodosCreados++;
 
-        //cout << "Camino: " << *nodoHijo.getNodoPadre() << endl;
+        cout << "Camino: " << *nodoHijo.getNodoPadre() << endl;
 
         // Imprime el estado del entorno
         //this->entorno.imprimir();
