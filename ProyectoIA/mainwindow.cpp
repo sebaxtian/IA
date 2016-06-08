@@ -262,12 +262,12 @@ void MainWindow::busquedaProfundidad(Entorno pentorno)
 
     profundidad.setOperadores('R','L','U','D');
     solucion = profundidad.busquedaProfundidad();
-    /*
+
     cout << *solucion << endl;
     cout << "Nodos creados: " << profundidad.getNodosCreados() << endl;
     cout << "Nodos expandidos: " << profundidad.getNodosExpandidos() << endl;
     cout << "Costo de la Solucion: " << profundidad.getCostoSolucion() << endl;
-    */
+
     QStringList listadeSolucion = QString::fromStdString(*solucion).split(";");
 
     queue<QString>  colaSolucion;

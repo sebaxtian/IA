@@ -34,6 +34,8 @@ class Nodo
      int pasosAyudaTortuga;
     // Estado donde esta el nodo
     estados estadoNodo;
+    // Posicion del array list en la que debe iniciar a buscar los ciclos.
+    int posIniBuscarCiclo;
 public:
     Nodo();
     // Metodo constructor para un Nodo Raiz
@@ -53,6 +55,9 @@ public:
     void setFlagObjetivos(int p_flagObjetivos);
     void setIndAyudaTortuga(bool p_indAyudaTortuga);
     void setPasosAyudaTortuga(int p_pasosAyudaTortuga);
+    void setPosIniBuscarCiclo(int p_posIni);
+
+
     // GETTERS
     int getCoordI();
     int getCoordJ();
@@ -68,8 +73,9 @@ public:
     int getFlagObjetivos();
     bool getIndAyudaTortuga();
     int getPasosAyudaTortuga();
+    int getPosIniBuscarCiclo();
     // Funciones miembro
-    bool esMeta();
+    bool esMeta(int p_posArrCamino);
 };
 
 #endif // NODO_H

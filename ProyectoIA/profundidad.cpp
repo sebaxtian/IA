@@ -27,6 +27,9 @@ Profundidad::Profundidad(Nodo * nodoRaiz, Entorno entorno, bool ind_evita_devol)
     this->operadores[1] = 'D';
     this->operadores[2] = 'L';
     this->operadores[3] = 'U';
+    this->nodosCreados = 0;
+    this->nodosExpandidos = 0;
+    this->costoSolucion = 0;
 }
 
 
@@ -62,7 +65,7 @@ string * Profundidad::busquedaProfundidad()
     string * solucion;
 
     bool termina = false;
-    int parada = 1000000;
+    int parada = 50000;
     Nodo nodoCabeza;
     int p = 0;
 
@@ -79,6 +82,7 @@ string * Profundidad::busquedaProfundidad()
             pilaNodos.pop();
 
             string lvCamino = "";
+            QStringList soluciontmp;
 
             if (p > 0){
                 lvCamino = *nodoCabeza.getNodoPadre();
@@ -86,20 +90,18 @@ string * Profundidad::busquedaProfundidad()
                 p++;
             }
 
+            bool ciclo = false;
             if (lvCamino == ""){
                 lvCamino = to_string(nodoCabeza.getCoordI()) +  "," +  to_string(nodoCabeza.getCoordJ());
             }else{
 
                 //lvCamino = lvCamino + ";" + to_string(nodoCabeza.getCoordI()) +  "," +  to_string(nodoCabeza.getCoordJ());
 
-
-                bool ciclo = false;
-
                 string pasosiguiente = to_string(nodoCabeza.getCoordI()) +  "," +  to_string(nodoCabeza.getCoordJ());
 
-                QStringList soluciontmp = QString::fromStdString(lvCamino).split(";");
+                soluciontmp = QString::fromStdString(lvCamino).split(";");
                 if(soluciontmp.size() > 0) {
-                    for(int i=0;i<soluciontmp.size();i++){
+                    for(int i=nodoCabeza.getPosIniBuscarCiclo();i<soluciontmp.size();i++){
                         //cout << "soluciontmp.at(i) = " << soluciontmp.at(i).toStdString() << endl;
                         if(soluciontmp.at(i).toStdString().compare(pasosiguiente) == 0) {
                             ciclo = true;
@@ -110,7 +112,7 @@ string * Profundidad::busquedaProfundidad()
 
                 if(!ciclo) {
                     lvCamino = lvCamino + ";" + to_string(nodoCabeza.getCoordI()) +  "," +  to_string(nodoCabeza.getCoordJ());
-                    cout << "No Hay Ciclo " << lvCamino << endl;
+                   // cout << "NO Hay Ciclo " << lvCamino << endl;
                 }
 
                 //cout << "lvCamino = " << lvCamino << endl;
@@ -145,24 +147,31 @@ string * Profundidad::busquedaProfundidad()
             }
             */
 
+            if(!ciclo) {
 
-            pilaCaminoNodosExp.push(lvCamino);
-            // Aumenta los nodos expandidos
-            nodosExpandidos++;
+                pilaCaminoNodosExp.push(lvCamino);
+                // Aumenta los nodos expandidos
+                nodosExpandidos++;
 
 
-            // Si el nodo cabeza es meta
-            if(nodoCabeza.esMeta()) {
-                // Terminar, encontro solucion
-                solucion = &pilaCaminoNodosExp.top();
+                // Si el nodo cabeza es meta
+                int posArrCamino = soluciontmp.size();
 
-                // Obtiene el costo de la solucion
-                costoSolucion = nodoCabeza.getCostoAcumulado();
+                if(nodoCabeza.esMeta(posArrCamino)) {
+                    // Terminar, encontro solucion
+                    solucion = &pilaCaminoNodosExp.top();
 
-                termina = true;
-            } else {
-                // Expandir y meter nodos al final de la cola
-                crearHijos(nodoCabeza);
+                    // Obtiene el costo de la solucion
+                    costoSolucion = nodoCabeza.getCostoAcumulado();
+
+                    termina = true;
+                } else {
+                    // Expandir y meter nodos al final de la cola
+                    crearHijos(nodoCabeza);
+                }
+            }else{
+                string lvCaminoTmp = lvCamino + ";" + to_string(nodoCabeza.getCoordI()) +  "," +  to_string(nodoCabeza.getCoordJ());
+                cout << "SI Hay Ciclo " << lvCaminoTmp << " posArrCiclo " << to_string(nodoCabeza.getPosIniBuscarCiclo())<< endl;
             }
 
         }
@@ -204,7 +213,7 @@ void Profundidad::crearHijos(Nodo nodoCabeza)
     {
 
         // Aplica Operadores de Movimiento
-        for(int i = 0; i < 4; i++)
+        for(int i = 3; i >= 0; i--)
         {
             switch(operadores[i])
             {
@@ -392,6 +401,7 @@ void Profundidad::crearNodo(int posIHijo, int posJHijo, Nodo nodoCabeza)
         nodoHijo.setNodoPadre(&pilaCaminoNodosExp.top());
         nodoHijo.setIndAyudaTortuga(lvIndAyudaTortuga);
         nodoHijo.setPasosAyudaTortuga(lvPasosAyudaTortuga);
+        nodoHijo.setPosIniBuscarCiclo(nodoCabeza.getPosIniBuscarCiclo());
 
         //if (nodoHijo.getFlagObjetivos()>= 2){
         //if ((posIHijo== 3) && (posJHijo== 2)){

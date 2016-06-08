@@ -36,6 +36,8 @@ Nodo::Nodo(int p_coordI, int p_coordJ, int p_coordIPadre, int p_coordJPadre, est
     this->indAyudaTortuga = false;
     // Cantidad de pasos que lleva con la tortuga
     this->pasosAyudaTortuga = 0;
+    // Posicion del array list en la que debe iniciar a buscar los ciclos.
+    this->posIniBuscarCiclo = 0;
 }
 
 /*
@@ -125,6 +127,11 @@ int** Nodo::getEntorno() {
     return this->entorno;
 }
 
+int Nodo::getPosIniBuscarCiclo() {
+    return this->posIniBuscarCiclo;
+}
+
+
 void Nodo::setCoords(int p_coordI, int p_coordJ)
 {
     this->coordI = p_coordI;
@@ -185,21 +192,28 @@ void Nodo::setPasosAyudaTortuga(int p_pasosAyudaTortuga)
     this->pasosAyudaTortuga = p_pasosAyudaTortuga;
 }
 
+void Nodo::setPosIniBuscarCiclo(int p_posIni) {
+    this->posIniBuscarCiclo = p_posIni;
+}
+
 // Funciones miembro
-bool Nodo::esMeta()
+bool Nodo::esMeta(int p_posArrCamino)
 {
 
     if(this->estadoNodo == onNemo && this->flagObjetivos == 0)
     {
         this->flagObjetivos++;
+        this->posIniBuscarCiclo = p_posArrCamino;
     }
     if(this->estadoNodo == onMarlin && this->flagObjetivos == 1)
     {
         this->flagObjetivos++;
+        this->posIniBuscarCiclo = p_posArrCamino;
     }
     if(this->estadoNodo == onDori && this->flagObjetivos == 2)
     {
         this->flagObjetivos++;
+        this->posIniBuscarCiclo = p_posArrCamino;
     }
 
     if(this->flagObjetivos == 3)

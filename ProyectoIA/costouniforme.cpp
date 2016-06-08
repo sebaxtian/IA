@@ -72,7 +72,7 @@ string * CostoUniforme::busquedaUniforme()
             // Aumenta los nodos expandidos
             nodosExpandidos++;
             // Si el nodo cabeza es meta
-            if(nodoCabeza.esMeta()) {
+            if(nodoCabeza.esMeta(0)) {
                 // Terminar, encontro solucion
                 solucion = &pilaCaminoNodosExp.top();
 
