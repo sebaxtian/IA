@@ -69,8 +69,8 @@ string * Profundidad::busquedaProfundidad()
     Nodo nodoCabeza;
     int p = 0;
 
-    while(!termina && parada > 0)
-    //while(!termina)
+    //while(!termina && parada > 0)
+    while(!termina)
     {
         // Si la cola esta vacia
         if(pilaNodos.empty()) {
@@ -171,7 +171,7 @@ string * Profundidad::busquedaProfundidad()
                 }
             }else{
                 string lvCaminoTmp = lvCamino + ";" + to_string(nodoCabeza.getCoordI()) +  "," +  to_string(nodoCabeza.getCoordJ());
-                cout << "SI Hay Ciclo " << lvCaminoTmp << " posArrCiclo " << to_string(nodoCabeza.getPosIniBuscarCiclo())<< endl;
+               // cout << "SI Hay Ciclo " << lvCaminoTmp << " posArrCiclo " << to_string(nodoCabeza.getPosIniBuscarCiclo())<< endl;
             }
 
         }
