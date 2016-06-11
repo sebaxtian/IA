@@ -29,6 +29,7 @@ public:
     int* getPosDori();
     int* getPosNemo();
     int* getPosMarlin();
+    string validarEntorno();
 };
 
 #endif // ENTORNO_H

@@ -26,6 +26,15 @@ void Entorno::loadFile(string pathFile) {
         char *cstr;
         char *tokenstr;
         this->indMetaEncontrada = 0;
+
+        this->posInitRobot[0] = -1;
+        this->posInitRobot[1] = -1;
+        this->posDori[0] = -1;
+        this->posDori[1] = -1;
+        this->posMarlin[0] = -1;
+        this->posMarlin[1] = -1;
+        this->posNemo[0] = -1;
+        this->posNemo[1] = -1;
         // Primero, lee todos los comentarios
         while(getline(myfile,line)) {
             if(line.substr(0,1).compare("#") == 0) {
@@ -140,3 +149,24 @@ int* Entorno::getPosMarlin() {
     int* puntero = this->posMarlin;
     return puntero;
 }
+
+
+string Entorno::validarEntorno(){
+    string lvValida = "";
+
+
+    if (this->posInitRobot[0] == -1) {
+       lvValida = lvValida + "Falta el robot" + "@";
+    }
+    if (this->posDori[0] == -1) {
+       lvValida = lvValida + "Falta Dori" + "@";
+    }
+    if (this->posMarlin[0] == -1) {
+       lvValida = lvValida + "Falta Marlin" + "@";
+    }
+    if (this->posNemo[0] == -1) {
+       lvValida = lvValida + "Falta Nemo" + "@";
+    }
+
+    return lvValida;
+};

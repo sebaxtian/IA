@@ -45,20 +45,35 @@ void MainWindow::on_btn_sel_entorno_clicked()
     {
         Entorno lvEntorno;
         lvEntorno.loadFile(lvFileName.toStdString());
+        string lvValidaEntorno = lvEntorno.validarEntorno();
 
-        int posI = lvEntorno.getPosInitRobot()[0];
-        int posJ = lvEntorno.getPosInitRobot()[1];
-        cout << "Posicion Inicial del Robot: (" << posI << "," << posJ << ")" << endl;
-        lvEntorno.imprimir();
-        this->entornoUI = lvEntorno;
-        ui->tablaEntono->setColumnCount(lvEntorno.getAlto());
 
-        pintarEntorno(lvEntorno);
+        // validaciones básicas del entorno ejemplo: que existan las metas
+        if (!(lvValidaEntorno == "")){
+             QStringList listadeValidacion= QString::fromStdString(lvValidaEntorno).split("@");
 
-        ui->cmb_clase_busqueda->setEnabled(true);
-        ui->cmb_tipo_busqueda->setEnabled(true);
-        ui->chk_ind_env_devol->setEnabled(true);
-        ui->btn_busqueda->setEnabled(true);
+             for(int i=0;i<listadeValidacion.size()-1;i++){
+                 QMessageBox::warning(
+                         this,
+                         tr("Buscando a Nemo 3S"),
+                        listadeValidacion.at(i) );
+             }
+        }else{
+
+            int posI = lvEntorno.getPosInitRobot()[0];
+            int posJ = lvEntorno.getPosInitRobot()[1];
+            cout << "Posicion Inicial del Robot: (" << posI << "," << posJ << ")" << endl;
+            lvEntorno.imprimir();
+            this->entornoUI = lvEntorno;
+            ui->tablaEntono->setColumnCount(lvEntorno.getAlto());
+
+            pintarEntorno(lvEntorno);
+
+            ui->cmb_clase_busqueda->setEnabled(true);
+            ui->cmb_tipo_busqueda->setEnabled(true);
+            ui->chk_ind_env_devol->setEnabled(true);
+            ui->btn_busqueda->setEnabled(true);
+       }
     }
 }
 
