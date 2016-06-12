@@ -499,8 +499,6 @@ void MainWindow::on_cmb_clase_busqueda_currentIndexChanged(int index)
        ui->cmb_tipo_busqueda->addItem("Preferente por amplitud");
        ui->cmb_tipo_busqueda->addItem("Costo uniforme");
        ui->cmb_tipo_busqueda->addItem("Preferente por profundidad");
-       ui->cmb_tipo_busqueda->addItem("Limitada por profundidad");
-       ui->cmb_tipo_busqueda->addItem("Por profundización iterativa");
     }
     if (ui->cmb_clase_busqueda->currentIndex() == 1){
        ui->cmb_tipo_busqueda->clear();
