@@ -35,7 +35,7 @@
      <rect>
       <x>10</x>
       <y>11</y>
-      <width>1081</width>
+      <width>761</width>
       <height>541</height>
      </rect>
     </property>
@@ -171,6 +171,38 @@
       <string>Busqueda informada</string>
      </property>
     </item>
+   </widget>
+   <widget class="QTextBrowser" name="txt_resultados">
+    <property name="geometry">
+     <rect>
+      <x>780</x>
+      <y>30</y>
+      <width>311</width>
+      <height>192</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>780</x>
+      <y>10</y>
+      <width>90</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Resultados:</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">

@@ -65,7 +65,7 @@ void MainWindow::on_btn_sel_entorno_clicked()
             cout << "Posicion Inicial del Robot: (" << posI << "," << posJ << ")" << endl;
             lvEntorno.imprimir();
             this->entornoUI = lvEntorno;
-            ui->tablaEntono->setColumnCount(lvEntorno.getAlto());
+            ui->tablaEntono->setColumnCount(lvEntorno.getAncho());
 
             pintarEntorno(lvEntorno);
 
@@ -151,13 +151,8 @@ void MainWindow::busquedaAmplitud(Entorno pentorno)
 {
     cout << "Busqueda por Amplitud" << endl;
 
-
-
     int posI = pentorno.getPosInitRobot()[0];
     int posJ = pentorno.getPosInitRobot()[1];
-
-    //Nodo raiz(posI, posJ, 0);
-    //NodoFinal raiz(posI, posJ, onRobot, entorno);
 
     int ** lvAmbiente = new int*[pentorno.getAlto()];
     for(int i=0;i<pentorno.getAlto();i++){
@@ -169,17 +164,32 @@ void MainWindow::busquedaAmplitud(Entorno pentorno)
 
     Nodo raiz(posI, posJ, posI, posJ, onRobot, lvAmbiente);
 
-
     // Aplica el algoritmo de Bisqueda Preferente por Amplitud
     Amplitud amplitud(&raiz, pentorno, ui->chk_ind_env_devol->isChecked());
     //queue<string> solucion = amplitud.busquedaPreferente();
     string * solucion;
 
     solucion = amplitud.busquedaPreferente();
-    cout << *solucion << endl;
-    cout << "Nodos creados: " << amplitud.getNodosCreados() << endl;
-    cout << "Nodos expandidos: " << amplitud.getNodosExpandidos() << endl;
-    cout << "Costo de la Solucion: " << amplitud.getCostoSolucion() << endl;
+
+    QString lvHtml;
+    QString lvTmpSolucion =  QString::fromStdString(*solucion);
+
+    lvHtml = QString::fromStdString("<table><tr><td colspan=2><b>Solución: </b></td></tr>")  +
+             QString::fromStdString("<tr><td colspan=2>") + lvTmpSolucion.replace(";","<b> => </b>") + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("<tr><td><b>Nodos creados: </b></td>")  +
+             QString::fromStdString("<td>") + QString::number(amplitud.getNodosCreados()) + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("<tr><td><b>Nodos expandidos: </b></td>")  +
+             QString::fromStdString("<td>") + QString::number(amplitud.getNodosExpandidos()) + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("<tr><td><b>Costo de la Solución: </b></td>")  +
+             QString::fromStdString("<td>") + QString::number(amplitud.getCostoSolucion()) + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("<tr><td><b>Profundidad del arbol: </b></td>")  +
+             QString::fromStdString("<td>") + QString::number(amplitud.getProfundidad()) + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("<tr><td><b>Factor de Ramificación: </b></td>")  +
+             QString::fromStdString("<td>") + QString::number(amplitud.getFactorRamificacion()) + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("</table>");
+
+    ui->txt_resultados->setText("");
+    ui->txt_resultados->insertHtml(lvHtml);
 
     QStringList listadeSolucion = QString::fromStdString(*solucion).split(";");
 
@@ -189,24 +199,14 @@ void MainWindow::busquedaAmplitud(Entorno pentorno)
     }
 
     pintarSolucion(pentorno, colaSolucion);
-
-
-    cout << endl;
-
-    cout << endl;
 }
 
 void MainWindow::busquedaCostoUniforme(Entorno pentorno)
 {
     cout << "Busqueda por Costo Uniforme" << endl;
 
-
-
     int posI = pentorno.getPosInitRobot()[0];
     int posJ = pentorno.getPosInitRobot()[1];
-
-    //Nodo raiz(posI, posJ, 0);
-    //NodoFinal raiz(posI, posJ, onRobot, entorno);
 
     int ** lvAmbiente = new int*[pentorno.getAlto()];
     for(int i=0;i<pentorno.getAlto();i++){
@@ -217,7 +217,6 @@ void MainWindow::busquedaCostoUniforme(Entorno pentorno)
     }
 
     Nodo raiz(posI, posJ, posI, posJ, onRobot, lvAmbiente);
-
 
     // Aplica el algoritmo de Bisqueda Preferente por Amplitud
     CostoUniforme costoUniforme(&raiz, pentorno, ui->chk_ind_env_devol->isChecked());
@@ -226,10 +225,25 @@ void MainWindow::busquedaCostoUniforme(Entorno pentorno)
 
     solucion = costoUniforme.busquedaUniforme();
 
-    cout << *solucion << endl;
-    cout << "Nodos creados: " << costoUniforme.getNodosCreados() << endl;
-    cout << "Nodos expandidos: " << costoUniforme.getNodosExpandidos() << endl;
-    cout << "Costo de la Solucion: " << costoUniforme.getCostoSolucion() << endl;
+    QString lvHtml;
+    QString lvTmpSolucion =  QString::fromStdString(*solucion);
+
+    lvHtml = QString::fromStdString("<table><tr><td colspan=2><b>Solución: </b></td></tr>")  +
+             QString::fromStdString("<tr><td colspan=2>") + lvTmpSolucion.replace(";","<b> => </b>") + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("<tr><td><b>Nodos creados: </b></td>")  +
+             QString::fromStdString("<td>") + QString::number(costoUniforme.getNodosCreados()) + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("<tr><td><b>Nodos expandidos: </b></td>")  +
+             QString::fromStdString("<td>") + QString::number(costoUniforme.getNodosExpandidos()) + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("<tr><td><b>Costo de la Solución: </b></td>")  +
+             QString::fromStdString("<td>") + QString::number(costoUniforme.getCostoSolucion()) + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("<tr><td><b>Profundidad del arbol: </b></td>")  +
+             QString::fromStdString("<td>") + QString::number(costoUniforme.getProfundidad()) + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("<tr><td><b>Factor de Ramificación: </b></td>")  +
+             QString::fromStdString("<td>") + QString::number(costoUniforme.getFactorRamificacion()) + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("</table>");
+
+    ui->txt_resultados->setText("");
+    ui->txt_resultados->insertHtml(lvHtml);
 
     QStringList listadeSolucion = QString::fromStdString(*solucion).split(";");
 
@@ -239,10 +253,6 @@ void MainWindow::busquedaCostoUniforme(Entorno pentorno)
     }
 
     pintarSolucion(pentorno, colaSolucion);
-
-    cout << endl;
-
-    cout << endl;
 }
 
 
@@ -250,13 +260,8 @@ void MainWindow::busquedaProfundidad(Entorno pentorno)
 {
     cout << "Busqueda por Profundidad" << endl;
 
-
-
     int posI = pentorno.getPosInitRobot()[0];
     int posJ = pentorno.getPosInitRobot()[1];
-
-    //Nodo raiz(posI, posJ, 0);
-    //NodoFinal raiz(posI, posJ, onRobot, entorno);
 
     int ** lvAmbiente = new int*[pentorno.getAlto()];
     for(int i=0;i<pentorno.getAlto();i++){
@@ -268,20 +273,32 @@ void MainWindow::busquedaProfundidad(Entorno pentorno)
 
     Nodo raiz(posI, posJ, posI, posJ, onRobot, lvAmbiente);
 
-
-
     // Aplica el algoritmo de Bisqueda Preferente por Amplitud
     Profundidad profundidad(&raiz, pentorno, ui->chk_ind_env_devol->isChecked());
     string * solucion;
 
-
     profundidad.setOperadores('R','L','U','D');
     solucion = profundidad.busquedaProfundidad();
 
-    cout << *solucion << endl;
-    cout << "Nodos creados: " << profundidad.getNodosCreados() << endl;
-    cout << "Nodos expandidos: " << profundidad.getNodosExpandidos() << endl;
-    cout << "Costo de la Solucion: " << profundidad.getCostoSolucion() << endl;
+    QString lvHtml;
+    QString lvTmpSolucion =  QString::fromStdString(*solucion);
+
+    lvHtml = QString::fromStdString("<table><tr><td colspan=2><b>Solución: </b></td></tr>")  +
+             QString::fromStdString("<tr><td colspan=2>") + lvTmpSolucion.replace(";","<b> => </b>") + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("<tr><td><b>Nodos creados: </b></td>")  +
+             QString::fromStdString("<td>") + QString::number(profundidad.getNodosCreados()) + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("<tr><td><b>Nodos expandidos: </b></td>")  +
+             QString::fromStdString("<td>") + QString::number(profundidad.getNodosExpandidos()) + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("<tr><td><b>Costo de la Solución: </b></td>")  +
+             QString::fromStdString("<td>") + QString::number(profundidad.getCostoSolucion()) + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("<tr><td><b>Profundidad del arbol: </b></td>")  +
+             QString::fromStdString("<td>") + QString::number(profundidad.getProfundidad()) + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("<tr><td><b>Factor de Ramificación: </b></td>")  +
+             QString::fromStdString("<td>") + QString::number(profundidad.getFactorRamificacion()) + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("</table>");
+
+    ui->txt_resultados->setText("");
+    ui->txt_resultados->insertHtml(lvHtml);
 
     QStringList listadeSolucion = QString::fromStdString(*solucion).split(";");
 
@@ -291,11 +308,6 @@ void MainWindow::busquedaProfundidad(Entorno pentorno)
     }
 
     pintarSolucion(pentorno, colaSolucion);
-
-
-    cout << endl;
-
-    cout << endl;
 }
 
 
@@ -303,13 +315,8 @@ void MainWindow::busquedaAvara(Entorno pentorno)
 {
     cout << "Busqueda por Costo Uniforme" << endl;
 
-
-
     int posI = pentorno.getPosInitRobot()[0];
     int posJ = pentorno.getPosInitRobot()[1];
-
-    //Nodo raiz(posI, posJ, 0);
-    //NodoFinal raiz(posI, posJ, onRobot, entorno);
 
     int ** lvAmbiente = new int*[pentorno.getAlto()];
     for(int i=0;i<pentorno.getAlto();i++){
@@ -320,7 +327,6 @@ void MainWindow::busquedaAvara(Entorno pentorno)
     }
 
     Nodo raiz(posI, posJ, posI, posJ, onRobot, lvAmbiente);
-
 
     // Aplica el algoritmo de Bisqueda Preferente por Amplitud
     Avara avara(&raiz, pentorno, ui->chk_ind_env_devol->isChecked());
@@ -329,10 +335,25 @@ void MainWindow::busquedaAvara(Entorno pentorno)
 
     solucion = avara.busquedaAvara();
 
-    cout << *solucion << endl;
-    cout << "Nodos creados: " << avara.getNodosCreados() << endl;
-    cout << "Nodos expandidos: " << avara.getNodosExpandidos() << endl;
-    cout << "Costo de la Solucion: " << avara.getCostoSolucion() << endl;
+    QString lvHtml;
+    QString lvTmpSolucion =  QString::fromStdString(*solucion);
+
+    lvHtml = QString::fromStdString("<table><tr><td colspan=2><b>Solución: </b></td></tr>")  +
+             QString::fromStdString("<tr><td colspan=2>") + lvTmpSolucion.replace(";","<b> => </b>") + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("<tr><td><b>Nodos creados: </b></td>")  +
+             QString::fromStdString("<td>") + QString::number(avara.getNodosCreados()) + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("<tr><td><b>Nodos expandidos: </b></td>")  +
+             QString::fromStdString("<td>") + QString::number(avara.getNodosExpandidos()) + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("<tr><td><b>Costo de la Solución: </b></td>")  +
+             QString::fromStdString("<td>") + QString::number(avara.getCostoSolucion()) + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("<tr><td><b>Profundidad del arbol: </b></td>")  +
+             QString::fromStdString("<td>") + QString::number(avara.getProfundidad()) + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("<tr><td><b>Factor de Ramificación: </b></td>")  +
+             QString::fromStdString("<td>") + QString::number(avara.getFactorRamificacion()) + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("</table>");
+
+    ui->txt_resultados->setText("");
+    ui->txt_resultados->insertHtml(lvHtml);
 
     QStringList listadeSolucion = QString::fromStdString(*solucion).split(";");
 
@@ -340,25 +361,14 @@ void MainWindow::busquedaAvara(Entorno pentorno)
     for(int i=0;i<listadeSolucion.size();i++){
         colaSolucion.push(listadeSolucion.at(i));
     }
-
-    pintarSolucion(pentorno, colaSolucion);
-
-    cout << endl;
-
-    cout << endl;
 }
 
 void MainWindow::busquedaAAsterisco(Entorno pentorno)
 {
     cout << "Busqueda por Costo Uniforme" << endl;
 
-
-
     int posI = pentorno.getPosInitRobot()[0];
     int posJ = pentorno.getPosInitRobot()[1];
-
-    //Nodo raiz(posI, posJ, 0);
-    //NodoFinal raiz(posI, posJ, onRobot, entorno);
 
     int ** lvAmbiente = new int*[pentorno.getAlto()];
     for(int i=0;i<pentorno.getAlto();i++){
@@ -370,7 +380,6 @@ void MainWindow::busquedaAAsterisco(Entorno pentorno)
 
     Nodo raiz(posI, posJ, posI, posJ, onRobot, lvAmbiente);
 
-
     // Aplica el algoritmo de Bisqueda Preferente por Amplitud
     AAsterisco aAsterisco(&raiz, pentorno, ui->chk_ind_env_devol->isChecked());
     //queue<string> solucion = amplitud.busquedaPreferente();
@@ -378,10 +387,25 @@ void MainWindow::busquedaAAsterisco(Entorno pentorno)
 
     solucion = aAsterisco.busquedaAAsterico();
 
-    cout << *solucion << endl;
-    cout << "Nodos creados: " << aAsterisco.getNodosCreados() << endl;
-    cout << "Nodos expandidos: " << aAsterisco.getNodosExpandidos() << endl;
-    cout << "Costo de la Solucion: " << aAsterisco.getCostoSolucion() << endl;
+    QString lvHtml;
+    QString lvTmpSolucion =  QString::fromStdString(*solucion);
+
+    lvHtml = QString::fromStdString("<table><tr><td colspan=2><b>Solución: </b></td></tr>")  +
+             QString::fromStdString("<tr><td colspan=2>") + lvTmpSolucion.replace(";","<b> => </b>") + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("<tr><td><b>Nodos creados: </b></td>")  +
+             QString::fromStdString("<td>") + QString::number(aAsterisco.getNodosCreados()) + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("<tr><td><b>Nodos expandidos: </b></td>")  +
+             QString::fromStdString("<td>") + QString::number(aAsterisco.getNodosExpandidos()) + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("<tr><td><b>Costo de la Solución: </b></td>")  +
+             QString::fromStdString("<td>") + QString::number(aAsterisco.getCostoSolucion()) + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("<tr><td><b>Profundidad del arbol: </b></td>")  +
+             QString::fromStdString("<td>") + QString::number(aAsterisco.getProfundidad()) + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("<tr><td><b>Factor de Ramificación: </b></td>")  +
+             QString::fromStdString("<td>") + QString::number(aAsterisco.getFactorRamificacion()) + QString::fromStdString("</td></tr>") +
+             QString::fromStdString("</table>");
+
+    ui->txt_resultados->setText("");
+    ui->txt_resultados->insertHtml(lvHtml);
 
     QStringList listadeSolucion = QString::fromStdString(*solucion).split(";");
 
@@ -391,10 +415,6 @@ void MainWindow::busquedaAAsterisco(Entorno pentorno)
     }
 
     pintarSolucion(pentorno, colaSolucion);
-
-    cout << endl;
-
-    cout << endl;
 }
 
 void MainWindow::pintarSolucion(Entorno pentorno,queue<QString>  pcolaSolucion )
@@ -404,10 +424,8 @@ void MainWindow::pintarSolucion(Entorno pentorno,queue<QString>  pcolaSolucion )
         QString  lvCelda = pcolaSolucion.front();
         QStringList listaCelda = lvCelda.split(",");
 
-
         int coordI = listaCelda[0].toInt();
         int coordJ = listaCelda[1].toInt();
-
 
         lvEstado_ant = pentorno.getAmbiente()[coordI][coordJ];
 
@@ -446,9 +464,6 @@ void MainWindow::pintarSolucion(Entorno pentorno,queue<QString>  pcolaSolucion )
             QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
 
     }
-
-
-
 
 }
 

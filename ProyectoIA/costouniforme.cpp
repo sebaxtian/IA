@@ -1,4 +1,5 @@
 #include "costouniforme.h"
+#include "math.h"
 
 CostoUniforme::CostoUniforme()
 {
@@ -33,6 +34,16 @@ int CostoUniforme::getNodosExpandidos()
 double CostoUniforme::getCostoSolucion()
 {
     return this->costoSolucion;
+}
+
+double CostoUniforme::getFactorRamificacion()
+{
+    return this->factorRamificacion;
+}
+
+int CostoUniforme::getProfundidad()
+{
+    return this->profundidad;
 }
 
 
@@ -76,6 +87,8 @@ string * CostoUniforme::busquedaUniforme()
                 // Terminar, encontro solucion
                 solucion = &pilaCaminoNodosExp.top();
 
+                this->factorRamificacion = pow((nodosCreados + 1.00),1.00/(nodoCabeza.getProfundidad() + 1.00));
+                this->profundidad = nodoCabeza.getProfundidad();
 
                 // Obtiene el costo de la solucion
                 costoSolucion = nodoCabeza.getCostoAcumulado();

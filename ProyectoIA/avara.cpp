@@ -1,4 +1,5 @@
 #include "avara.h"
+#include "math.h"
 
 
 Avara::Avara()
@@ -38,6 +39,16 @@ double Avara::getCostoSolucion()
     return this->costoSolucion;
 }
 
+double Avara::getFactorRamificacion()
+{
+    return this->factorRamificacion;
+}
+
+int Avara::getProfundidad()
+{
+    return this->profundidad;
+}
+
 
 string * Avara::busquedaAvara()
 {
@@ -45,12 +56,12 @@ string * Avara::busquedaAvara()
     string * solucion;
 
     bool termina = false;
-    int parada = 3000;
+    int parada = 180000;
     Nodo nodoCabeza;
     int p = 0;
 
-    while(!termina && parada > 0)
-    //while(!termina)
+   //while(!termina && parada > 0)
+    while(!termina)
     {
         // Si la cola esta vacia
         if(colaPrioridadNodos.empty()) {
@@ -79,6 +90,8 @@ string * Avara::busquedaAvara()
                 // Terminar, encontro solucion
                 solucion = &pilaCaminoNodosExp.top();
 
+                this->factorRamificacion = pow((nodosCreados + 1.00),1.00/(nodoCabeza.getProfundidad() + 1.00));
+                this->profundidad = nodoCabeza.getProfundidad();
 
                 // Obtiene el costo de la solucion
                 costoSolucion = nodoCabeza.getCostoAcumulado();
@@ -255,9 +268,7 @@ void Avara::crearNodo(int posIHijo, int posJHijo, Nodo nodoCabeza)
         costoAcumulado = costoAcumulado + tmpCostoAcumulado;
 
 
-        // Puede crear el nodo hijo
-        //int flagObjetivosPadre = nodoCabeza.getFlagObjetivos();
-        //int flagObjetivos = this->validaObjetivo(nodoCabeza.getFlagObjetivos(), estadoHijo);
+        // Puede crear el nodo hijo       
         // Si encuentra objetivo, en orden, lo quita del entorno
         // Crea el nodo hijo
         Nodo nodoHijo(posIHijo, posJHijo, nodoCabeza.getCoordI(), nodoCabeza.getCoordJ(), estadoHijo, lvEntorno);
@@ -271,21 +282,10 @@ void Avara::crearNodo(int posIHijo, int posJHijo, Nodo nodoCabeza)
         nodoHijo.setHeuristica(obtenerHeuristica(nodoHijo));
 
 
-        //if (nodoHijo.getFlagObjetivos()>= 2){
-        //if ((posIHijo== 3) && (posJHijo== 2)){
-
-        //cout << "camino: "  << *nodoHijo.getNodoPadre() << " costo: " << nodoHijo.getHeuristica() << endl;
-
-
         // Agrega el nodo creado a la cola de nodos
         this->colaPrioridadNodos.push(nodoHijo);
         // Aumenta el contador de hijos creados
         this->nodosCreados++;
-
-        //cout << "Camino: " << *nodoHijo.getNodoPadre() << endl;
-
-        // Imprime el estado del entorno
-        //this->entorno.imprimir();
     }
 }
 
@@ -344,14 +344,14 @@ double Avara::obtenerHeuristica(Nodo pnodo){
     if(pnodo.getFlagObjetivos() == 0) {
         LvDistManhattan = 0;
         LvDistManhattan += abs(coordNemoI - coordNodoI) + abs(coordNemoJ - coordNodoJ);
-        LvDistManhattan += abs(coordMarlinI - coordNodoI) + abs(coordMarlinJ - coordNodoJ);
-        LvDistManhattan += abs(coordDoriI - coordNodoI) + abs(coordDoriJ - coordNodoJ);
+        //LvDistManhattan += abs(coordMarlinI - coordNodoI) + abs(coordMarlinJ - coordNodoJ);
+        //LvDistManhattan += abs(coordDoriI - coordNodoI) + abs(coordDoriJ - coordNodoJ);
     }
 
     if(pnodo.getFlagObjetivos() == 1) {
         LvDistManhattan = 0;
         LvDistManhattan += abs(coordMarlinI - coordNodoI) + abs(coordMarlinJ - coordNodoJ);
-        LvDistManhattan += abs(coordDoriI - coordNodoI) + abs(coordDoriJ - coordNodoJ);
+        //LvDistManhattan += abs(coordDoriI - coordNodoI) + abs(coordDoriJ - coordNodoJ);
     }
 
     if(pnodo.getFlagObjetivos() == 2) {

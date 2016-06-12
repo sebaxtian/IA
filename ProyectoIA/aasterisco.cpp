@@ -1,4 +1,5 @@
 #include "aasterisco.h"
+#include "math.h"
 
 
 AAsterisco::AAsterisco()
@@ -36,6 +37,16 @@ int AAsterisco::getNodosExpandidos()
 double AAsterisco::getCostoSolucion()
 {
     return this->costoSolucion;
+}
+
+double AAsterisco::getFactorRamificacion()
+{
+    return this->factorRamificacion;
+}
+
+int AAsterisco::getProfundidad()
+{
+    return this->profundidad;
 }
 
 
@@ -79,6 +90,8 @@ string * AAsterisco::busquedaAAsterico()
                 // Terminar, encontro solucion
                 solucion = &pilaCaminoNodosExp.top();
 
+                this->factorRamificacion = pow((nodosCreados + 1.00),1.00/(nodoCabeza.getProfundidad() + 1.00));
+                this->profundidad = nodoCabeza.getProfundidad();
 
                 // Obtiene el costo de la solucion
                 costoSolucion = nodoCabeza.getCostoAcumulado();

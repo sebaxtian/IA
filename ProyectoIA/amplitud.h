@@ -15,6 +15,8 @@ class Amplitud
     int nodosCreados;
     int nodosExpandidos;
     double costoSolucion;
+    double factorRamificacion;
+    int profundidad;
 public:
     Amplitud();
     Amplitud(Nodo * nodoRaiz, Entorno entorno, bool ind_evita_devol);
@@ -27,6 +29,8 @@ public:
     int getNodosCreados();
     int getNodosExpandidos();
     double getCostoSolucion();
+    double getFactorRamificacion();
+    int getProfundidad();
 };
 
 #endif // AMPLITUD_H

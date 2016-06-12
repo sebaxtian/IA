@@ -18,6 +18,8 @@ class Profundidad
     int nodosExpandidos;
     double costoSolucion;
     char operadores[4];
+    double factorRamificacion;
+    int profundidad;
 public:
     Profundidad();
     Profundidad(Nodo * nodoRaiz, Entorno entorno, bool ind_evita_devol);
@@ -40,6 +42,8 @@ public:
     void moverIzquierda(int izquierda, int posI, int posIPadre, int posJPadre, estados estadoCabeza, Nodo nodoCabeza);
     // Mover arriba
     void moverArriba(int arriba, int posJ, int posJPadre, int posIPadre, estados estadoCabeza, Nodo nodoCabeza);
+    double getFactorRamificacion();
+    int getProfundidad();
 };
 
 #endif // PROFUNDIDAD_H

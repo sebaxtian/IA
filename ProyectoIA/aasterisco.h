@@ -31,6 +31,8 @@ class AAsterisco
     int nodosCreados;
     int nodosExpandidos;
     double costoSolucion;
+    double factorRamificacion;
+    int profundidad;
 public:
     AAsterisco();
     AAsterisco(Nodo * nodoRaiz, Entorno entorno, bool ind_evita_devol);
@@ -43,6 +45,8 @@ public:
     void crearNodo(int posIHijo, int posJHijo, Nodo nodoCabeza);
     estados toEstado(int itemEntorno);
     double obtenerHeuristica(Nodo pnodo);
+    double getFactorRamificacion();
+    int getProfundidad();
 };
 
 

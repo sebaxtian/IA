@@ -1,6 +1,7 @@
 #include "profundidad.h"
 #include <QStringList>
 #include <iostream>
+#include "math.h"
 
 using namespace std;
 
@@ -56,6 +57,16 @@ void Profundidad::setOperadores(char op0, char op1, char op2, char op3)
     this->operadores[1] = op1;
     this->operadores[2] = op2;
     this->operadores[3] = op3;
+}
+
+double Profundidad::getFactorRamificacion()
+{
+    return this->factorRamificacion;
+}
+
+int Profundidad::getProfundidad()
+{
+    return this->profundidad;
 }
 
 
@@ -119,34 +130,6 @@ string * Profundidad::busquedaProfundidad()
 
             }
 
-            /*
-            bool ciclo = false;
-
-            string pasosiguiente = to_string(nodoCabeza.getCoordI()) +  "," +  to_string(nodoCabeza.getCoordJ());
-
-            QStringList soluciontmp = QString::fromStdString(lvCamino).split(";");
-            if(soluciontmp.size() == 0) {
-                cout << "lvCamino = " << lvCamino << endl;
-                if(lvCamino.compare(pasosiguiente) == 0) {
-                    ciclo = true;
-                }
-            }
-            for(int i=0;i<soluciontmp.size();i++){
-                cout << "soluciontmp.at(i) = " << soluciontmp.at(i).toStdString() << endl;
-                if(soluciontmp.at(i).toStdString().compare(pasosiguiente) == 0) {
-                    ciclo = true;
-                }
-            }
-
-
-            if(!ciclo) {
-                cout << "No Hay Ciclo" << endl;
-                pilaCaminoNodosExp.push(lvCamino);
-                // Aumenta los nodos expandidos
-                nodosExpandidos++;
-            }
-            */
-
             if(!ciclo) {
 
                 pilaCaminoNodosExp.push(lvCamino);
@@ -160,6 +143,9 @@ string * Profundidad::busquedaProfundidad()
                 if(nodoCabeza.esMeta(posArrCamino)) {
                     // Terminar, encontro solucion
                     solucion = &pilaCaminoNodosExp.top();
+
+                    this->factorRamificacion = pow((nodosCreados + 1.00),1.00/(nodoCabeza.getProfundidad() + 1.00));
+                    this->profundidad = nodoCabeza.getProfundidad();
 
                     // Obtiene el costo de la solucion
                     costoSolucion = nodoCabeza.getCostoAcumulado();

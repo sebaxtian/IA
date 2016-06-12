@@ -39,6 +39,8 @@ class Avara
     int nodosCreados;
     int nodosExpandidos;
     double costoSolucion;
+    double factorRamificacion;
+    int profundidad;
 public:
     Avara();
     Avara(Nodo * nodoRaiz, Entorno entorno, bool ind_evita_devol);
@@ -51,6 +53,8 @@ public:
     void crearNodo(int posIHijo, int posJHijo, Nodo nodoCabeza);
     estados toEstado(int itemEntorno);
     double obtenerHeuristica(Nodo pnodo);
+    double getFactorRamificacion();
+    int getProfundidad();
 };
 
 #endif // AVARA_H

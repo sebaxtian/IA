@@ -16,11 +16,13 @@
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableWidget>
+#include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
@@ -37,6 +39,8 @@ public:
     QPushButton *btn_busqueda;
     QCheckBox *chk_ind_env_devol;
     QComboBox *cmb_clase_busqueda;
+    QTextBrowser *txt_resultados;
+    QLabel *label;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -58,7 +62,7 @@ public:
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
         tablaEntono->setVerticalHeaderItem(0, __qtablewidgetitem);
         tablaEntono->setObjectName(QStringLiteral("tablaEntono"));
-        tablaEntono->setGeometry(QRect(10, 11, 1081, 541));
+        tablaEntono->setGeometry(QRect(10, 11, 761, 541));
         tablaEntono->setLineWidth(0);
         tablaEntono->setMidLineWidth(0);
         tablaEntono->setShowGrid(true);
@@ -85,6 +89,17 @@ public:
         cmb_clase_busqueda->setObjectName(QStringLiteral("cmb_clase_busqueda"));
         cmb_clase_busqueda->setEnabled(false);
         cmb_clase_busqueda->setGeometry(QRect(130, 560, 211, 33));
+        txt_resultados = new QTextBrowser(centralWidget);
+        txt_resultados->setObjectName(QStringLiteral("txt_resultados"));
+        txt_resultados->setGeometry(QRect(780, 30, 311, 192));
+        label = new QLabel(centralWidget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(780, 10, 90, 17));
+        QFont font;
+        font.setBold(true);
+        font.setWeight(75);
+        label->setFont(font);
+        label->setTextFormat(Qt::AutoText);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -124,6 +139,7 @@ public:
          << QApplication::translate("MainWindow", "Busqueda no informada", 0)
          << QApplication::translate("MainWindow", "Busqueda informada", 0)
         );
+        label->setText(QApplication::translate("MainWindow", "Resultados:", 0));
     } // retranslateUi
 
 };

@@ -1,4 +1,5 @@
 #include "amplitud.h"
+#include "math.h"
 
 Amplitud::Amplitud()
 {
@@ -33,6 +34,18 @@ double Amplitud::getCostoSolucion()
 {
     return this->costoSolucion;
 }
+
+double Amplitud::getFactorRamificacion()
+{
+    return this->factorRamificacion;
+}
+
+int Amplitud::getProfundidad()
+{
+    return this->profundidad;
+}
+
+
 
 string * Amplitud::busquedaPreferente()
 {
@@ -74,18 +87,10 @@ string * Amplitud::busquedaPreferente()
             if(nodoCabeza.esMeta(0)) {
                 // Terminar, encontro solucion
                 solucion = &pilaCaminoNodosExp.top();
-            /*
-                double costoAcumulado = nodoCabeza.getCostoAcumulado();
-                double tmpCostoAcumulado = 0;
 
-                if((nodoCabeza.getIndAyudaTortuga() == true) && (nodoCabeza.getPasosAyudaTortuga() <=3) ) {
-                    tmpCostoAcumulado = 0.5;
-                }else{
-                    tmpCostoAcumulado = 1;
-                }
+                this->factorRamificacion = pow((nodosCreados + 1.00),1.00/(nodoCabeza.getProfundidad() + 1.00));
+                this->profundidad = nodoCabeza.getProfundidad();
 
-                costoAcumulado = costoAcumulado + tmpCostoAcumulado;
-*/
                 // Obtiene el costo de la solucion
                 costoSolucion = nodoCabeza.getCostoAcumulado();
 
