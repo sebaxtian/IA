@@ -17,7 +17,7 @@ public:
      // cout << "nodoA.getCostoAcumulado() = " << nodoA.getCostoAcumulado() << endl;
       Nodo  nodA = nodoA;
       Nodo  nodB = nodoB;
-      return ((nodA.getHeuristica() + nodA.getCostoAcumulado()) >= (nodB.getHeuristica() + nodB.getCostoAcumulado() ));
+      return ((nodA.getHeuristica() + nodA.getCostoAcumulado()) > (nodB.getHeuristica() + nodB.getCostoAcumulado() ));
   }
 };
 
@@ -31,9 +31,12 @@ class AAsterisco
     int nodosCreados;
     int nodosExpandidos;
     double costoSolucion;
+    double factorRamificacion;
+    int profundidad;
+    string indHeuristica;
 public:
     AAsterisco();
-    AAsterisco(Nodo * nodoRaiz, Entorno entorno, bool ind_evita_devol);
+    AAsterisco(Nodo * nodoRaiz, Entorno entorno, bool ind_evita_devol, string pindHeuristica);
     stack<string> pilaCaminoNodosExp;
     string * busquedaAAsterico();
     int getNodosCreados();
@@ -43,6 +46,10 @@ public:
     void crearNodo(int posIHijo, int posJHijo, Nodo nodoCabeza);
     estados toEstado(int itemEntorno);
     double obtenerHeuristica(Nodo pnodo);
+    double h_distanciaL(Nodo pnodo);
+    double h_distanciaEuclideana(Nodo pnodo);
+    double getFactorRamificacion();
+    int getProfundidad();
 };
 
 

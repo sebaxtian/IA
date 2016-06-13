@@ -48,16 +48,18 @@ void Entorno::loadFile(string pathFile) {
         // Segundo, lee los valores de ancho y alto
         cstr = strdup(line.c_str());
         tokenstr = strtok(cstr," ");
+        int lvIterador = 1;
         while(tokenstr != NULL) {
-            if(this->ancho == 0) {
+            if(lvIterador == 1) {
                 // El primer dato de la linea corresponde al ancho
                 this->ancho = stoi(tokenstr);
             }
-            if(this->alto == 0) {
+            if(lvIterador == 2) {
                 // El segundo dato de la linea corresponde al alto
                 this->alto = stoi(tokenstr);
             }
             tokenstr = strtok(NULL," ");
+            lvIterador += 1;
         }
         // Tercero, lee los datos de las casillas del ambiente y se genera una matriz
         int i = 0;
@@ -155,6 +157,12 @@ string Entorno::validarEntorno(){
     string lvValida = "";
 
 
+    if (this->ancho == 0) {
+       lvValida = lvValida + "El numero de columnas del entorno debe ser mayora a cero" + "@";
+    }
+    if (this->alto == 0) {
+       lvValida = lvValida + "El numero de filas del entorno debe ser mayora a cero" + "@";
+    }
     if (this->posInitRobot[0] == -1) {
        lvValida = lvValida + "Falta el robot" + "@";
     }

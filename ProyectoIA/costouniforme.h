@@ -34,6 +34,8 @@ class CostoUniforme
     int nodosCreados;
     int nodosExpandidos;
     double costoSolucion;
+    double factorRamificacion;
+    int profundidad;
 public:
     CostoUniforme();
     CostoUniforme(Nodo * nodoRaiz, Entorno entorno, bool ind_evita_devol);
@@ -45,6 +47,8 @@ public:
     void crearHijos(Nodo nodo);
     void crearNodo(int posIHijo, int posJHijo, Nodo nodoCabeza);
     estados toEstado(int itemEntorno);
+    double getFactorRamificacion();
+    int getProfundidad();
 };
 
 #endif // COSTOUNIFORME_H

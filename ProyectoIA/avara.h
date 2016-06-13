@@ -25,7 +25,7 @@ public:
      // cout << "nodoA.getCostoAcumulado() = " << nodoA.getCostoAcumulado() << endl;
       Nodo  nodA = nodoA;
       Nodo  nodB = nodoB;
-      return (nodA.getHeuristica() >= nodB.getHeuristica());
+      return (nodA.getHeuristica() > nodB.getHeuristica());
   }
 };
 
@@ -39,9 +39,12 @@ class Avara
     int nodosCreados;
     int nodosExpandidos;
     double costoSolucion;
+    double factorRamificacion;
+    int profundidad;
+    string indHeuristica;
 public:
     Avara();
-    Avara(Nodo * nodoRaiz, Entorno entorno, bool ind_evita_devol);
+    Avara(Nodo * nodoRaiz, Entorno entorno, bool ind_evita_devol, string pindHeuristica);
     stack<string> pilaCaminoNodosExp;
     string * busquedaAvara();
     int getNodosCreados();
@@ -51,6 +54,10 @@ public:
     void crearNodo(int posIHijo, int posJHijo, Nodo nodoCabeza);
     estados toEstado(int itemEntorno);
     double obtenerHeuristica(Nodo pnodo);
+    double h_distanciaL(Nodo pnodo);
+    double h_distanciaEuclideana(Nodo pnodo);
+    double getFactorRamificacion();
+    int getProfundidad();
 };
 
 #endif // AVARA_H

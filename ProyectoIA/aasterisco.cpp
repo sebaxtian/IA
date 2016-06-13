@@ -1,4 +1,5 @@
 #include "aasterisco.h"
+#include "math.h"
 
 
 AAsterisco::AAsterisco()
@@ -9,9 +10,10 @@ AAsterisco::AAsterisco()
 }
 
 
-AAsterisco::AAsterisco(Nodo *nodoRaiz, Entorno entorno, bool ind_evita_devol)
+AAsterisco::AAsterisco(Nodo *nodoRaiz, Entorno entorno, bool ind_evita_devol, string pindHeuristica)
 {
     Nodo lvNodo = *nodoRaiz;
+    this->indHeuristica = pindHeuristica;
     lvNodo.setHeuristica(obtenerHeuristica(lvNodo));
     this->colaPrioridadNodos.push(lvNodo);
     this->nodoRaiz = *nodoRaiz;
@@ -36,6 +38,16 @@ int AAsterisco::getNodosExpandidos()
 double AAsterisco::getCostoSolucion()
 {
     return this->costoSolucion;
+}
+
+double AAsterisco::getFactorRamificacion()
+{
+    return this->factorRamificacion;
+}
+
+int AAsterisco::getProfundidad()
+{
+    return this->profundidad;
 }
 
 
@@ -79,6 +91,8 @@ string * AAsterisco::busquedaAAsterico()
                 // Terminar, encontro solucion
                 solucion = &pilaCaminoNodosExp.top();
 
+                this->factorRamificacion = pow((nodosCreados + 1.00),1.00/(nodoCabeza.getProfundidad() + 1.00));
+                this->profundidad = nodoCabeza.getProfundidad();
 
                 // Obtiene el costo de la solucion
                 costoSolucion = nodoCabeza.getCostoAcumulado();
@@ -328,8 +342,18 @@ estados AAsterisco::toEstado(int itemEntorno)
     return estado;
 }
 
-
 double AAsterisco::obtenerHeuristica(Nodo pnodo){
+    double LvHueristica = 0.0;
+    if (this->indHeuristica == "L"){
+        LvHueristica = h_distanciaL(pnodo);
+    }
+    if (this->indHeuristica == "E"){
+        LvHueristica = h_distanciaEuclideana(pnodo);
+    }
+    return LvHueristica;
+}
+
+double AAsterisco::h_distanciaL(Nodo pnodo){
 
     double LvDistManhattan = 0.0;
     int coordNodoI = pnodo.getCoordI();
@@ -344,14 +368,11 @@ double AAsterisco::obtenerHeuristica(Nodo pnodo){
     if(pnodo.getFlagObjetivos() == 0) {
         LvDistManhattan = 0;
         LvDistManhattan += abs(coordNemoI - coordNodoI) + abs(coordNemoJ - coordNodoJ);
-        LvDistManhattan += abs(coordMarlinI - coordNodoI) + abs(coordMarlinJ - coordNodoJ);
-        LvDistManhattan += abs(coordDoriI - coordNodoI) + abs(coordDoriJ - coordNodoJ);
     }
 
     if(pnodo.getFlagObjetivos() == 1) {
         LvDistManhattan = 0;
         LvDistManhattan += abs(coordMarlinI - coordNodoI) + abs(coordMarlinJ - coordNodoJ);
-        LvDistManhattan += abs(coordDoriI - coordNodoI) + abs(coordDoriJ - coordNodoJ);
     }
 
     if(pnodo.getFlagObjetivos() == 2) {
@@ -360,6 +381,39 @@ double AAsterisco::obtenerHeuristica(Nodo pnodo){
     }
 
     return LvDistManhattan * 0.5;
+
+}
+
+double AAsterisco::h_distanciaEuclideana(Nodo pnodo){
+
+    double LvDistEuclideana = 0.0;
+    int coordNodoI = pnodo.getCoordI();
+    int coordNodoJ = pnodo.getCoordJ();
+    int coordNemoI = this->miEntorno.getPosNemo()[0];
+    int coordNemoJ = this->miEntorno.getPosNemo()[1];
+    int coordMarlinI = this->miEntorno.getPosMarlin()[0];
+    int coordMarlinJ = this->miEntorno.getPosMarlin()[1];
+    int coordDoriI = this->miEntorno.getPosDori()[0];
+    int coordDoriJ = this->miEntorno.getPosDori()[1];
+
+
+    if(pnodo.getFlagObjetivos() == 0) {
+        LvDistEuclideana = 0;
+        LvDistEuclideana += pow((coordNemoI - coordNodoI) ,2.0) + pow((coordNemoJ - coordNodoJ) ,2.0);
+    }
+
+    if(pnodo.getFlagObjetivos() == 1) {
+        LvDistEuclideana = 0;
+        LvDistEuclideana += pow((coordMarlinI - coordNodoI) ,2.0) + pow((coordMarlinJ - coordNodoJ) ,2.0);
+    }
+
+    if(pnodo.getFlagObjetivos() == 2) {
+        LvDistEuclideana = 0;
+        LvDistEuclideana += pow((coordDoriI - coordNodoI) ,2.0) + pow((coordDoriJ - coordNodoJ) ,2.0);
+    }
+
+    LvDistEuclideana = pow(LvDistEuclideana, 1.0/2.0);
+    return LvDistEuclideana;
 
 }
 
