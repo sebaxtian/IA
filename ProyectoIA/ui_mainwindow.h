@@ -20,6 +20,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QTextBrowser>
@@ -41,6 +42,8 @@ public:
     QComboBox *cmb_clase_busqueda;
     QTextBrowser *txt_resultados;
     QLabel *label;
+    QRadioButton *rbt_dist_l;
+    QRadioButton *rbt_dist_e;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -62,7 +65,7 @@ public:
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
         tablaEntono->setVerticalHeaderItem(0, __qtablewidgetitem);
         tablaEntono->setObjectName(QStringLiteral("tablaEntono"));
-        tablaEntono->setGeometry(QRect(10, 11, 761, 541));
+        tablaEntono->setGeometry(QRect(10, 11, 761, 521));
         tablaEntono->setLineWidth(0);
         tablaEntono->setMidLineWidth(0);
         tablaEntono->setShowGrid(true);
@@ -71,24 +74,24 @@ public:
         tablaEntono->verticalHeader()->setVisible(false);
         btn_salir = new QPushButton(centralWidget);
         btn_salir->setObjectName(QStringLiteral("btn_salir"));
-        btn_salir->setGeometry(QRect(851, 559, 112, 27));
+        btn_salir->setGeometry(QRect(985, 559, 112, 27));
         cmb_tipo_busqueda = new QComboBox(centralWidget);
         cmb_tipo_busqueda->setObjectName(QStringLiteral("cmb_tipo_busqueda"));
         cmb_tipo_busqueda->setEnabled(false);
-        cmb_tipo_busqueda->setGeometry(QRect(344, 560, 221, 30));
+        cmb_tipo_busqueda->setGeometry(QRect(319, 560, 221, 30));
         btn_busqueda = new QPushButton(centralWidget);
         btn_busqueda->setObjectName(QStringLiteral("btn_busqueda"));
         btn_busqueda->setEnabled(false);
-        btn_busqueda->setGeometry(QRect(710, 560, 131, 27));
+        btn_busqueda->setGeometry(QRect(851, 560, 131, 27));
         chk_ind_env_devol = new QCheckBox(centralWidget);
         chk_ind_env_devol->setObjectName(QStringLiteral("chk_ind_env_devol"));
         chk_ind_env_devol->setEnabled(false);
-        chk_ind_env_devol->setGeometry(QRect(570, 564, 131, 22));
+        chk_ind_env_devol->setGeometry(QRect(547, 564, 131, 22));
         chk_ind_env_devol->setChecked(true);
         cmb_clase_busqueda = new QComboBox(centralWidget);
         cmb_clase_busqueda->setObjectName(QStringLiteral("cmb_clase_busqueda"));
         cmb_clase_busqueda->setEnabled(false);
-        cmb_clase_busqueda->setGeometry(QRect(130, 560, 211, 33));
+        cmb_clase_busqueda->setGeometry(QRect(126, 560, 181, 33));
         txt_resultados = new QTextBrowser(centralWidget);
         txt_resultados->setObjectName(QStringLiteral("txt_resultados"));
         txt_resultados->setGeometry(QRect(780, 30, 311, 192));
@@ -100,6 +103,13 @@ public:
         font.setWeight(75);
         label->setFont(font);
         label->setTextFormat(Qt::AutoText);
+        rbt_dist_l = new QRadioButton(centralWidget);
+        rbt_dist_l->setObjectName(QStringLiteral("rbt_dist_l"));
+        rbt_dist_l->setGeometry(QRect(685, 550, 105, 22));
+        rbt_dist_l->setChecked(true);
+        rbt_dist_e = new QRadioButton(centralWidget);
+        rbt_dist_e->setObjectName(QStringLiteral("rbt_dist_e"));
+        rbt_dist_e->setGeometry(QRect(684, 569, 151, 22));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -140,6 +150,8 @@ public:
          << QApplication::translate("MainWindow", "Busqueda informada", 0)
         );
         label->setText(QApplication::translate("MainWindow", "Resultados:", 0));
+        rbt_dist_l->setText(QApplication::translate("MainWindow", "Distancia L", 0));
+        rbt_dist_e->setText(QApplication::translate("MainWindow", "Distancia Euclideana", 0));
     } // retranslateUi
 
 };

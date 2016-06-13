@@ -36,7 +36,7 @@
       <x>10</x>
       <y>11</y>
       <width>761</width>
-      <height>541</height>
+      <height>521</height>
      </rect>
     </property>
     <property name="lineWidth">
@@ -66,7 +66,7 @@
    <widget class="QPushButton" name="btn_salir">
     <property name="geometry">
      <rect>
-      <x>851</x>
+      <x>985</x>
       <y>559</y>
       <width>112</width>
       <height>27</height>
@@ -82,7 +82,7 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>344</x>
+      <x>319</x>
       <y>560</y>
       <width>221</width>
       <height>30</height>
@@ -120,7 +120,7 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>710</x>
+      <x>851</x>
       <y>560</y>
       <width>131</width>
       <height>27</height>
@@ -136,7 +136,7 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>570</x>
+      <x>547</x>
       <y>564</y>
       <width>131</width>
       <height>22</height>
@@ -155,9 +155,9 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>126</x>
       <y>560</y>
-      <width>211</width>
+      <width>181</width>
       <height>33</height>
      </rect>
     </property>
@@ -202,6 +202,35 @@
     </property>
     <property name="textFormat">
      <enum>Qt::AutoText</enum>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="rbt_dist_l">
+    <property name="geometry">
+     <rect>
+      <x>685</x>
+      <y>550</y>
+      <width>105</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Distancia L</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="rbt_dist_e">
+    <property name="geometry">
+     <rect>
+      <x>684</x>
+      <y>569</y>
+      <width>151</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Distancia Euclideana</string>
     </property>
    </widget>
   </widget>

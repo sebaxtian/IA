@@ -328,11 +328,22 @@ void MainWindow::busquedaAvara(Entorno pentorno)
 
     Nodo raiz(posI, posJ, posI, posJ, onRobot, lvAmbiente);
 
-    // Aplica el algoritmo de Bisqueda Preferente por Amplitud
-    Avara avara(&raiz, pentorno, ui->chk_ind_env_devol->isChecked());
+    // verificando la heuristica a aplicar
+    string lvIndHeuristica;
+
+    if (ui->rbt_dist_l->isChecked()){
+        lvIndHeuristica = "L";
+    }
+    if (ui->rbt_dist_e->isChecked()){
+        lvIndHeuristica = "E";
+    }
+
+
+    Avara avara(&raiz, pentorno, ui->chk_ind_env_devol->isChecked(), lvIndHeuristica);
     //queue<string> solucion = amplitud.busquedaPreferente();
     string * solucion;
 
+    // Aplica el algoritmo de Bisqueda
     solucion = avara.busquedaAvara();
 
     QString lvHtml;
@@ -361,6 +372,8 @@ void MainWindow::busquedaAvara(Entorno pentorno)
     for(int i=0;i<listadeSolucion.size();i++){
         colaSolucion.push(listadeSolucion.at(i));
     }
+
+    pintarSolucion(pentorno, colaSolucion);
 }
 
 void MainWindow::busquedaAAsterisco(Entorno pentorno)
@@ -380,11 +393,20 @@ void MainWindow::busquedaAAsterisco(Entorno pentorno)
 
     Nodo raiz(posI, posJ, posI, posJ, onRobot, lvAmbiente);
 
-    // Aplica el algoritmo de Bisqueda Preferente por Amplitud
-    AAsterisco aAsterisco(&raiz, pentorno, ui->chk_ind_env_devol->isChecked());
+    // verificando la heuristica a aplicar
+    string lvIndHeuristica;
+
+    if (ui->rbt_dist_l->isChecked()){
+        lvIndHeuristica = "L";
+    }
+    if (ui->rbt_dist_e->isChecked()){
+        lvIndHeuristica = "E";
+    }
+    AAsterisco aAsterisco(&raiz, pentorno, ui->chk_ind_env_devol->isChecked(), lvIndHeuristica);
     //queue<string> solucion = amplitud.busquedaPreferente();
     string * solucion;
 
+    // Aplica el algoritmo de Bisqueda
     solucion = aAsterisco.busquedaAAsterico();
 
     QString lvHtml;
