@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Buscando a Nemo 3</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QPushButton" name="btn_sel_entorno">
@@ -179,7 +179,7 @@
      <x>0</x>
      <y>0</y>
      <width>1100</width>
-     <height>27</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

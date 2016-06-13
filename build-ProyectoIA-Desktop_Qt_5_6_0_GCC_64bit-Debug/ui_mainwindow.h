@@ -88,7 +88,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1100, 27));
+        menuBar->setGeometry(QRect(0, 0, 1100, 25));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -104,7 +104,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Buscando a Nemo 3", 0));
         btn_sel_entorno->setText(QApplication::translate("MainWindow", "Cargar entorno", 0));
         QTableWidgetItem *___qtablewidgetitem = tablaEntono->verticalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "New Row", 0));
