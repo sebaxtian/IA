@@ -40,6 +40,7 @@ public:
     Nodo();
     // Metodo constructor para un Nodo Raiz
     Nodo(int p_coordI, int p_coordJ, int p_coordIPadre, int p_coordJPadre, estados p_estado, int **p_entorno);
+    ~Nodo();
     /*OJO SE COMENTA POR PRUEBA DE ENTORNO
     Nodo(int p_coordI, int p_coordJ, int p_coordIPadre, int p_coordJPadre, estados p_estado);
     */

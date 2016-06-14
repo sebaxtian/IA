@@ -199,12 +199,12 @@ int main(int argc, char *argv[])
 
 
     // Prueba colas con prioridad
-    pruebaColaPrioridad();
+    //pruebaColaPrioridad();
 
 
     // Prueba orden de operadores
-    pruebaOrdenOps('U','L','R','D');
-    pruebaOrdenOps('D','R','U','L');
+    //pruebaOrdenOps('U','L','R','D');
+    //pruebaOrdenOps('D','R','U','L');
 
     // Prueba de evitar ciclos
     //pruebaEvitarCiclos();

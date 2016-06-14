@@ -40,6 +40,40 @@ Nodo::Nodo(int p_coordI, int p_coordJ, int p_coordIPadre, int p_coordJPadre, est
     this->posIniBuscarCiclo = 0;
 }
 
+Nodo::~Nodo()
+{
+    //delete[] this->padre;
+    //this->padre = NULL;
+    this->profundidad = 0;
+    this->costoAcumulado = 0;
+    this->flagObjetivos = 0;
+    this->coordI = 0;
+    this->coordJ = 0;
+    this->coordIPadre = 0;
+    this->coordJPadre = 0;
+    this->heuristica = 0;
+
+    //cout << "Llamado a Destructor" << endl;
+
+    //delete[] this->entorno;
+    /*if(entorno) {
+        for(int i = 0; i < 5; i++) {
+            delete[] entorno[i];
+            entorno[i] = NULL;
+            //free(this->entorno[i]);
+        }
+        delete[] entorno;
+        entorno = NULL;
+    }*/
+    //delete[] entorno;
+
+    this->indAyudaTortuga = 0;
+    this->pasosAyudaTortuga = 0;
+    this->estadoNodo = onRobot;
+    this->posIniBuscarCiclo = 0;
+
+}
+
 /*
 Nodo::Nodo(int p_coordI, int p_coordJ, int p_coordIPadre, int p_coordJPadre, estados p_estado)
 {

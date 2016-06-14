@@ -103,7 +103,8 @@ string * AAsterisco::busquedaAAsterico()
                 crearHijos(nodoCabeza);
             }
         }
-        parada--;
+        //parada--;
+        nodoCabeza.~Nodo();
     }
 
     return solucion;
@@ -413,7 +414,7 @@ double AAsterisco::h_distanciaEuclideana(Nodo pnodo){
     }
 
     LvDistEuclideana = pow(LvDistEuclideana, 1.0/2.0);
-    return LvDistEuclideana;
+    return LvDistEuclideana * 0.5;
 
 }
 
