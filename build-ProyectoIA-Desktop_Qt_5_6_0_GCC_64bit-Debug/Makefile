@@ -940,16 +940,28 @@ mainwindow.o: ../ProyectoIA/mainwindow.cpp ../ProyectoIA/mainwindow.h \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractitemview.h \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractscrollarea.h \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QLabel \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qlabel.h \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QMenuBar \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qmenubar.h \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qmenu.h \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QPushButton \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QRadioButton \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qradiobutton.h \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QStatusBar \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qstatusbar.h \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QTableWidget \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qtablewidget.h \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qtableview.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QTextBrowser \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qtextbrowser.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qtextedit.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtGui/qtextdocument.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtGui/qtextoption.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtGui/qtextcursor.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtGui/qtextformat.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtGui/qpen.h \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QToolBar \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qtoolbar.h \
 		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QWidget \
@@ -966,7 +978,8 @@ mainwindow.o: ../ProyectoIA/mainwindow.cpp ../ProyectoIA/mainwindow.h \
 		../ProyectoIA/nodo.h \
 		../ProyectoIA/costouniforme.h \
 		../ProyectoIA/avara.h \
-		../ProyectoIA/aasterisco.h
+		../ProyectoIA/aasterisco.h \
+		../ProyectoIA/profundidad.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../ProyectoIA/mainwindow.cpp
 
 nodo.o: ../ProyectoIA/nodo.cpp ../ProyectoIA/nodo.h \
@@ -988,7 +1001,53 @@ costouniforme.o: ../ProyectoIA/costouniforme.cpp ../ProyectoIA/costouniforme.h \
 
 profundidad.o: ../ProyectoIA/profundidad.cpp ../ProyectoIA/profundidad.h \
 		../ProyectoIA/nodo.h \
-		../ProyectoIA/entorno.h
+		../ProyectoIA/entorno.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/QStringList \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qstringlist.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qlist.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qalgorithms.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qglobal.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qconfig.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qfeatures.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qtypetraits.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qisenum.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qlogging.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qflags.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qatomic.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qatomic_gcc.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qatomic_armv7.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qatomic_armv6.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qatomic_armv5.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qatomic_ia64.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qatomic_x86.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qatomic_unix.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qmutex.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qnumeric.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qversiontagging.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qiterator.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qrefcount.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qarraydata.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qhashfunctions.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qchar.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qpair.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qbytearray.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qnamespace.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qstring.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qregexp.h \
+		../../../../Programas/Qt5.6.0/5.6/gcc_64/include/QtCore/qstringmatcher.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o profundidad.o ../ProyectoIA/profundidad.cpp
 
 avara.o: ../ProyectoIA/avara.cpp ../ProyectoIA/avara.h \

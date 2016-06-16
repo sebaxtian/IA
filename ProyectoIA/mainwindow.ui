@@ -103,16 +103,6 @@
       <string>Preferente por profundidad</string>
      </property>
     </item>
-    <item>
-     <property name="text">
-      <string>Limitada por profundidad</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Por profundización iterativa</string>
-     </property>
-    </item>
    </widget>
    <widget class="QPushButton" name="btn_busqueda">
     <property name="enabled">

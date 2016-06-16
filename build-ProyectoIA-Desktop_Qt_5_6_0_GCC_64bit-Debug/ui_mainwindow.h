@@ -139,8 +139,6 @@ public:
          << QApplication::translate("MainWindow", "Preferente por amplitud", 0)
          << QApplication::translate("MainWindow", "Costo uniforme", 0)
          << QApplication::translate("MainWindow", "Preferente por profundidad", 0)
-         << QApplication::translate("MainWindow", "Limitada por profundidad", 0)
-         << QApplication::translate("MainWindow", "Por profundizaci\303\263n iterativa", 0)
         );
         btn_busqueda->setText(QApplication::translate("MainWindow", "Ejecutar busqueda", 0));
         chk_ind_env_devol->setText(QApplication::translate("MainWindow", "Evita devolverse", 0));
